@@ -1,9 +1,9 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from products.models import Product
+
+from .supabase_data import fetch_products
 
 
-# Static pages sitemap
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = "weekly"
@@ -18,13 +18,12 @@ class StaticViewSitemap(Sitemap):
         return reverse(item)
 
 
-# Dynamic Product sitemap
 class ProductSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.9
 
     def items(self):
-        return Product.objects.all()
+        return fetch_products()
 
     def lastmod(self, obj):
         return obj.created_at
