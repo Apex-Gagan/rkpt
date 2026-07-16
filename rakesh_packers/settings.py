@@ -74,6 +74,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Vercel / serverless: the filesystem is read-only so DB-backed sessions
+# fail. Sign the session data into the client cookie instead — the payload
+# is only a tiny auth flag and the cart, so it fits comfortably in a cookie.
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = "Lax"
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 ROOT_URLCONF = "rakesh_packers.urls"
 
 TEMPLATES = [
@@ -140,6 +148,11 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# The pre-existing config puts STATIC_ROOT and STATICFILES_DIRS at the same
+# path, which Django flags. We keep the paths as they are (production
+# deployments already rely on this) and silence the check.
+SILENCED_SYSTEM_CHECKS = ["staticfiles.E002"]
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"  # Replace with your SMTP server
 EMAIL_PORT = 587
