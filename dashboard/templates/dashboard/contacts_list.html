@@ -1,0 +1,55 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Queries{% endblock %}
+{% block page_title %}Customer queries{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+    <p class="text-slate-500 text-sm">{{ contacts|length }} total</p>
+</div>
+
+<div class="bg-white rounded-lg border border-slate-200 overflow-x-auto">
+    <table class="min-w-full text-sm">
+        <thead class="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+        <tr>
+            <th class="text-left px-4 py-3">Name</th>
+            <th class="text-left px-4 py-3">Email</th>
+            <th class="text-left px-4 py-3">Phone</th>
+            <th class="text-left px-4 py-3">Message</th>
+            <th class="text-left px-4 py-3">Received</th>
+            <th class="text-right px-4 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+        {% for c in contacts %}
+        <tr class="align-top">
+            <td class="px-4 py-3 font-medium text-slate-900 whitespace-nowrap">{{ c.name }}</td>
+            <td class="px-4 py-3 text-slate-600">
+                {% if c.email %}<a class="hover:underline" href="mailto:{{ c.email }}">{{ c.email }}</a>{% else %}—{% endif %}
+            </td>
+            <td class="px-4 py-3 text-slate-600 whitespace-nowrap">
+                {% if c.phone %}<a class="hover:underline" href="tel:{{ c.phone }}">{{ c.phone }}</a>{% else %}—{% endif %}
+            </td>
+            <td class="px-4 py-3 text-slate-600 max-w-md">
+                <div class="whitespace-pre-wrap break-words">{{ c.message|default:"—" }}</div>
+            </td>
+            <td class="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">{{ c.created_at|slice:":10"|default:"—" }}</td>
+            <td class="px-4 py-3 text-right whitespace-nowrap">
+                <form method="post" action="{% url 'dashboard:contact_delete' c.id %}" class="inline"
+                      onsubmit="return confirm('Delete this query?');">
+                    {% csrf_token %}
+                    <button class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i> Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="px-4 py-8 text-center text-slate-400">
+                No queries yet.
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Products{% endblock %}
+{% block page_title %}Products{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+    <p class="text-slate-500 text-sm">{{ products|length }} total</p>
+    <a href="{% url 'dashboard:product_new' %}"
+       class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2">
+        <i class="fa-solid fa-plus"></i> Add product
+    </a>
+</div>
+
+<div class="bg-white rounded-lg border border-slate-200 overflow-x-auto">
+    <table class="min-w-full text-sm">
+        <thead class="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+        <tr>
+            <th class="text-left px-4 py-3">Name</th>
+            <th class="text-left px-4 py-3">Category</th>
+            <th class="text-left px-4 py-3">Price</th>
+            <th class="text-left px-4 py-3">Images</th>
+            <th class="text-left px-4 py-3">Created</th>
+            <th class="text-right px-4 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+        {% for p in products %}
+        <tr>
+            <td class="px-4 py-3">
+                <div class="font-medium text-slate-900">{{ p.name }}</div>
+                <div class="text-slate-400 text-xs">/{{ p.slug }}</div>
+            </td>
+            <td class="px-4 py-3 text-slate-600">{{ p.category_name|default:"—" }}</td>
+            <td class="px-4 py-3 text-slate-600">
+                {% if p.price %}₹{{ p.price }}{% else %}—{% endif %}
+            </td>
+            <td class="px-4 py-3">
+                <span class="inline-flex items-center gap-1 text-slate-600">
+                    <i class="fa-solid fa-image text-slate-400"></i> {{ p.image_count }}
+                </span>
+            </td>
+            <td class="px-4 py-3 text-slate-500 text-xs">{{ p.created_at|slice:":10" }}</td>
+            <td class="px-4 py-3 text-right">
+                <a href="{% url 'dashboard:product_edit' p.id %}"
+                   class="text-slate-600 hover:text-slate-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</a>
+                <form method="post" action="{% url 'dashboard:product_delete' p.id %}" class="inline"
+                      onsubmit="return confirm('Delete this product and its images?');">
+                    {% csrf_token %}
+                    <button class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i> Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="px-4 py-8 text-center text-slate-400">
+                No products yet. <a class="text-slate-700 underline" href="{% url 'dashboard:product_new' %}">Add one</a>.
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

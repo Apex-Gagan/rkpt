@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "contact",
     "products",
     "tinymce",
+    "dashboard",
 ]
 TINYMCE_DEFAULT_CONFIG = {
     "height": 400,
