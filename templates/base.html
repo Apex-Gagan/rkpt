@@ -1,14 +1,9 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <head>
     <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -23,53 +18,29 @@
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-P69S49KZ');</script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- End Google Tag Manager -->
     <meta name="google-site-verification" content="DWkf8IdUeL8XKCGXtZgJcc-Sf-66LQQzKePGjuY_4iU"/>
 
-    <title>{% block title %}{% endblock %}</title>
-    {% block meta %} {% endblock %}
-    <!-- Favicon -->
-    <link
-            rel="icon"
-            type="image/x-icon"
-            width="100"
-            height="100"
-            href="{% static 'assets/images/logo/favicon.svg' %}"
-    />
+    <title>{% block title %}Rakesh Packers{% endblock %}</title>
+    {% block meta %}{% endblock %}
 
-    <script>
-        WebFontConfig = {
-            google: {
-                families: [
-                    'Open+Sans:300,400,600,700,800',
-                    'Poppins:300,400,500,600,700,800',
-                    'Oswald:300,400,500,600,700,800',
-                ],
-            },
-        };
-        (function (d) {
-            var wf = d.createElement('script'),
-                s = d.scripts[0];
-            wf.src = 'static/assets/js/webfont.js';
-            wf.async = true;
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-    </script>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/logo/favicon.svg' %}"/>
 
-    <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}"/>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"/>
 
-    <!-- Main CSS File -->
-    <link rel="stylesheet" href="{% static 'assets/css/demo4.min.css' %}"/>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    {% block styles %} {% endblock %}
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <!-- Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/rp-theme.css' %}"/>
+    <noscript>
+        <style>.rv { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
+    {% block styles %}{% endblock %}
 </head>
 
 <body>
@@ -79,625 +50,193 @@
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="page-wrapper">
-    <header class="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="header-left d-none d-sm-block">
-                    <p class="top-message text-uppercase">
-                        Premium Material, Best Packaging
-                    </p>
-                </div>
-                <!-- End .header-left -->
 
-                <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
-                    <!-- End .header-dropown -->
-
-                    <span class="separator"></span>
-
-                    <div class="social-icons">
-                        <a
-                                href="https://www.instagram.com/rake.shpackers/"
-                                class="social-icon social-facebook icon-facebook"
-                                target="_blank"
-                        ></a>
-
-                        <a
-                                href="https://www.instagram.com/rake.shpackers/"
-                                class="social-icon social-instagram icon-instagram"
-                                target="_blank"
-                        ></a>
-                    </div>
-                    <!-- End .social-icons -->
-                </div>
-                <!-- End .header-right -->
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End .header-top -->
-
-        <div
-                class="header-middle sticky-header"
-                data-sticky-options="{'mobile': true}"
-        >
-            <div class="container">
-                <div class="header-left col-lg-2 w-auto pl-0">
-                    <button
-                            class="mobile-menu-toggler text-primary mr-2"
-                            type="button"
-                    >
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <a href="/" class="logo">
-                        <img
-                                src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}"
-                                width="111"
-                                height="44"
-                                alt="Porto Logo"
-                        />
-                    </a>
-                </div>
-                <!-- End .header-left -->
-
-                <div class="header-right text-end w-lg-max">
-                    <div class="header-contact d-none d-lg-flex pl-4 pr-4">
-                        <img
-                                alt="phone"
-                                src="{% static 'assets/images/phone.png' %}"
-                                width="30"
-                                height="30"
-                                class="pb-1"
-                        />
-                        <h6>
-                  <span>Call us now</span
-                  ><a href="tel:+919988775163" class="text-dark font1"
-                        >+91 99887-75163</a
-                        >
-                        </h6>
-                    </div>
-
-                    <!-- Cart Icon -->
-                    <a href="/cart/" class="header-icon ml-3" title="View Cart"
-                       style="position:relative;font-size:1.4rem;color:#333;text-decoration:none;vertical-align:middle;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-count-badge"
-                              style="position:absolute;top:-8px;right:-10px;background:#e63e3e;color:#fff;border-radius:50%;font-size:10px;font-weight:700;min-width:18px;height:18px;line-height:18px;text-align:center;padding:0 3px;{% if not cart_count %}display:none;{% endif %}">{{ cart_count }}</span>
-                    </a>
-                    <!-- End .dropdown -->
-                </div>
-                <!-- End .header-right -->
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End .header-middle -->
-
-        <div
-                class="header-bottom sticky-header d-none d-lg-block"
-                data-sticky-options="{'mobile': false}"
-        >
-            <div class="container">
-                <nav class="main-nav w-100">
-                    <ul class="menu">
-                        <li class="active">
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">Categories</a>
-                            <div class="megamenu megamenu-fixed-width megamenu-3cols">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <ul class="submenu">
-                                            {% for category in categories %}
-                                                <li>
-                                                    <a href="#">{{ category.name }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-6 p-0">
-                                        <div class="menu-banner">
-                                            <figure>
-                                                <img
-                                                        src="{% static 'assets/images/products/Burger-Mockup.webp' %}"
-                                                        width="192"
-                                                        height="313"
-                                                        alt="Menu banner"
-                                                />
-                                            </figure>
-                                            {% comment %}
-                          <div class="banner-content">
-                            <h4>
-                              <span class="">UP TO</span><br />
-                              <b class="">50%</b>
-                              <i>OFF</i>
-                            </h4>
-                            <a href="category.html" class="btn btn-sm btn-dark"
-                              >SHOP NOW</a
-                            >
-                          </div>
-                          {% endcomment %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .megamenu -->
-                        </li>
-                        <li>
-                            <a href="#">Products</a>
-                            <div class="megamenu megamenu-fixed-width">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <ul class="submenu">
-                                            {% for product in products %}
-                                                <li>
-                                                    <a href="{% url 'single-product' product.slug %}"
-                                                    >{{ product.name }}</a
-                                                    >
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    <!-- End .col-lg-4 -->
-
-                                    <div class="col-lg-4 p-0">
-                                        <div class="menu-banner menu-banner-2">
-                                            <figure>
-                                                <img
-                                                        src="{% static 'assets/images/products/Pizza-Mockup.webp' %}"
-                                                        width="182"
-                                                        height="317"
-                                                        alt="Menu banner"
-                                                        class="product-promo"
-                                                />
-                                            </figure>
-                                            {% comment %} <i>OFF</i>
-                          <div class="banner-content">
-                            <h4>
-                              <span class="">UP TO</span><br />
-                              <b class="">50%</b>
-                            </h4>
-                          </div>
-                          <a href="category.html" class="btn btn-sm btn-dark"
-                            >SHOP NOW</a
-                          >
-                          {% endcomment %}
-                                        </div>
-                                    </div>
-                                    <!-- End .col-lg-4 -->
-                                </div>
-                                <!-- End .row -->
-                            </div>
-                            <!-- End .megamenu -->
-                        </li>
-
-                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
-
-                        <li><a href="/cart/"><i class="fas fa-shopping-cart"></i> Cart{% if cart_count %}
-                            <span style="background:#e63e3e;color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:1px 6px;">{{ cart_count }}</span>{% endif %}
-                        </a></li>
-
-                        <li class="float-right">
-                            <a href="/" class="pl-5"
-                            ><img
-                                    src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}"
-                            /></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End .header-bottom -->
-    </header>
-    <!-- End .header -->
-    <main class="main">{% block content %} {% endblock %}</main>
-
-    <footer class="footer bg-dark mb-0">
-        <div class="footer-middle mb-0">
-            <div class="container mb-0">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="widget">
-                            <h4 class="widget-title">Contact Info</h4>
-                            <ul class="contact-info">
-                                <li>
-                                    <span class="contact-info-label">Address:</span>Basement
-                                    of Manapuram Gold Bank, near bijli ghar patel chowk,
-                                    Jalandhar(PB), 144001
-                                </li>
-                                <li>
-                      <span class="contact-info-label">Phone:</span
-                      ><a href="tel:919988775163">(+91) 99887-75163</a>
-                                </li>
-                                <li>
-                                    <span class="contact-info-label">Email:</span>
-                                    <a href="mailto:rakeshpackers5@gmail.com"
-                                    ><span class="__cf_email__"
-                                    >Rakeshpackers5@gmail.com</span
-                                    ></a
-                                    >
-                                </li>
-                                <li>
-                      <span class="contact-info-label"
-                      >Working Days/Hours:</span
-                      >
-                                    Mon - Sun / 10:00 AM - 7:00 PM
-                                </li>
-                            </ul>
-                            <div class="social-icons">
-                                <a
-                                        href="#"
-                                        class="social-icon social-facebook icon-facebook"
-                                        target="_blank"
-                                        title="Facebook"
-                                ></a>
-
-                                <a
-                                        href="#"
-                                        class="social-icon social-instagram icon-instagram"
-                                        target="_blank"
-                                        title="Instagram"
-                                ></a>
-                            </div>
-                            <!-- End .social-icons -->
-                        </div>
-                        <!-- End .widget -->
-                    </div>
-                    <!-- End .col-lg-3 -->
-
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="widget">
-                            <h4 class="widget-title">Quick Links</h4>
-
-                            <ul class="links">
-                                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                            </ul>
-                        </div>
-                        <!-- End .widget -->
-                    </div>
-                    <!-- End .col-lg-3 -->
-
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="widget">
-                            <h4 class="widget-title">Popular Categories</h4>
-
-                            <div class="tagcloud">
-                                {% for category in categories %}
-                                    <a href="#">{{ category.name }}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <!-- End .widget -->
-                    </div>
-                    <!-- End .col-lg-3 -->
-
-                    <!-- End .col-lg-3 -->
-                </div>
-                <!-- End .row -->
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End .footer-middle -->
-
-        <div class="container">
-            <div class="footer-bottom">
-                <div class="container d-sm-flex align-items-center">
-                    <div class="footer-left">
-                <span class="footer-copyright"
-                >© Rakesh Packers. {{ current_year }}. All Rights
-                  Reserved</span
-                >
-                    </div>
-                </div>
-            </div>
-            <!-- End .footer-bottom -->
-        </div>
-        <!-- End .container -->
-    </footer>
-    <!-- End .footer -->
+<!-- Announcement marquee -->
+<div class="rp-announce" aria-hidden="true">
+    <div class="track">
+        {% for i in "12" %}
+            <span><i class="fa-solid fa-star"></i> Premium Material, Best Packaging</span>
+            <span><i class="fa-solid fa-truck-fast"></i> Pan-India Delivery</span>
+            <span><i class="fa-solid fa-phone"></i> Call +91 99887-75163</span>
+            <span><i class="fa-solid fa-box-open"></i> Custom Boxes · Cake · Pizza · Sweets · Burger</span>
+            <span><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</span>
+        {% endfor %}
+    </div>
 </div>
-<!-- End .page-wrapper -->
-<!-- WhatsApp floating widget -->
-<div id="wa-widget" class="wa-widget" aria-hidden="true">
-    <div id="wa-popup" class="wa-popup" role="dialog" aria-label="Send WhatsApp message">
-        <div class="wa-popup-header">
-            <span><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
-            <button type="button" id="wa-close" class="wa-close" aria-label="Close">&times;</button>
+
+<!-- Header -->
+<header class="rp-header" id="rp-header">
+    <div class="rp-container inner">
+        <a href="/" class="rp-logo" aria-label="Rakesh Packers home">
+            <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers" width="111"
+                 height="44"/>
+        </a>
+
+        <nav class="rp-nav" aria-label="Main">
+            <div class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+            <div class="nav-item has-drop">
+                <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="rp-drop">
+                    {% for category in categories %}
+                        <a href="/#categories"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="nav-item has-drop">
+                <a href="/#products" class="nav-link">Products <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="rp-drop">
+                    {% for product in products %}
+                        <a href="{% url 'single-product' product.slug %}"><i
+                                class="fa-solid fa-box-open"></i>{{ product.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
+            </div>
+        </nav>
+
+        <div class="right">
+            <div class="hdr-call">
+                <div class="ic"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                    <small>Call us now</small>
+                    <a href="tel:+919988775163">+91 99887-75163</a>
+                </div>
+            </div>
+
+            <a href="/cart/" class="hdr-cart" title="View cart" aria-label="View cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="badge js-cart-count" id="cart-count-badge"
+                      {% if not cart_count %}style="display:none"{% endif %}>{{ cart_count }}</span>
+            </a>
+
+            <button class="hdr-burger" id="rp-burger" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
+    </div>
+</header>
 
-        <textarea
-                id="wa-message"
-                class="wa-textarea"
-                rows="4"
-                placeholder="Type your message..."></textarea>
-
-        <button type="button" id="wa-send" class="wa-send-btn">
-            Send on WhatsApp
+<!-- Mobile drawer -->
+<div class="rp-drawer-overlay" id="rp-drawer-overlay"></div>
+<aside class="rp-drawer" aria-label="Mobile menu">
+    <div class="dr-head">
+        <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers"/>
+        <button class="dr-close" id="rp-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i>
         </button>
     </div>
-
-    <button type="button" id="wa-float-btn" class="wa-float-btn" aria-label="Open WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </button>
-</div>
-<div class="loading-overlay">
-    <div class="bounce-loader">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
+    <nav>
+        <a href="/" class="dr-link">Home <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="dr-link has-sub">Categories <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dr-sub">
+            {% for category in categories %}
+                <a href="/#categories">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+        <a href="#" class="dr-link has-sub">Products <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dr-sub">
+            {% for product in products %}
+                <a href="{% url 'single-product' product.slug %}">{{ product.name }}</a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'contact' %}" class="dr-link">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="/cart/" class="dr-link">Cart{% if cart_count %} ({{ cart_count }}){% endif %} <i
+                class="fa-solid fa-cart-shopping"></i></a>
+    </nav>
+    <div class="dr-cta">
+        <a href="tel:+919988775163" class="btn btn-ghost"><i class="fa-solid fa-phone"></i> +91 99887-75163</a>
+        <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
     </div>
-</div>
+</aside>
 
-<div class="mobile-menu-overlay"></div>
-<!-- End .mobil-menu-overlay -->
+<main>{% block content %}{% endblock %}</main>
 
-<div class="mobile-menu-container">
-    <div class="mobile-menu-wrapper">
-        <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
-        <nav class="mobile-nav">
-            <ul class="mobile-menu">
-                <li><a href="/">Home</a></li>
-                <li>
-                    <a href="#">Categories</a>
-                    <ul>
-                        {% for category in categories %}
-                            <li><a href="#">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Products</a>
-                    <ul>
-                        <li>
-                            <a href="#" class="nolink">All Products</a>
-                            <ul>
-                                {% for product in products %}
-                                    <li>
-                                        <a href="{% url 'single-product' product.slug %}"
-                                        >{{ product.name }}</a
-                                        >
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Quiclinks</a>
-                    <ul>
-                        <li>
-                            <a href="{% url 'contact' %}">Contact Us</a>
-                        </li>
-                        <li>
-                            <a href="/cart/"><i class="fas fa-shopping-cart me-1"></i> Cart{% if cart_count %} (
-                                {{ cart_count }}){% endif %}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+<!-- Footer -->
+<footer class="rp-footer">
+    <div class="wordmark" aria-hidden="true">RAKESH&nbsp;PACKERS</div>
+    <div class="rp-container">
+        <div class="cols">
+            <div class="about">
+                <img src="{% static 'assets/images/logo/Rakesh_Packers_logo_White.svg' %}" alt="Rakesh Packers"/>
+                <p>Premium packaging crafted in Jalandhar — custom boxes for cakes, sweets, pizza, burgers and
+                    everything your brand ships.</p>
+                <div class="socials">
+                    <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
+                       aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
+                       aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/919988775163" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                            class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
 
-            <ul class="mobile-menu mt-1">
-                <li class="border-0">
-                    <a href="/">
-                        <img
-                                src="{% static 'assets/images/logo/Rakesh_Packers_logo_White.svg' %}"
-                        />
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- End .mobile-nav -->
+            <div>
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="/"><i class="fa-solid fa-angle-right"></i>Home</a></li>
+                    <li><a href="/#products"><i class="fa-solid fa-angle-right"></i>Products</a></li>
+                    <li><a href="/cart/"><i class="fa-solid fa-angle-right"></i>My Cart</a></li>
+                    <li><a href="{% url 'contact' %}"><i class="fa-solid fa-angle-right"></i>Contact Us</a></li>
+                </ul>
+            </div>
 
-        <div class="social-icons">
-            <a
-                    href="https://www.instagram.com/rake.shpackers/"
-                    class="social-icon social-facebook icon-facebook"
-                    target="_blank"
-            >
-            </a>
+            <div>
+                <h5>Categories</h5>
+                <ul>
+                    {% for category in categories|slice:":6" %}
+                        <li><a href="/#categories"><i class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-            <a
-                    href="https://www.instagram.com/rake.shpackers/"
-                    class="social-icon social-instagram icon-instagram"
-                    target="_blank"
-            >
-            </a>
+            <div>
+                <h5>Get in Touch</h5>
+                <div class="contact-item"><i class="fa-solid fa-location-dot"></i>
+                    <span>Basement of Manapuram Gold Bank, near Bijli Ghar Patel Chowk, Jalandhar (PB), 144001</span>
+                </div>
+                <div class="contact-item"><i class="fa-solid fa-phone"></i>
+                    <a href="tel:+919988775163">(+91) 99887-75163</a></div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:rakeshpackers5@gmail.com">rakeshpackers5@gmail.com</a></div>
+                <div class="contact-item"><i class="fa-solid fa-clock"></i>
+                    <span>Mon – Sun · 10:00 AM – 7:00 PM</span></div>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <span>© Rakesh Packers {{ current_year }}. All rights reserved.</span>
+            <span>Made with <i class="fa-solid fa-heart" style="color:var(--red)"></i> in Jalandhar, Punjab</span>
         </div>
     </div>
-    <!-- End .mobile-menu-wrapper -->
+</footer>
+
+<!-- WhatsApp floating widget -->
+<div class="wa-pop" id="wa-pop" role="dialog" aria-label="Send WhatsApp message">
+    <div class="head">
+        <span><i class="fa-brands fa-whatsapp"></i> Chat with us</span>
+        <button id="wa-pop-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <textarea id="wa-pop-msg" placeholder="Type your message… e.g. I need 500 cake boxes"></textarea>
+    <button class="send" id="wa-pop-send">Send on WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
 </div>
-<!-- End .mobile-menu-container -->
+<button class="wa-fab" id="wa-fab" aria-label="Open WhatsApp chat"><i class="fa-brands fa-whatsapp"></i></button>
 
-<a id="scroll-top" href="#top" title="Top" role="button"
-><i class="icon-angle-up"></i
-></a>
+<!-- Toast -->
+<div class="rp-toast" id="rp-toast" role="status"></div>
 
-<!-- Plugins JS File -->
-<script
-        data-cfasync="false"
-        src="../static/assets/js/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-></script>
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'assets/js/optional/isotope.pkgd.min.js' %}"></script>
-<script src="{% static 'assets/js/plugins.min.js' %}"></script>
-<script src="{% static 'assets/js/jquery.appear.min.js' %}"></script>
+<!-- Lightbox -->
+<div class="rp-lightbox" id="rp-lightbox" aria-hidden="true">
+    <button class="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-nav lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+    <img src="" alt="Product image"/>
+    <button class="lb-nav lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
 
-<!-- Main JS File -->
-<script src="{% static 'assets/js/main.min.js' %}"></script>
-
-<script>
-    (function () {
-        function c() {
-            var b = a.contentDocument || a.contentWindow.document;
-            if (b) {
-                var d = b.createElement('script');
-                d.innerHTML =
-                    "window.__CF$cv$params={r:'9bf4e003ca9ee280',t:'MTc2ODY0MjY1Nw=='};var a=document.createElement('script');a.src='../static/assets/js/cdn-cgi/challenge-platform/h/b/scripts/jsd/d251aa49a8a3/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                b.getElementsByTagName('head')[0].appendChild(d);
-            }
-        }
-
-        if (document.body) {
-            var a = document.createElement('iframe');
-            a.height = 1;
-            a.width = 1;
-            a.style.position = 'absolute';
-            a.style.top = 0;
-            a.style.left = 0;
-            a.style.border = 'none';
-            a.style.visibility = 'hidden';
-            document.body.appendChild(a);
-            if ('loading' !== document.readyState) c();
-            else if (window.addEventListener)
-                document.addEventListener('DOMContentLoaded', c);
-            else {
-                var e = document.onreadystatechange || function () {
-                };
-                document.onreadystatechange = function (b) {
-                    e(b);
-                    'loading' !== document.readyState &&
-                    ((document.onreadystatechange = e), c());
-                };
-            }
-        }
-    })();
-</script>
-<script
-        defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-        data-cf-beacon='{"version":"2024.11.0","token":"ecd4920e43e14654b78e65dbf8311922","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-        crossorigin="anonymous"
-></script>
-<script src="{% static 'assets/js/actions.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const WHATSAPP_NUMBER = '919988775163'; // replace with your number
-        const widget = document.getElementById('wa-widget');
-        const popup = document.getElementById('wa-popup');
-        const btn = document.getElementById('wa-float-btn');
-        const closeBtn = document.getElementById('wa-close');
-        const sendBtn = document.getElementById('wa-send');
-        const msgBox = document.getElementById('wa-message');
-
-        let visible = false;
-        let popupOpen = false;
-        let ticking = false;
-
-        function showWidget() {
-            if (!visible) {
-                widget.classList.add('is-visible');
-                widget.setAttribute('aria-hidden', 'false');
-                visible = true;
-            }
-        }
-
-        function hideWidget() {
-            widget.classList.remove('is-visible');
-            widget.setAttribute('aria-hidden', 'true');
-            visible = false;
-            popupOpen = false;
-            popup.classList.remove('show');
-        }
-
-        function openPopup() {
-            popup.classList.add('show');
-            popupOpen = true;
-            setTimeout(() => {
-                msgBox.focus();
-            }, 50);
-        }
-
-        function closePopup() {
-            popup.classList.remove('show');
-            popupOpen = false;
-        }
-
-        function togglePopup() {
-            if (popupOpen) {
-                closePopup();
-            } else {
-                openPopup();
-            }
-        }
-
-        function buildMessage(userMsg) {
-            const pageTitle = document.title || 'Website';
-            const pageUrl = window.location.href;
-
-            return ` *New Message from Website*
-
-*Page:* ${pageTitle}
-*Link:* ${pageUrl}
-
-*Message:*
-${userMsg}`;
-        }
-
-        function sendToWhatsApp() {
-            const userMsg = msgBox.value.trim();
-
-            if (!userMsg) {
-                msgBox.focus();
-                return;
-            }
-
-            const fullMsg = buildMessage(userMsg);
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(fullMsg)}`;
-            window.open(url, '_blank', 'noopener');
-            msgBox.value = '';
-            closePopup();
-        }
-
-        function onScroll() {
-            if (ticking) return;
-            ticking = true;
-
-            window.requestAnimationFrame(function () {
-                if (window.scrollY > 100) {
-                    showWidget();
-                } else {
-                    hideWidget();
-                }
-                ticking = false;
-            });
-        }
-
-        window.addEventListener('scroll', onScroll, {passive: true});
-        onScroll();
-
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            togglePopup();
-        });
-
-        closeBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            closePopup();
-        });
-
-        sendBtn.addEventListener('click', sendToWhatsApp);
-
-        msgBox.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-                sendToWhatsApp();
-            }
-            if (e.key === 'Escape') {
-                closePopup();
-            }
-        });
-
-        document.addEventListener('click', function (e) {
-            if (!widget.contains(e.target)) {
-                closePopup();
-            }
-        });
-    });
-</script>
-{% block scripts %} {% endblock %}
+<script src="{% static 'assets/js/rp-theme.js' %}"></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>
