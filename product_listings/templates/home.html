@@ -1,274 +1,408 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  Rakesh Packers -
-  Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and
-  More
+    Rakesh Packers -
+    Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and
+    More
 {% endblock %}
 {% block meta %}
-  <meta name="title"
-        content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More" />
-  <meta name="description"
-        content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services." />
-  <meta name="keywords"
-        content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company" />
-  <meta name="author" content="Rakesh Packers" />
-  <meta name="robots" content="index, follow" />
-  <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.rakeshpacker.com/" />
-  <meta property="og:title"
-        content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More" />
-  <meta property="og:description"
-        content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services." />
-  <meta property="og:image"
-        content="https://i.postimg.cc/c17X2tXc/Banner_2.webp" />
-  <meta property="og:image:width" content="1533" />
-  <meta property="og:image:height" content="499" />
-  <meta property="og:site_name" content="Rakesh Packers" />
+    <meta name="title"
+          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
+    <meta name="description"
+          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
+    <meta name="keywords"
+          content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"/>
+    <meta name="author" content="Rakesh Packers"/>
+    <meta name="robots" content="index, follow"/>
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.rakeshpacker.com/"/>
+    <meta property="og:title"
+          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
+    <meta property="og:description"
+          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
+    <meta property="og:image"
+          content="https://i.postimg.cc/c17X2tXc/Banner_2.webp"/>
+    <meta property="og:image:width" content="1533"/>
+    <meta property="og:image:height" content="499"/>
+    <meta property="og:site_name" content="Rakesh Packers"/>
 {% endblock %}
+
 {% block content %}
-  <div id="carouselExampleControls"
-       class="carousel slide mb-2"
-       data-ride="carousel"
-       data-interval="3000"
-       autoplay>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100"
-             src="{% static 'assets/images/logo/Banner-1.webp' %}"
-             alt="First slide" />
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100"
-             src="{% static 'assets/images/logo/Banner-2.webp' %}"
-             alt="Second slide" />
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100"
-             src="{% static 'assets/images/logo/Banner-3.webp' %}"
-             alt="Second slide" />
-      </div>
-    </div>
-    <a class="carousel-control-prev"
-       href="#carouselExampleControls"
-       role="button"
-       data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next"
-       href="#carouselExampleControls"
-       role="button"
-       data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <div class="container">
-    <div class="info-boxes-slider owl-carousel owl-theme mb-2"
-         data-owl-options="{ 'dots': false, 'loop': true, 'autoplay': true, 'autoplayTimeout': 4000, 'autoplayHoverPause': true,  'responsive': { '576': { 'items': 2 }, '992': { 'items': 3, 'autoplay': false } } }">
-      <div class="info-box info-box-icon-left">
-        <i class="icon-shipping"></i>
-        <div class="info-box-content">
-          <h4>BEST DESIGN & PACKAGING</h4>
-          <p class="text-body">Best in class designs and packaging</p>
-        </div>
-        <!-- End .info-box-content -->
-      </div>
-      <!-- End .info-box -->
-      <div class="info-box info-box-icon-left">
-        <i class="icon-money"></i>
-        <div class="info-box-content">
-          <h4>AFFORDABLE PRICES</h4>
-          <p class="text-body">Competitive pricing with no hidden fees</p>
-        </div>
-        <!-- End .info-box-content -->
-      </div>
-      <!-- End .info-box -->
-      <div class="info-box info-box-icon-left">
-        <i class="icon-support"></i>
-        <div class="info-box-content">
-          <h4>ON TIME DELIVERY</h4>
-          <p class="text-body">We ensure timely delivery of your orders</p>
-        </div>
-        <!-- End .info-box-content -->
-      </div>
-      <!-- End .info-box -->
-    </div>
-    <!-- End .info-boxes-slider -->
-    <div class="banners-container mb-2">
-      <div class="banners-slider owl-carousel owl-theme"
-           data-owl-options="{ 'dots': false, 'loop': true, 'autoplay': true, 'autoplayTimeout': 4000, 'autoplayHoverPause': true, 'responsive': { '576': { 'items': 2 }, '992': { 'items': 3, 'autoplay': false } } }">
-        <div class="banner banner1 banner-sm-vw d-flex align-items-center appear-animate"
-             style="background-color: #ccc"
-             data-animation-name="fadeInLeftShorter"
-             data-animation-delay="500">
-          <figure class="w-100">
-            <img src="{% static 'assets/images/products/Pizza.webp' %}"
-                 alt="banner"
-                 width="380"
-                 height="175" />
-          </figure>
-        </div>
-        <!-- End .banner -->
-        <div class="banner banner2 banner-sm-vw text-uppercase d-flex align-items-center appear-animate"
-             data-animation-name="fadeInUpShorter"
-             data-animation-delay="200">
-          <figure class="w-100">
-            <img src="{% static 'assets/images/products/Cake.webp' %}"
-                 style="background-color: #ccc"
-                 alt="banner"
-                 width="380"
-                 height="175" />
-          </figure>
-        </div>
-        <!-- End .banner -->
-        <div class="banner banner3 banner-sm-vw d-flex align-items-center appear-animate"
-             style="background-color: #ccc"
-             data-animation-name="fadeInRightShorter"
-             data-animation-delay="500">
-          <figure class="w-100">
-            <img src="{% static 'assets/images/products/Sweet.webp' %}"
-                 alt="banner"
-                 width="380"
-                 height="175" />
-          </figure>
-        </div>
-        <!-- End .banner -->
-      </div>
-    </div>
-  </div>
-  <!-- End .container -->
-  <section class="mt-4">
-    <div class="container" id="categories">
-      <h2 class="section-title categories-section-title heading-border border-0 ls-0 appear-animate"
-          data-animation-delay="100"
-          data-animation-name="fadeInUpShorter">Browse Our Categories</h2>
-      <div class="row">
-        {% for product in products %}
-          <div class="col-6 col-sm-4 col-md-3 col-xl-4col">
-            <div class="product-default">
-              <figure onclick="location.href='{% url 'single-product' product.slug %}'">
-                <a href="{% url 'single-product' product.slug %}">
-                  {% with product.image_set.first as img %}
-                    {% if img %}
-                      <img src="{{ img.image }}"
-                           width="280"
-                           height="280"
-                           alt="{{ product.name }}" />
-                    {% else %}
-                      <img src="{% static 'assets/images/default-product.webp' %}"
-                           width="280"
-                           height="280"
-                           alt="default product" />
-                    {% endif %}
-                  {% endwith %}
-                </a>
-              </figure>
-              <div class="product-details">
-                <div class="category-wrap">
-                  <div class="category-list">
-                    {% for cat in product.category.all %}
-                      <a href="#" class="product-category">{{ cat.name }}</a>
-                    {% empty %}
-                      <span class="product-category">Uncategorized</span>
-                    {% endfor %}
-                  </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="rp-hero">
+        <div class="rp-container">
+
+            <div class="hero-slide active">
+                <div class="hero-copy">
+                    <span class="chip hero-kicker"><span class="dot"></span> Jalandhar's trusted packaging studio</span>
+                    <h1 class="hero-title">Boxes that make your <span class="accent">brand</span> unforgettable</h1>
+                    <p class="hero-sub">From bakery counters to pizza ovens — we design, print and deliver premium
+                        custom packaging across India.</p>
+                    <div class="hero-ctas">
+                        <a href="#products" class="btn btn-ink btn-lg">Explore Products <i
+                                class="fa-solid fa-arrow-right bi"></i></a>
+                        <a href="https://wa.me/919988775163" target="_blank" rel="noopener"
+                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp"></i> Get a Quote</a>
+                    </div>
                 </div>
-                <h3 class="product-title">
-                  <a href="{% url 'single-product' product.slug %}">{{ product.name }}</a>
-                </h3>
-                <div class="price-box">
-                  <span class="product-price">Starting at {{ product.price }} ₹</span>
+                <div class="hero-visual">
+                    <div class="hero-blob"></div>
+                    <div class="hero-card">
+                        <span class="tag">BEST SELLER</span>
+                        <img src="{% static 'assets/images/products/Cake-Mockup.webp' %}" alt="Custom cake boxes"/>
+                        <span class="price-pill">Cake Boxes <span>·</span> from ₹4</span>
+                    </div>
                 </div>
-                <div class="product-action">
-                  <a href="{% url 'single-product' product.slug %}"
-                     class="btn-icon btn-add-cart">
-                    <i class="fa fa-arrow-right"></i>
-                    <span>VIEW DETAILS</span>
-                  </a>
-                  <a href="{% url 'single-product' product.slug %}"
-                     class="btn-quickview"
-                     title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="hero-slide">
+                <div class="hero-copy">
+                    <span class="chip hero-kicker"><span class="dot"></span> Hot &amp; fresh, box included</span>
+                    <h1 class="hero-title">Pizza boxes built for the <span class="accent">perfect</span> delivery</h1>
+                    <p class="hero-sub">Grease-resistant, sturdy corrugated pizza boxes with your branding — any size,
+                        any quantity.</p>
+                    <div class="hero-ctas">
+                        <a href="#products" class="btn btn-red btn-lg">See Pizza Boxes <i
+                                class="fa-solid fa-arrow-right bi"></i></a>
+                        <a href="{% url 'contact' %}" class="btn btn-ghost btn-lg">Talk to Us</a>
+                    </div>
                 </div>
-              </div>
+                <div class="hero-visual">
+                    <div class="hero-blob"></div>
+                    <div class="hero-card">
+                        <span class="tag">CRISPY FRESH</span>
+                        <img src="{% static 'assets/images/products/Pizza-Mockup.webp' %}" alt="Custom pizza boxes"/>
+                        <span class="price-pill">Pizza Boxes <span>·</span> custom print</span>
+                    </div>
+                </div>
             </div>
-          </div>
-        {% endfor %}
-      </div>
+
+            <div class="hero-slide">
+                <div class="hero-copy">
+                    <span class="chip hero-kicker"><span class="dot"></span> Sweeten every celebration</span>
+                    <h1 class="hero-title">Sweet &amp; gift boxes with a <span class="accent">premium</span> touch</h1>
+                    <p class="hero-sub">Elegant mithai and gifting boxes that make festivals, weddings and
+                        celebrations feel extra special.</p>
+                    <div class="hero-ctas">
+                        <a href="#products" class="btn btn-ink btn-lg">Browse Sweet Boxes <i
+                                class="fa-solid fa-arrow-right bi"></i></a>
+                        <a href="https://wa.me/919988775163" target="_blank" rel="noopener"
+                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp"></i> Bulk Order</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-blob"></div>
+                    <div class="hero-card">
+                        <span class="tag">FESTIVE PICK</span>
+                        <img src="{% static 'assets/images/products/Sweet-Mockup.webp' %}" alt="Sweet boxes"/>
+                        <span class="price-pill">Sweet Boxes <span>·</span> bulk ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-controls">
+                <div class="rp-container inner">
+                    <div class="hero-dots">
+                        <button class="hero-dot active" aria-label="Slide 1"><span class="fill"></span></button>
+                        <button class="hero-dot" aria-label="Slide 2"><span class="fill"></span></button>
+                        <button class="hero-dot" aria-label="Slide 3"><span class="fill"></span></button>
+                    </div>
+                    <div class="hero-arrows">
+                        <button class="hero-arrow" id="hero-prev" aria-label="Previous slide"><i
+                                class="fa-solid fa-arrow-left"></i></button>
+                        <button class="hero-arrow" id="hero-next" aria-label="Next slide"><i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="rp-marquee" aria-hidden="true">
+        <div class="track">
+            {% for i in "12" %}
+                <span>Cake Boxes <i class="fa-solid fa-star"></i></span>
+                <span>Pizza Boxes <i class="fa-solid fa-star"></i></span>
+                <span>Sweet Boxes <i class="fa-solid fa-star"></i></span>
+                <span>Burger Boxes <i class="fa-solid fa-star"></i></span>
+                <span>Custom Printing <i class="fa-solid fa-star"></i></span>
+                <span>Bulk Orders <i class="fa-solid fa-star"></i></span>
+            {% endfor %}
+        </div>
     </div>
-  </section>
-  <section class="new-products-section">
-    <div class="container">
-      <div class="banner banner-big-sale appear-animate"
-           data-animation-delay="200"
-           data-animation-name="fadeInUpShorter"
-           style="background: #2a95cb center/cover url('{% static 'assets/images/demoes/demo4/banners/banner-4.jpg' %}')">
-        <div class="banner-content row align-items-center mx-0">
-          <div class="col-md-9 col-sm-8">
-            <h2 class="text-white text-uppercase text-center text-sm-left ls-n-20 mb-md-0 px-4">
-              <b class="d-inline-block mr-3 mb-1 mb-md-0">TOP QUALITY BOXES</b>
-              Best in class boxes starting at just Rs.4
-            </h2>
-          </div>
-          <div class="col-md-3 col-sm-4 text-center text-sm-right">
-            <a class="btn btn-light btn-white btn-lg" href="#categories">View Catalogue</a>
-          </div>
+
+    <!-- ================= USP ================= -->
+    <section class="rp-section" style="padding-top:70px;">
+        <div class="rp-container">
+            <div class="usp-grid">
+                <div class="usp-card rv">
+                    <div class="usp-ic"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <div>
+                        <h4>Best Design &amp; Packaging</h4>
+                        <p>In-house design team crafts packaging that stands out on any shelf.</p>
+                    </div>
+                </div>
+                <div class="usp-card rv rv-d1">
+                    <div class="usp-ic"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div>
+                        <h4>Affordable Prices</h4>
+                        <p>Factory-direct pricing with zero hidden fees — starting at just ₹4 a box.</p>
+                    </div>
+                </div>
+                <div class="usp-card rv rv-d2">
+                    <div class="usp-ic"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div>
+                        <h4>On-Time Delivery</h4>
+                        <p>Reliable dispatch across Punjab and pan-India, every single time.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="feature-boxes-container">
-    <div class="container appear-animate"
-         data-animation-name="fadeInUpShorter">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="feature-box px-sm-5 feature-box-simple text-center">
-            <div class="feature-box-icon">
-              <i class="icon-earphones-alt"></i>
+    </section>
+
+    <!-- ================= CATEGORIES ================= -->
+    <section class="rp-section tint" id="categories" style="padding-top:70px;padding-bottom:70px;">
+        <div class="rp-container">
+            <div class="sec-head">
+                <div>
+                    <span class="chip sec-kicker"><span class="dot"></span> What we make</span>
+                    <h2 class="sec-title rv">Browse our <span class="accent">categories</span></h2>
+                    <p class="sec-sub rv rv-d1">Every box we craft, grouped by what your business needs.</p>
+                </div>
+                <a href="#products" class="btn btn-ghost rv rv-d2">All Products <i
+                        class="fa-solid fa-arrow-right bi"></i></a>
             </div>
-            <div class="feature-box-content p-0">
-              <h3>Customer Support</h3>
-              <h5>24/7 availablilty</h5>
+
+            <div class="cat-scroll">
+                {% for category in categories %}
+                    <a href="#products" class="cat-card rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
+                        <span class="num">{{ forloop.counter|stringformat:"02d" }}</span>
+                        <h4>{{ category.name }}</h4>
+                        <p>{{ category.description|default:"Premium quality, fully customisable." }}</p>
+                        <span class="go">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                {% endfor %}
             </div>
-            <!-- End .feature-box-content -->
-          </div>
-          <!-- End .feature-box -->
         </div>
-        <!-- End .col-md-4 -->
-        <div class="col-md-4">
-          <div class="feature-box px-sm-5 feature-box-simple text-center">
-            <div class="feature-box-icon">
-              <i class="icon-credit-card"></i>
+    </section>
+
+    <!-- ================= PRODUCTS ================= -->
+    <section class="rp-section" id="products">
+        <div class="rp-container">
+            <div class="sec-head">
+                <div>
+                    <span class="chip sec-kicker"><span class="dot"></span> Crowd favourites</span>
+                    <h2 class="sec-title rv">Our <span class="accent">products</span></h2>
+                    <p class="sec-sub rv rv-d1">Tap any product for sizes, specs and instant WhatsApp ordering.</p>
+                </div>
             </div>
-            <div class="feature-box-content p-0">
-              <h3>Fully Customizable</h3>
-              <h5>Tons Of Options</h5>
+
+            <div class="prod-grid">
+                {% for product in products %}
+                    <article class="pcard rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
+                        <div class="ph">
+                            {% with imgs=product.image_set.all %}
+                                <a href="{% url 'single-product' product.slug %}" aria-label="{{ product.name }}">
+                                    {% if imgs %}
+                                        <img class="first" src="{{ imgs.0.image }}" alt="{{ product.name }}"
+                                             loading="lazy"/>
+                                        {% if imgs.1 %}
+                                            <img class="second" src="{{ imgs.1.image }}" alt="" loading="lazy"/>
+                                        {% endif %}
+                                    {% else %}
+                                        <img class="first"
+                                             src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
+                                             alt="{{ product.name }}" loading="lazy"/>
+                                    {% endif %}
+                                </a>
+                            {% endwith %}
+                            {% if forloop.counter <= 2 %}<span class="flag">Best Seller</span>{% endif %}
+                            <div class="quick">
+                                <a href="{% url 'single-product' product.slug %}" class="q-view">
+                                    View Details <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="pbody">
+                            {% with product.category.all as cats %}
+                                <span class="pcat">{% if cats %}{{ cats.0.name }}{% else %}Packaging{% endif %}</span>
+                            {% endwith %}
+                            <h3 class="pname"><a
+                                    href="{% url 'single-product' product.slug %}">{{ product.name }}</a></h3>
+                            <div class="pprice">
+                                {% if product.price %}
+                                    <b>₹{{ product.price }}</b><small>/ box · starting</small>
+                                {% else %}
+                                    <b>Price on request</b>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
-            <!-- End .feature-box-content -->
-          </div>
-          <!-- End .feature-box -->
         </div>
-        <!-- End .col-md-4 -->
-        <div class="col-md-4">
-          <div class="feature-box px-sm-5 feature-box-simple text-center">
-            <div class="feature-box-icon">
-              <i class="icon-action-undo"></i>
+    </section>
+
+    <!-- ================= STATS BAND ================= -->
+    <section class="rp-section" style="padding-top:20px;">
+        <div class="rp-container">
+            <div class="rp-band rv rv-scale">
+                <div class="band-grid">
+                    <div>
+                        <span class="chip sec-kicker" style="background:rgba(255,255,255,.1);color:#fff;"><span
+                                class="dot"></span> Why Rakesh Packers</span>
+                        <h2 class="band-title">Packaging trusted by <span class="accent">hundreds</span> of growing
+                            brands</h2>
+                        <p class="band-sub">Bakeries, cloud kitchens, sweet shops and gift stores across India rely on
+                            us for boxes that protect their product and elevate their brand.</p>
+                        <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa btn-lg">
+                            <i class="fa-brands fa-whatsapp"></i> Start Your Order</a>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-cell">
+                            <div class="num" data-count="500" data-suffix="+">0<span>+</span></div>
+                            <div class="lbl">Happy Clients</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="num" data-count="1000000" data-suffix="+">0<span>+</span></div>
+                            <div class="lbl">Boxes Delivered</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="num" data-count="15" data-suffix="+">0<span>+</span></div>
+                            <div class="lbl">Years of Craft</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="num" data-count="100" data-suffix="%">0<span>%</span></div>
+                            <div class="lbl">On-Time Dispatch</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="feature-box-content p-0">
-              <h3>TIMELY DELIVERY</h3>
-              <h5>Always on time, no delays</h5>
-            </div>
-            <!-- End .feature-box-content -->
-          </div>
-          <!-- End .feature-box -->
         </div>
-        <!-- End .col-md-4 -->
-      </div>
-      <!-- End .row -->
-    </div>
-    <!-- End .container-->
-  </section>
-  <!-- End .feature-boxes-container -->
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="rp-section tint">
+        <div class="rp-container">
+            <div class="sec-head">
+                <div>
+                    <span class="chip sec-kicker"><span class="dot"></span> Simple process</span>
+                    <h2 class="sec-title rv">From idea to <span class="accent">doorstep</span> in 3 steps</h2>
+                </div>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card rv">
+                    <span class="snum">01</span>
+                    <div class="sic"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h4>Share Your Requirement</h4>
+                    <p>Message us on WhatsApp with your box type, size and quantity — or just describe your product.</p>
+                </div>
+                <div class="step-card rv rv-d1">
+                    <span class="snum">02</span>
+                    <div class="sic"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <h4>We Design &amp; Print</h4>
+                    <p>Our team designs your packaging, shares a proof, and prints on premium material once approved.</p>
+                </div>
+                <div class="step-card rv rv-d2">
+                    <span class="snum">03</span>
+                    <div class="sic"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h4>Delivered On Time</h4>
+                    <p>Your boxes arrive at your door — carefully packed, exactly when promised.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="rp-section">
+        <div class="rp-container">
+            <div class="sec-head" style="justify-content:center;text-align:center;">
+                <div style="margin-inline:auto;">
+                    <span class="chip sec-kicker"><span class="dot"></span> Client love</span>
+                    <h2 class="sec-title rv">What our <span class="accent">customers</span> say</h2>
+                </div>
+            </div>
+
+            <div class="testi-wrap">
+                <div class="testi-slide active">
+                    <div class="testi-card">
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="stars">★★★★★</div>
+                        <blockquote>“The cake boxes completely changed how our bakery looks on Instagram. Print
+                            quality is superb and delivery was right on schedule.”
+                        </blockquote>
+                        <div class="who">
+                            <div class="avatar">SK</div>
+                            <div style="text-align:left;">
+                                <b>Simran Kaur</b>
+                                <small>Bakery Owner, Jalandhar</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-slide">
+                    <div class="testi-card">
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="stars">★★★★★</div>
+                        <blockquote>“We order 5,000+ pizza boxes every month. Sturdy, grease-resistant and always
+                            delivered on time. Best rates we've found anywhere.”
+                        </blockquote>
+                        <div class="who">
+                            <div class="avatar">RV</div>
+                            <div style="text-align:left;">
+                                <b>Rahul Verma</b>
+                                <small>Cloud Kitchen, Ludhiana</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-slide">
+                    <div class="testi-card">
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="stars">★★★★★</div>
+                        <blockquote>“Festival season sorted! The sweet boxes looked so premium that customers kept
+                            asking where we got them. Ordering again for Diwali.”
+                        </blockquote>
+                        <div class="who">
+                            <div class="avatar">AM</div>
+                            <div style="text-align:left;">
+                                <b>Anita Mehra</b>
+                                <small>Sweet Shop, Amritsar</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testi-nav">
+                    <button class="hero-dot testi-dot active" aria-label="Testimonial 1"><span
+                            class="fill"></span></button>
+                    <button class="hero-dot testi-dot" aria-label="Testimonial 2"><span class="fill"></span></button>
+                    <button class="hero-dot testi-dot" aria-label="Testimonial 3"><span class="fill"></span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="rp-section" style="padding-top:10px;">
+        <div class="rp-container">
+            <div class="rp-band rv rv-scale" style="text-align:center;">
+                <div style="position:relative;z-index:2;max-width:640px;margin-inline:auto;">
+                    <h2 class="band-title">Ready to give your product the <span class="accent">box it deserves?</span>
+                    </h2>
+                    <p class="band-sub" style="margin-inline:auto;">Get a free quote in minutes — no minimum
+                        commitment, no design fees.</p>
+                    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+                        <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa btn-lg">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+                        <a href="{% url 'contact' %}" class="btn btn-ghost-light btn-lg">Contact Form <i
+                                class="fa-solid fa-arrow-right bi"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

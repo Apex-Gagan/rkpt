@@ -1,517 +1,130 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}My Cart | Rakesh Packers{% endblock %}
-{% block styles %}
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}"/>
-    <!-- Font Awesome 6 CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          crossorigin="anonymous"/>
-    <style>
 
-        /* ── Page ── */
-        .cart-page {
-            padding: 44px 0 70px;
-            min-height: 65vh;
-        }
-
-        .cart-page h2 {
-            font-size: 1.9rem;
-        }
-
-        .cart-page > .text-muted {
-            font-size: 1rem;
-        }
-
-        /* ── Table ── */
-        .cart-table th {
-            background: #f4f4f4;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: .04em;
-            border-bottom: 2px solid #ddd;
-            padding: 13px 14px;
-        }
-
-        .cart-table td {
-            padding: 14px;
-            font-size: 1rem;
-            vertical-align: middle;
-        }
-
-        .cart-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 2px;
-            border: 1px solid #e8e8e8;
-        }
-
-        .cart-img-placeholder {
-            width: 76px;
-            height: 76px;
-            background: #f0f0f0;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #bbb;
-            font-size: 1.8rem;
-        }
-
-        .product-name-link {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #222;
-            text-decoration: none;
-        }
-
-        .product-name-link:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        /* ── Qty Control ── */
-        .qty-control {
-            display: inline-flex;
-            align-items: center;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .qty-control .qc-btn {
-            width: 38px;
-            height: 38px;
-            border: none;
-            background: #f5f5f5;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #333;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background .15s;
-        }
-
-        .qty-control .qc-btn:hover {
-            background: #e0e0e0;
-        }
-
-        .qty-control .qc-num {
-            min-width: 48px;
-            height: 38px;
-            border: none;
-            border-left: 2px solid #ccc;
-            border-right: 2px solid #ccc;
-            background: #fff;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #222;
-            text-align: center;
-            line-height: 38px;
-            display: inline-block;
-        }
-
-        /* ── Remove ── */
-        .remove-btn {
-            color: #dc3545;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 6px 10px;
-            border-radius: 6px;
-            transition: background .15s;
-        }
-
-        .remove-btn:hover {
-            background: #fff0f0;
-        }
-
-        /* ── Summary ── */
-        .cart-summary {
-            background: #fafafa;
-            border-radius: 12px;
-            padding: 28px;
-            border: 1px solid #e5e5e5;
-            position: sticky;
-            top: 90px;
-        }
-
-        .cart-summary h5 {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .cart-summary .summary-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .cart-summary .total-row {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .cart-summary .note {
-            font-size: 0.82rem;
-            color: #888;
-            margin-top: 6px;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .checkout-btn {
-            background: #25d366;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            border: none;
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 700;
-            padding: 14px 24px;
-            border-radius: 10px;
-            width: 80%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background .2s;
-            letter-spacing: .02em;
-        }
-
-        .checkout-btn:hover {
-            background: #1cb85a;
-        }
-
-        /* ── Empty ── */
-        .empty-cart {
-            text-align: center;
-            padding: 90px 20px;
-        }
-
-        .empty-cart i {
-            font-size: 4.5rem;
-            color: #ddd;
-            margin-bottom: 18px;
-            display: block;
-        }
-
-        .empty-cart h4 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #333;
-        }
-
-        /* ── Checkout Modal ── */
-        .checkout-modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .checkout-modal-overlay.active {
-            display: flex;
-        }
-
-        .checkout-modal {
-            background: #fff;
-            border-radius: 14px;
-            padding: 36px 32px 28px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
-            animation: slideUp .25s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(28px);
-                opacity: 0
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1
-            }
-        }
-
-        .checkout-modal .modal-heading {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #111;
-            margin-bottom: 4px;
-        }
-
-        .checkout-modal .modal-subtitle {
-            font-size: 0.98rem;
-            color: #666;
-            margin-bottom: 24px;
-        }
-
-        .checkout-modal .form-label {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #222;
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .checkout-modal .form-control {
-            border-radius: 8px;
-            border: 2px solid #ddd;
-            font-size: 1rem;
-            padding: 11px 14px;
-            width: 100%;
-            color: #222;
-            outline: none;
-            transition: border .2s;
-        }
-
-        .checkout-modal .form-control:focus {
-            border-color: #25d366;
-            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.12);
-        }
-
-        .checkout-modal textarea.form-control {
-            resize: vertical;
-        }
-
-        .required-star {
-            color: #e63e3e;
-            margin-left: 2px;
-        }
-
-        .optional-tag {
-            font-size: 0.82rem;
-            font-weight: 400;
-            color: #999;
-            margin-left: 4px;
-        }
-
-        .field-error {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .wa-submit-btn {
-            background: #25d366;
-            border: none;
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 700;
-            padding: 14px;
-            border-radius: 10px;
-            width: 100%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
-            transition: background .2s;
-        }
-
-        .wa-submit-btn:hover {
-            background: #1cb85a;
-        }
-
-        .modal-cancel-btn {
-            background: #f2f2f2;
-            border: none;
-            color: #555;
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 11px;
-            border-radius: 10px;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background .2s;
-        }
-
-        .modal-cancel-btn:hover {
-            background: #e5e5e5;
-        }
-
-        /* ── Subtotal cell ── */
-        .subtotal-cell {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #111;
-        }
-
-        .price-cell {
-            font-size: 0.95rem;
-            color: #555;
-        }
-    </style>
-{% endblock %}
 {% block content %}
-    <div class="container cart-page p-2">
-        <h2 class="mb-1 mt-4 pl-2 fw-bold !text-[2.9rem]">My Cart</h2>
-        <p class="lead  pl-2 mb-4 !tracking-wider">Review your items before placing an order via WhatsApp.</p>
+    <div class="cart-page-v2">
+        <div class="rp-container">
 
-        {% if cart_items %}
-            <div class="row g-4">
-                <!-- Cart Items -->
-                <div class="col-lg-8">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover align-middle cart-table" id="cart-table">
-                            <thead>
-                            <tr>
-                                <th style="width:84px;">Image</th>
-                                <th>Product</th>
-                                <th>Unit Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody id="cart-tbody">
-                            {% for item in cart_items %}
-                                <tr id="cart-row-{{ item.product_id }}">
-                                    <td>
-                                        {% if item.image %}
-                                            <img src="{{ item.image }}" alt="{{ item.name }}" class="cart-img"/>
-                                        {% else %}
-                                            <div class="cart-img-placeholder"><i class="fa-solid fa-box"></i></div>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'single-product' item.slug %}"
-                                           class="product-name-link">{{ item.name }}</a>
-                                    </td>
-                                    <td class="price-cell">&#8377;{{ item.price }}</td>
-                                    <td>
-                                        <div class="qty-control">
-                                            <button class="qc-btn"
-                                                    onclick="updateCart('{{ item.product_id }}', 'decrement')"
-                                                    title="Decrease">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                            <span class="qc-num" id="qty-{{ item.product_id }}">{{ item.qty }}</span>
-                                            <button class="qc-btn"
-                                                    onclick="updateCart('{{ item.product_id }}', 'increment')"
-                                                    title="Increase">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td class="subtotal-cell" id="subtotal-{{ item.product_id }}">
-                                        &#8377;{{ item.subtotal }}</td>
-                                    <td>
-                                        <button class="remove-btn"
-                                                onclick="updateCart('{{ item.product_id }}', 'remove')"
-                                                title="Remove item">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+            <div class="cart-head rv in">
+                <span class="chip"><span class="dot"></span> Your selection</span>
+                <h1 style="margin-top:14px;">My Cart</h1>
+                <p>Review your items, then place your order via WhatsApp.</p>
+            </div>
+
+            {% if cart_items %}
+                <div class="cart-grid">
+
+                    <!-- Items -->
+                    <div class="cart-items">
+                        {% for item in cart_items %}
+                            <div class="ci-card" id="cart-row-{{ item.product_id }}">
+                                <div class="ci-img">
+                                    {% if item.image %}
+                                        <img src="{{ item.image }}" alt="{{ item.name }}"/>
+                                    {% else %}
+                                        <i class="fa-solid fa-box"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="ci-mid">
+                                    <a href="{% url 'single-product' item.slug %}"
+                                       class="ci-name">{{ item.name }}</a>
+                                    <div class="ci-unit">₹{{ item.price }} per box</div>
+                                    <div class="ci-qty">
+                                        <button onclick="updateCart('{{ item.product_id }}', 'decrement')"
+                                                title="Decrease" aria-label="Decrease quantity">
+                                            <i class="fa-solid fa-minus"></i></button>
+                                        <span class="n" id="qty-{{ item.product_id }}">{{ item.qty }}</span>
+                                        <button onclick="updateCart('{{ item.product_id }}', 'increment')"
+                                                title="Increase" aria-label="Increase quantity">
+                                            <i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="ci-right">
+                                    <span class="ci-sub" id="subtotal-{{ item.product_id }}">₹{{ item.subtotal }}</span>
+                                    <button class="ci-rm" onclick="updateCart('{{ item.product_id }}', 'remove')"
+                                            title="Remove item" aria-label="Remove item">
+                                        <i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div>
+                            <a href="/#products" class="btn btn-ghost btn-sm" style="margin-top:10px;">
+                                <i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+                        </div>
                     </div>
 
-                    <a href="/" class="bg-dark text-white p-3 mt-4 mb-4 ml-auto mr-auto"
-                       style="display:inline-flex;align-items:center;gap:8px;font-size:0.95rem;color:#555;text-decoration:none;margin-top:6px;font-weight:600;">
-                        <i class="fa-solid fa-arrow-left"></i> Continue Shopping
-                    </a>
-
-
-                </div>
-
-                <!-- Order Summary -->
-                <div class="col-lg-4">
-                    <div class="cart-summary">
-                        <h5>Order Summary</h5>
-                        <div class="summary-row mt-3">
-                            <span style="color:#666;">Total Items (types)</span>
-                            <span id="summary-count" style="font-weight:600;">{{ cart_items|length }}</span>
+                    <!-- Summary -->
+                    <div class="cart-summary-v2 rv in">
+                        <h4>Order Summary</h4>
+                        <div class="srow">
+                            <span>Products</span>
+                            <span id="summary-count" style="font-weight:700;">{{ cart_items|length }}</span>
                         </div>
-                        <hr style="margin:12px 0;"/>
-                        <div class="summary-row total-row">
+                        <div class="total">
                             <span>Estimated Total</span>
-                            <span id="cart-total">&#8377;{{ cart_total|floatformat:2 }}</span>
+                            <span id="cart-total">₹{{ cart_total|floatformat:2 }}</span>
                         </div>
-                        <p class="note"><i class="fa-solid fa-circle-info" style="color:#aaa;margin-right:4px;"></i>Final
-                            price confirmed by our team based on your order specs.</p>
-                        <button class="checkout-btn" onclick="openCheckoutModal()">
-                            <i class="fa-brands fa-whatsapp fa-lg"></i> Checkout via WhatsApp
+                        <p class="note"><i class="fa-solid fa-circle-info"></i> Final price confirmed by our team based
+                            on your order specs.</p>
+                        <button class="btn btn-wa btn-lg" style="width:100%;" onclick="openCheckoutModal()">
+                            <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
                         </button>
                     </div>
                 </div>
-            </div>
 
-        {% else %}
-            <div class="empty-cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <h4>Your cart is empty</h4>
-                <p style="color:#888;font-size:1rem;margin:10px 0 24px;">Looks like you haven't added any products
-                    yet.</p>
-                <a href="/"
-                   style="display:inline-flex;align-items:center;gap:8px;background:#222;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;">
-                    <i class="fa-solid fa-store"></i> Browse Products
-                </a>
-            </div>
-        {% endif %}
-    </div>
-
-    <!-- Checkout Modal -->
-    <div class="checkout-modal-overlay" id="checkoutModal">
-        <div class="checkout-modal">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-                <i class="fa-brands fa-whatsapp" style="font-size:1.8rem;color:#25d366;"></i>
-                <h4 class="modal-heading" style="margin:0;">Complete Your Order</h4>
-            </div>
-            <p class="modal-subtitle">Your cart details will be sent to Rakesh Packers via WhatsApp.</p>
-
-            <div style="margin-bottom:18px;">
-                <label class="form-label">Your Name <span class="required-star">*</span></label>
-                <input type="text" id="co-name" class="form-control" placeholder="e.g. Rajesh Kumar"/>
-                <div id="name-error" class="field-error"><i class="fa-solid fa-circle-exclamation"
-                                                            style="margin-right:4px;"></i>Name is required.
+            {% else %}
+                <div class="cart-empty">
+                    <div class="big-ic"><i class="fa-solid fa-box-open"></i></div>
+                    <h3>Your cart is empty</h3>
+                    <p>Looks like you haven't added any products yet.</p>
+                    <a href="/#products" class="btn btn-ink btn-lg">
+                        <i class="fa-solid fa-store"></i> Browse Products</a>
                 </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
-                <div>
-                    <label class="form-label">State <span class="optional-tag">(optional)</span></label>
-                    <input type="text" id="co-state" class="form-control" placeholder="e.g. Punjab"/>
-                </div>
-                <div>
-                    <label class="form-label">City <span class="optional-tag">(optional)</span></label>
-                    <input type="text" id="co-city" class="form-control" placeholder="e.g. Jalandhar"/>
-                </div>
-            </div>
-            <div style="margin-bottom:22px;">
-                <label class="form-label">Address <span class="optional-tag">(optional)</span></label>
-                <textarea id="co-address" class="form-control" rows="2"
-                          placeholder="Street, locality, landmark..."></textarea>
-            </div>
-
-            <button class="wa-submit-btn" onclick="sendToWhatsApp()">
-                <i class="fa-brands fa-whatsapp fa-xl"></i> Send Order on WhatsApp
-            </button>
-            <button class="modal-cancel-btn" onclick="closeCheckoutModal()">
-                <i class="fa-solid fa-xmark" style="margin-right:6px;"></i>Cancel
-            </button>
+            {% endif %}
         </div>
     </div>
 
+    <!-- Checkout Modal -->
+    <div class="co-overlay" id="checkoutModal">
+        <div class="co-modal">
+            <div class="co-head">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h4>Complete Your Order</h4>
+            </div>
+            <p class="co-sub">Your cart details will be sent to Rakesh Packers via WhatsApp.</p>
+
+            <div class="co-field">
+                <label>Your Name <em>*</em></label>
+                <input type="text" id="co-name" placeholder="e.g. Rajesh Kumar"/>
+                <div id="name-error" class="err"><i class="fa-solid fa-circle-exclamation"></i> Name is required.</div>
+            </div>
+            <div class="co-2col">
+                <div class="co-field">
+                    <label>State <small>(optional)</small></label>
+                    <input type="text" id="co-state" placeholder="e.g. Punjab"/>
+                </div>
+                <div class="co-field">
+                    <label>City <small>(optional)</small></label>
+                    <input type="text" id="co-city" placeholder="e.g. Jalandhar"/>
+                </div>
+            </div>
+            <div class="co-field">
+                <label>Address <small>(optional)</small></label>
+                <textarea id="co-address" rows="2" placeholder="Street, locality, landmark…"></textarea>
+            </div>
+
+            <button class="btn btn-wa btn-lg" style="width:100%;margin-bottom:10px;" onclick="sendToWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp
+            </button>
+            <button class="btn btn-ghost" style="width:100%;" onclick="closeCheckoutModal()">
+                <i class="fa-solid fa-xmark"></i> Cancel
+            </button>
+        </div>
+    </div>
 {% endblock %}
+
 {% block scripts %}
     <script>
         // Live cart state — synced with server via AJAX, no page reloads needed
@@ -523,31 +136,14 @@
                     qty: {{ item.qty }},
                     subtotal: {{ item.subtotal }}
                 }{% if not forloop.last %},{% endif %}
-
             {% endfor %}
         };
-
-        function getCookie(name) {
-            let val = null;
-            if (document.cookie) {
-                for (let c of document.cookie.split(';')) {
-                    c = c.trim();
-                    if (c.startsWith(name + '=')) {
-                        val = decodeURIComponent(c.slice(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return val;
-        }
 
         function recalcSummary() {
             let total = 0;
             let itemCount = Object.keys(liveCart).length;
-            Object.values(liveCart).forEach(function (item) {
-                total += item.subtotal;
-            });
-            document.getElementById('cart-total').textContent = '\u20B9' + total.toFixed(2);
+            Object.values(liveCart).forEach(function (item) { total += item.subtotal; });
+            document.getElementById('cart-total').textContent = '₹' + total.toFixed(2);
             document.getElementById('summary-count').textContent = itemCount;
         }
 
@@ -557,30 +153,31 @@
 
             fetch('/cart/update/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-CSRFToken': getCookie('csrftoken')},
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': window.rpGetCookie('csrftoken')
+                },
                 body: 'product_id=' + productId + '&action=' + action
             })
-                .then(function (r) {
-                    return r.json();
-                })
+                .then(function (r) { return r.json(); })
                 .then(function (data) {
                     if (!data.success) {
                         if (row) row.style.opacity = '1';
                         return;
                     }
 
-                    const badge = document.getElementById('cart-count-badge');
-                    if (badge) {
-                        badge.textContent = data.cart_count;
-                        badge.style.display = data.cart_count > 0 ? 'inline-block' : 'none';
-                    }
+                    window.rpSetCartCount(data.cart_count);
 
                     if (action === 'remove') {
-                        if (row) row.remove();
+                        if (row) {
+                            row.classList.add('removing');
+                            setTimeout(function () { row.remove(); }, 280);
+                        }
                         delete liveCart[productId];
                         recalcSummary();
+                        window.rpToast('Item removed from cart', 'fa-solid fa-trash');
                         if (Object.keys(liveCart).length === 0) {
-                            location.reload();
+                            setTimeout(function () { location.reload(); }, 450);
                         }
                     } else {
                         if (liveCart[productId]) {
@@ -592,7 +189,7 @@
                             const qtyEl = document.getElementById('qty-' + productId);
                             const subtotalEl = document.getElementById('subtotal-' + productId);
                             if (qtyEl) qtyEl.textContent = newQty;
-                            if (subtotalEl) subtotalEl.textContent = '\u20B9' + liveCart[productId].subtotal.toFixed(2);
+                            if (subtotalEl) subtotalEl.textContent = '₹' + liveCart[productId].subtotal.toFixed(2);
                         }
                         recalcSummary();
                         if (row) row.style.opacity = '1';
@@ -604,12 +201,12 @@
         }
 
         function openCheckoutModal() {
-            document.getElementById('checkoutModal').classList.add('active');
-            document.getElementById('co-name').focus();
+            document.getElementById('checkoutModal').classList.add('show');
+            setTimeout(function () { document.getElementById('co-name').focus(); }, 250);
         }
 
         function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.remove('active');
+            document.getElementById('checkoutModal').classList.remove('show');
         }
 
         document.getElementById('checkoutModal').addEventListener('click', function (e) {

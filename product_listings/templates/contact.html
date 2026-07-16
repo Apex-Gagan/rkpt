@@ -1,223 +1,185 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Contact Us | Rakesh
-Packers{% endblock %} {%block meta%}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us | Rakesh Packers{% endblock %}
 
-<meta
-  name="title"
-  content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"
-/>
-<meta
-  name="description"
-  content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."
-/>
-<meta
-  name="keywords"
-  content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"
-/>
-<meta name="author" content="Rakesh Packers" />
-<meta name="robots" content="index, follow" />
+{% block meta %}
+    <meta name="title"
+          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
+    <meta name="description"
+          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
+    <meta name="keywords"
+          content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"/>
+    <meta name="author" content="Rakesh Packers"/>
+    <meta name="robots" content="index, follow"/>
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.rakeshpacker.com/"/>
+    <meta property="og:title"
+          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
+    <meta property="og:description"
+          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
+    <meta property="og:image" content="https://i.postimg.cc/c17X2tXc/Banner_2.webp"/>
+    <meta property="og:image:width" content="1533"/>
+    <meta property="og:image:height" content="499"/>
+    <meta property="og:site_name" content="Rakesh Packers"/>
+{% endblock %}
 
-<!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.rakeshpacker.com/" />
-<meta
-  property="og:title"
-  content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"
-/>
-<meta
-  property="og:description"
-  content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."
-/>
-<meta
-  property="og:image"
-  content="https://i.postimg.cc/c17X2tXc/Banner_2.webp"
-/>
-<meta property="og:image:width" content="1533" />
-<meta property="og:image:height" content="499" />
-<meta property="og:site_name" content="Rakesh Packers" />
-{%endblock%} {%block styles%}
-<!-- Plugins CSS File -->
-<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+{% block content %}
 
-<link rel="stylesheet" href="{% static 'assets/css/style.min.css'%}" />
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'assets/vendor/fontawesome-free/css/all.min.css'%}"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
-{%endblock%} {% block content %}
-<div id="map">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120.2820453821892!2d75.56801765942588!3d31.335501807306947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a8ec5628d61%3A0x42c5d1ced8f468d!2sPatel%20Chowk%2C%20SAIN%20DASS%20SCHOOL%20MARKET%2C%20near%20Cargo%20Motors%2C%20near%20HP%20Petrol%20Pump%2C%20Transport%20Nagar%2C%20Gopal%20Nagar%2C%20Jalandhar%2C%20Punjab%20144008!5e0!3m2!1sen!2sin!4v1770615601959!5m2!1sen!2sin"
-    width="100%"
-    height="500"
-    style="border: 0"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
-<div class="container contact-us-container mt-5 mb-10">
-  <div class="contact-info">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="ls-n-25 m-b-1">Contact Info</h2>
-
-        <p>
-          Customer Service - We are here to help you. If you have any questions
-          or concerns, please don't hesitate to contact our customer service
-          team. You can reach us by phone, email, or through our online contact
-          form. We are available Monday through Sunday from 10:00 AM to 7:00 PM
-          IST. We look forward to hearing from you and assisting you.
-        </p>
-      </div>
-
-      <div class="col-sm-6 col-lg-3">
-        <div class="feature-box text-center">
-          <i class="fa fa-solid fa-location-dot"></i>
-          <div class="feature-box-content">
-            <h3>Address</h3>
-            <h5>
-              Basement of Manapuram Gold Bank, near bijli ghar patel chowk,
-              Jalandhar(PB), 144001
-            </h5>
-          </div>
+    <!-- Hero -->
+    <section class="ct-hero">
+        <div class="rp-container">
+            <span class="chip"><span class="dot"></span> We reply fast</span>
+            <h1>Let's talk <span style="color:var(--red);">packaging</span></h1>
+            <p>Questions, bulk orders, custom designs — our team is available every day from 10 AM to 7 PM.</p>
         </div>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="feature-box text-center">
-          <i class="fa fa-mobile-alt"></i>
-          <div class="feature-box-content">
-            <h3>Phone Number</h3>
-            <h5>(+91) 99887-75163</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="feature-box text-center">
-          <i class="far fa-envelope"></i>
-          <div class="feature-box-content">
-            <h3>E-mail Address</h3>
-            <h5>
-              <a href="mailto:rakeshpackers5@gmail.com"
-                >Rakeshpackers5@gmail.com</a
-              >
-            </h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <div class="feature-box text-center">
-          <i class="far fa-calendar-alt"></i>
-          <div class="feature-box-content">
-            <h3>Working Days/Hours</h3>
-            <h5>Mon - Sun / 10:00AM - 7:00PM IST</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h2 class="mt-6 mb-2">Send Us a Message</h2>
+    <section style="padding-bottom:90px;">
+        <div class="rp-container">
 
-      <form class="mb-0">
-        {% csrf_token %}
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label class="mb-1" for="contact-name">
-                Your Name <span class="required">*</span>
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="contact-name"
-                name="name"
-              />
-              <p
-                id="name_error_message"
-                class="text-danger small mt-1 mb-1 d-none"
-              ></p>
+            <!-- Info cards -->
+            <div class="ct-cards">
+                <div class="ct-card rv">
+                    <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
+                    <h4>Visit Us</h4>
+                    <p>Basement of Manapuram Gold Bank, near Bijli Ghar Patel Chowk, Jalandhar (PB), 144001</p>
+                </div>
+                <div class="ct-card rv rv-d1">
+                    <div class="ic"><i class="fa-solid fa-phone"></i></div>
+                    <h4>Call Us</h4>
+                    <a href="tel:+919988775163">(+91) 99887-75163</a>
+                </div>
+                <div class="ct-card rv rv-d2">
+                    <div class="ic"><i class="fa-solid fa-envelope"></i></div>
+                    <h4>Email Us</h4>
+                    <a href="mailto:rakeshpackers5@gmail.com">rakeshpackers5@gmail.com</a>
+                </div>
+                <div class="ct-card rv rv-d3">
+                    <div class="ic"><i class="fa-solid fa-clock"></i></div>
+                    <h4>Working Hours</h4>
+                    <p>Mon – Sun<br/>10:00 AM – 7:00 PM IST</p>
+                </div>
             </div>
-          </div>
 
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label class="mb-1" for="contact-email">
-                Your E-mail <span class="required">*</span>
-              </label>
-              <input
-                type="email"
-                class="form-control"
-                id="contact-email"
-                name="email"
-              />
-              <p
-                id="email_error_message"
-                class="text-danger small mt-1 mb-1 d-none"
-              ></p>
+            <!-- Form + Map -->
+            <div class="ct-split">
+                <div class="ct-form-wrap rv rv-left">
+                    <h3>Send us a message</h3>
+                    <p>Fill the form and we'll get back to you within a few hours.</p>
+
+                    <form id="contact-form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="ct-field">
+                            <label for="contact-name">Your Name <em>*</em></label>
+                            <input type="text" id="contact-name" name="name" placeholder="e.g. Rajesh Kumar"/>
+                            <p id="name_error_message" class="ct-err"></p>
+                        </div>
+                        <div class="ct-field">
+                            <label for="contact-email">Your E-mail <em>*</em></label>
+                            <input type="email" id="contact-email" name="email" placeholder="you@example.com"/>
+                            <p id="email_error_message" class="ct-err"></p>
+                        </div>
+                        <div class="ct-field">
+                            <label for="contact-mobile">Your Mobile <em>*</em></label>
+                            <input type="tel" id="contact-mobile" name="phone" placeholder="+91 XXXXX XXXXX"/>
+                            <p id="phone_error_message" class="ct-err"></p>
+                        </div>
+                        <div class="ct-field">
+                            <label for="contact-message">Your Message <em>*</em></label>
+                            <textarea id="contact-message" name="message" rows="4"
+                                      placeholder="Tell us what you need — box type, size, quantity…"></textarea>
+                            <p id="msg_error_message" class="ct-err"></p>
+                        </div>
+
+                        <p id="error_message" class="ct-err"></p>
+                        <p id="success_message" class="ct-ok"></p>
+
+                        <button type="button" class="btn btn-ink btn-lg" style="width:100%;" id="submitbtn">
+                            Send Message <i class="fa-solid fa-paper-plane bi"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="ct-map rv rv-right">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120.2820453821892!2d75.56801765942588!3d31.335501807306947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a8ec5628d61%3A0x42c5d1ced8f468d!2sPatel%20Chowk%2C%20SAIN%20DASS%20SCHOOL%20MARKET%2C%20near%20Cargo%20Motors%2C%20near%20HP%20Petrol%20Pump%2C%20Transport%20Nagar%2C%20Gopal%20Nagar%2C%20Jalandhar%2C%20Punjab%20144008!5e0!3m2!1sen!2sin!4v1770615601959!5m2!1sen!2sin"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Rakesh Packers location"></iframe>
+                </div>
             </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label class="mb-1" for="contact-mobile">
-                Your Mobile <span class="required">*</span>
-              </label>
-              <input
-                type="tel"
-                class="form-control"
-                id="contact-mobile"
-                name="phone"
-              />
-              <p
-                id="phone_error_message"
-                class="text-danger small mt-1 mb-1 d-none"
-              ></p>
-            </div>
-          </div>
         </div>
+    </section>
+{% endblock %}
 
-        <div class="form-group">
-          <label class="mb-1" for="contact-message">
-            Your Message <span class="required">*</span>
-          </label>
-          <textarea
-            cols="30"
-            rows="2"
-            id="contact-message"
-            class="form-control"
-            name="message"
-          ></textarea>
-          <p
-            id="msg_error_message"
-            class="text-danger small mt-1 mb-1 d-none"
-          ></p>
-        </div>
+{% block scripts %}
+    <script>
+        (function () {
+            var btn = document.getElementById('submitbtn');
+            var idleHtml = btn.innerHTML;
 
-        <p id="error_message" class="text-danger small mt-1 mb-1 d-none"></p>
-        <p id="success_message" class="text-success small mt-1 mb-1 d-none"></p>
+            var fieldIds = ['name_error_message', 'email_error_message', 'phone_error_message',
+                'msg_error_message', 'success_message', 'error_message'];
 
-        <div class="form-footer mb-0">
-          <button
-            type="button"
-            class="btn btn-dark font-weight-normal"
-            id="submitbtn"
-            onclick="SubmitContactForm('{% url 'contact' %}');"
-          >
-            Send Message
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-{%endblock%}
+            function resetMessages() {
+                fieldIds.forEach(function (id) {
+                    var el = document.getElementById(id);
+                    el.style.display = 'none';
+                    el.textContent = '';
+                });
+            }
+
+            function showMessages(obj) {
+                Object.keys(obj).forEach(function (key) {
+                    var el = document.getElementById(key);
+                    if (el) {
+                        el.textContent = obj[key];
+                        el.style.display = 'block';
+                    }
+                });
+            }
+
+            btn.addEventListener('click', function () {
+                resetMessages();
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
+
+                var body = new URLSearchParams({
+                    name: document.getElementById('contact-name').value.trim(),
+                    email: document.getElementById('contact-email').value.trim(),
+                    phone: document.getElementById('contact-mobile').value.trim(),
+                    message: document.getElementById('contact-message').value.trim()
+                });
+
+                fetch("{% url 'contact' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': window.rpGetCookie('csrftoken')
+                    },
+                    body: body.toString()
+                })
+                    .then(function (r) {
+                        return r.json().then(function (data) { return {ok: r.ok, data: data}; });
+                    })
+                    .then(function (res) {
+                        btn.disabled = false;
+                        btn.innerHTML = idleHtml;
+                        showMessages(res.data);
+                        if (res.ok && res.data.success_message) {
+                            window.rpToast(res.data.success_message);
+                            ['contact-name', 'contact-email', 'contact-mobile', 'contact-message'].forEach(
+                                function (id) { document.getElementById(id).value = ''; });
+                        }
+                    })
+                    .catch(function () {
+                        btn.disabled = false;
+                        btn.innerHTML = idleHtml;
+                        showMessages({error_message: 'Something went wrong. Please try again.'});
+                    });
+            });
+        })();
+    </script>
+{% endblock %}

@@ -24,885 +24,265 @@
     <meta property="og:site_name" content="Rakesh Packers"/>
 {% endblock %}
 
-{% block styles %}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          crossorigin="anonymous"/>
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}"/>
-
-    <style>
-        .sp-page {
-            padding: 36px 0 70px;
-            background: #fafafa;
-        }
-
-        /* breadcrumb */
-        .sp-breadcrumb {
-            font-size: .82rem;
-            color: #888;
-            margin-bottom: 28px;
-        }
-
-        .sp-breadcrumb a {
-            color: #555;
-            text-decoration: none;
-        }
-
-        .sp-breadcrumb a:hover {
-            color: #111;
-        }
-
-        .sp-breadcrumb span {
-            margin: 0 6px;
-        }
-
-        /* gallery card */
-        .sp-gallery-wrap {
-            background: #fff;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
-            position: sticky;
-            top: 80px;
-        }
-
-        /* main carousel images */
-        .product-single-carousel .product-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #f7f7f7;
-            cursor: crosshair;
-        }
-
-        .product-single-carousel .product-item img.product-single-image {
-            width: 100%;
-            height: 420px;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* zoom hint badge */
-        .zoom-hint {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, .42);
-            color: #fff;
-            font-size: .72rem;
-            font-weight: 600;
-            padding: 4px 9px;
-            border-radius: 20px;
-            pointer-events: none;
-            letter-spacing: .04em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* HOT badge */
-        .sp-hot-badge {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: #e63e3e;
-            color: #fff;
-            font-size: .7rem;
-            font-weight: 800;
-            letter-spacing: .08em;
-            padding: 3px 10px;
-            border-radius: 4px;
-            z-index: 2;
-        }
-
-        /* fullscreen button */
-        .sp-fullscreen-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, .9);
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #333;
-            font-size: .9rem;
-            z-index: 3;
-            transition: background .15s;
-        }
-
-        .sp-fullscreen-btn:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        /* owl nav arrows */
-        .product-single-carousel .owl-nav button.owl-prev,
-        .product-single-carousel .owl-nav button.owl-next {
-            width: 38px !important;
-            height: 38px !important;
-            background: rgba(255, 255, 255, .92) !important;
-            border-radius: 50% !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .12) !important;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            top: 50% !important;
-            transform: translateY(-50%) !important;
-            margin: 0 !important;
-            transition: background .15s, transform .15s !important;
-        }
-
-        .product-single-carousel .owl-nav button:hover {
-            background: #fff !important;
-            transform: translateY(-50%) scale(1.1) !important;
-        }
-
-        /* thumbnails */
-        .sp-thumbs {
-            display: flex;
-            gap: 8px;
-            margin-top: 14px;
-            flex-wrap: wrap;
-        }
-
-        .sp-thumbs .owl-dot {
-            flex: 0 0 auto;
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: border-color .2s, box-shadow .2s;
-            background: #f0f0f0;
-        }
-
-        .sp-thumbs .owl-dot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .sp-thumbs .owl-dot.active,
-        .sp-thumbs .owl-dot:hover {
-            border-color: #222;
-            box-shadow: 0 0 0 1px #222;
-        }
-
-        /* info panel */
-        .sp-info-wrap {
-            padding-left: 10px;
-        }
-
-        .sp-product-title {
-            font-size: 1.95rem;
-            font-weight: 600;
-            color: #111;
-            line-height: 1.25;
-            margin-bottom: 10px;
-        }
-
-        /* stars */
-        .sp-stars {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 14px;
-        }
-
-        .sp-stars .stars-inner {
-            color: #f5a623;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .sp-stars .review-count {
-            font-size: .82rem;
-            color: #888;
-        }
-
-        .sp-divider {
-            border: none;
-            border-top: 1px solid #ebebeb;
-            margin: 16px 0;
-        }
-
-        /* price */
-        .sp-price-row {
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-
-        .sp-price {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #111;
-        }
-
-        .sp-price-label {
-            font-size: 1rem;
-            color: #888;
-            font-weight: 500;
-        }
-
-        .sp-price-note {
-            font-size: 1rem;
-            color: #999;
-            margin-bottom: 18px;
-            margin-top: 4px;
-        }
-
-        .sp-desc {
-            font-size: 1.25rem;
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* catalogue cards */
-        .sp-catalogue-label {
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            color: black;
-            margin-bottom: 12px;
-        }
-
-        .sp-catalogue-grid {
-            display: grid;
-            grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-
-        .sp-cat-card {
-            background: #fff;
-            border: 1.5px solid #e8e8e8;
-            border-radius: 10px;
-            padding: 14px 12px;
-            transition: border-color .2s, box-shadow .2s;
-        }
-
-        .sp-cat-card:hover {
-            border-color: #aaa;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, .07);
-        }
-
-        .sp-cat-card .card-label {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #222;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .sp-cat-card .card-label i {
-            color: #4a90d9;
-            font-size: 1rem;
-        }
-
-        .sp-cat-card .card-weight {
-            font-size: 1.15rem;
-            color: black;
-            margin-bottom: 8px;
-        }
-
-        .sp-cat-card .card-section-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            color: black;
-            margin-bottom: 4px;
-        }
-
-        .sp-cat-card .card-dims {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .sp-cat-card .card-quality-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sp-cat-card .card-quality-list li {
-            font-size: 1.15rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 3px;
-        }
-
-        /* qty + atc */
-        .sp-action-wrap {
-            background: #f7f7f7;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 4px;
-        }
-
-        .sp-qty-label {
-            font-size: 0.875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .07em;
-            color: #666;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        .sp-qty-label span {
-            font-weight: 400;
-            color: #999;
-            margin-left: 6px;
-            text-transform: none;
-            letter-spacing: 0;
-        }
-
-        .sp-qty-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .sp-qty-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            border: 2px solid #333;
-            background: #fff;
-            color: #333;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .15s;
-            flex-shrink: 0;
-        }
-
-        .sp-qty-btn.minus:hover {
-            background: #333;
-            color: #fff;
-        }
-
-        .sp-qty-btn.plus {
-            background: #222;
-            color: #fff;
-            border-color: #222;
-        }
-
-        .sp-qty-btn.plus:hover {
-            background: #000;
-            border-color: #000;
-        }
-
-        .sp-qty-display {
-            min-width: 80px;
-            height: 44px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background: #fff;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sp-atc-btn {
-            width: fit-content;
-            height: 52px;
-            background: #000;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background .2s;
-            letter-spacing: .03em;
-            padding: 15px 20px;
-        }
-
-        .sp-atc-btn:hover {
-            background: dimgrey;
-        }
-
-        .sp-atc-btn:disabled {
-            opacity: .65;
-            cursor: not-allowed;
-        }
-
-        /* trust badges */
-        .sp-trust-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 14px;
-            flex-wrap: wrap;
-        }
-
-        .sp-trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 1.28rem;
-            color: #555;
-            font-weight: 600;
-            background: #fff;
-            border: 1px solid #e8e8e8;
-            border-radius: 20px;
-            padding: 5px 12px;
-        }
-
-        .sp-trust-badge i {
-            color: #22c55e;
-            font-size: 1.18rem;
-        }
-
-        /* USP section */
-        .sp-usp-section {
-            background: #fff;
-            border-radius: 14px;
-            padding: 28px 30px;
-            margin-top: 36px;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, .05);
-        }
-
-        .sp-usp-grid {
-            display: grid;
-            grid-template-columns:repeat(3, 1fr);
-        }
-
-        .sp-usp-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 20px 16px;
-            border-right: 1px solid #f0f0f0;
-        }
-
-        .sp-usp-item:last-child {
-            border-right: none;
-        }
-
-        .sp-usp-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: #f4f4f4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-            font-size: 1.6rem;
-            color: #5490a9;
-        }
-
-        .sp-usp-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            color: #5490a9;
-            margin-bottom: 4px;
-        }
-
-        .sp-usp-sub {
-            font-size: 1rem;
-            color: #888;
-            line-height: 1.4;
-            letter-spacing: 0.9px;
-        }
-
-        /* ATC modal */
-        #atc-modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .48);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        #atc-modal-overlay.visible {
-            display: flex;
-            pointer-events: auto;
-        }
-
-        #atc-modal-box {
-            background: #fff;
-            border-radius: 16px;
-            padding: 36px 30px 28px;
-            max-width: 360px;
-            width: 90%;
-            box-shadow: 0 28px 70px rgba(0, 0, 0, .22);
-            text-align: center;
-            animation: atcPop .22s ease;
-        }
-
-        @keyframes atcPop {
-            from {
-                transform: scale(.88);
-                opacity: 0
-            }
-            to {
-                transform: scale(1);
-                opacity: 1
-            }
-        }
-
-        .atc-check-circle {
-            width: 62px;
-            height: 62px;
-            background: #edfaf3;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-        }
-
-        #atc-modal-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #111;
-            margin-bottom: 6px;
-        }
-
-        #atc-modal-msg {
-            font-size: .92rem;
-            color: #666;
-            margin-bottom: 22px;
-        }
-
-        .atc-view-cart-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25d366;
-            color: #fff;
-            border-radius: 8px;
-            padding: 11px 24px;
-            font-weight: 700;
-            font-size: .95rem;
-            text-decoration: none;
-            transition: background .15s;
-        }
-
-        .atc-view-cart-btn:hover {
-            background: #1cb85a;
-            color: #fff;
-        }
-
-        /* override sticky */
-        .product-action {
-            position: static !important;
-            background: transparent !important;
-            padding: 0 !important;
-            z-index: auto !important;
-        }
-
-        /* responsive */
-        @media (max-width: 767px) {
-            .sp-info-wrap {
-                padding-left: 0;
-                margin-top: 24px;
-            }
-
-            .sp-product-title {
-                font-size: 1.45rem;
-            }
-
-            .sp-usp-grid {
-                grid-template-columns:1fr;
-            }
-
-            .sp-usp-item {
-                border-right: none;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .sp-usp-item:last-child {
-                border-bottom: none;
-            }
-
-            .sp-gallery-wrap {
-                position: static;
-            }
-
-            .product-single-carousel .product-item img.product-single-image {
-                height: 300px;
-            }
-        }
-    </style>
-{% endblock %}
-
 {% block content %}
-    <div class="sp-page">
-        <div class="container">
+    <div class="pd-page">
+        <div class="rp-container">
 
             <!-- Breadcrumb -->
-            <nav class="sp-breadcrumb">
-                <a href="/">Home</a><span>/</span>
-                <a href="/#products">Products</a><span>/</span>
-                <span style="color:#222;font-weight:600;">{{ product.name }}</span>
+            <nav class="pd-crumb rv in">
+                <a href="/">Home</a> <i class="fa-solid fa-angle-right" style="font-size:.6rem;"></i>
+                <a href="/#products">Products</a> <i class="fa-solid fa-angle-right" style="font-size:.6rem;"></i>
+                <b>{{ product.name }}</b>
             </nav>
 
-            <div class="product-single-container product-single-default product-single-info">
-                <div class="row">
+            <div class="pd-grid">
 
-                    <!-- GALLERY -->
-                    <div class="col-lg-5 col-md-6 product-single-gallery">
-                        <div class="sp-gallery-wrap">
-                            <div class="product-slider-container" style="position:relative;">
+                <!-- ============ GALLERY ============ -->
+                <div class="pd-gallery">
+                    {% with imgs=product.image_set.all %}
+                        <div class="pd-main" id="pd-main">
+                            <span class="hot">HOT</span>
+                            <button class="expand" id="pd-expand" title="Fullscreen" aria-label="Open fullscreen">
+                                <i class="fa-solid fa-expand"></i>
+                            </button>
+                            {% if imgs %}
+                                <img id="pd-main-img" src="{{ imgs.0.image }}" alt="{{ product.name }}"/>
+                            {% else %}
+                                <img id="pd-main-img"
+                                     src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
+                                     alt="{{ product.name }}"/>
+                            {% endif %}
+                            <span class="zoom-note"><i class="fa-solid fa-magnifying-glass-plus"></i> Hover to zoom</span>
+                        </div>
 
-                                <div class="sp-hot-badge">HOT</div>
-
-                                <!-- prod-full-screen triggers magnificPopup in main.min.js -->
-                                <button class="sp-fullscreen-btn prod-full-screen" title="Open fullscreen">
-                                    <i class="fa-solid fa-expand"></i>
-                                </button>
-
-                                <!-- product-single-default + product-single-carousel is the exact selector
-                                     main.min.js uses to init elevateZoom (hover zoom) and the carousel -->
-                                <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
-                                    {% for img in product.image_set.all %}
-                                        <div class="product-item">
-                                            <img class="product-single-image"
-                                                 src="{{ img.image }}"
-                                                 data-zoom-image="{{ img.image }}"
-                                                 width="468" height="468"
-                                                 alt="{{ product.name }}"/>
-                                            <span class="zoom-hint">
-                                            <i class="fa-solid fa-magnifying-glass-plus"></i> Hover to zoom
-                                        </span>
-                                        </div>
-                                    {% empty %}
-                                        <div class="product-item">
-                                            <img class="product-single-image"
-                                                 src="{% static 'assets/images/placeholder.png' %}"
-                                                 width="468" height="468" alt="no image"/>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-
-                            <!-- prod-thumbnail + owl-dots: required class names for main.min.js thumb sync -->
-                            <div class="prod-thumbnail owl-dots sp-thumbs">
-                                {% for img in product.image_set.all %}
-                                    <div class="owl-dot {% if forloop.first %}active{% endif %}">
-                                        <img src="{{ img.image }}" width="110" height="110"
-                                             alt="thumb {{ forloop.counter }}"/>
-                                    </div>
+                        {% if imgs|length > 1 %}
+                            <div class="pd-thumbs" id="pd-thumbs">
+                                {% for img in imgs %}
+                                    <button class="pd-thumb {% if forloop.first %}active{% endif %}"
+                                            data-src="{{ img.image }}" data-idx="{{ forloop.counter0 }}"
+                                            aria-label="Image {{ forloop.counter }}">
+                                        <img src="{{ img.image }}" alt="thumb {{ forloop.counter }}" loading="lazy"/>
+                                    </button>
                                 {% endfor %}
                             </div>
+                        {% endif %}
+                    {% endwith %}
+                </div>
 
-                        </div>
+                <!-- ============ INFO ============ -->
+                <div class="pd-info">
+                    {% with product.category.all as cats %}
+                        {% if cats %}
+                            <span class="chip pd-cat"><span class="dot"></span> {{ cats.0.name }}</span>
+                        {% endif %}
+                    {% endwith %}
+
+                    <h1 class="pd-title">{{ product.name }}</h1>
+
+                    <div class="pd-rating">
+                        <span class="stars">★★★★<span style="opacity:.45">★</span></span>
+                        <small>4.5 / 5 · Trusted supplier</small>
                     </div>
 
-                    <!-- INFO PANEL -->
-                    <div class="col-lg-7 col-md-6">
-                        <div class="sp-info-wrap">
-                            <div class="product-single-details">
-
-                                <h1 class="sp-product-title">{{ product.name }}</h1>
-
-                                <div class="sp-stars">
-                                    <div class="stars-inner">
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half-stroke"></i>
-                                    </div>
-                                    <span class="review-count">4.5 / 5 &middot; Trusted supplier</span>
-                                </div>
-
-                                <hr class="sp-divider"/>
-
-                                <div class="sp-price-row">
-                                    <span class="sp-price">&#8377;{{ product.price }}</span>
-                                    <span class="sp-price-label">per box (starting price)</span>
-                                </div>
-                                <p class="sp-price-note">
-                                    <i class="fa-solid fa-circle-info" style="margin-right:4px;color:#bbb;"></i>
-                                    Final price depends on quantity, size &amp; customisation.
-                                </p>
-
-                                {% if product.description %}
-                                    <p class="sp-desc">{{ product.description }}</p>
-                                {% endif %}
-
-                                <!-- Catalogue -->
-                                {% if product.catalogue %}
-                                    <p class="sp-catalogue-label">
-                                        <i class="fa-solid fa-table-list" style="margin-right:6px;"></i>
-                                        Available Sizes &amp; Specs
-                                    </p>
-                                    <div class="sp-catalogue-grid">
-                                        {% for box in product.catalogue %}
-                                            <div class="sp-cat-card">
-                                                <div class="card-label">
-                                                    <i class="fa-solid fa-box-open"></i>{{ box.label }}
-                                                </div>
-                                                {% if box.weight_kg %}
-                                                    <div class="card-weight">
-                                                        <i class="fa-solid fa-weight-hanging"
-                                                           style="margin-right:3px;color:#aaa;"></i>{{ box.weight_kg }}
-                                                        KG
-                                                    </div>
-                                                {% endif %}
-                                                <div class="card-section-title">Dimensions</div>
-                                                <div class="card-dims">
-                                                    {{ box.dimensions.length }} &times; {{ box.dimensions.breadth }}
-                                                    &times; {{ box.dimensions.height }}
-                                                    <span style="font-weight:400;color:#888;font-size:.75rem;">{{ box.unit }}</span>
-                                                </div>
-                                                <div class="card-section-title">Quality</div>
-                                                <ul class="card-quality-list">
-                                                    {% if box.quality.ply %}
-                                                        <li><i class="fa-solid fa-circle-check"
-                                                               style="color:#22c55e;"></i>{{ box.quality.ply }} Ply
-                                                            Corrugated
-                                                        </li>
-                                                    {% endif %}
-                                                    {% if box.quality.inside %}
-                                                        <li><i class="fa-solid fa-circle-dot" style="color:#aaa;"></i>Inside: {{ box.quality.inside|title }}
-                                                        </li>
-                                                    {% endif %}
-                                                    {% if box.quality.outside %}
-                                                        <li><i class="fa-solid fa-circle-dot" style="color:#aaa;"></i>Outside: {{ box.quality.outside|title }}
-                                                        </li>
-                                                    {% endif %}
-                                                    {% if not box.quality.ply and not box.quality.inside %}
-                                                        <li><i class="fa-solid fa-layer-group"
-                                                               style="color:#4a90d9;"></i>{{ box.quality }}</li>
-                                                    {% endif %}
-                                                </ul>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-
-                                {% if product.description_html %}
-                                    <div class="sp-desc">{{ product.description_html|safe }}</div>
-                                {% endif %}
-
-                                <!-- CSRF + Qty + Add to Cart -->
-                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
-
-                                <div class="sp-action-wrap product-action">
-                                    <p class="sp-qty-label">
-                                        Quantity <span>(Minimum order: 100 pcs)</span>
-                                    </p>
-                                    <div class="sp-qty-row">
-                                        <button id="qty-minus" type="button" class="sp-qty-btn minus">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                        <div class="sp-qty-display" id="qty-display">100</div>
-                                        <button id="qty-plus" type="button" class="sp-qty-btn plus">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                        <input type="hidden" id="product-qty" value="100"/>
-                                    </div>
-                                    <button id="add-to-cart-btn" type="button" class="sp-atc-btn"
-                                            data-product-id="{{ product.id }}">
-                                        <i class="fa-solid fa-cart-shopping fa-lg"></i> Add to Cart
-                                    </button>
-                                    <div class="sp-trust-row">
-                                        <span class="sp-trust-badge"><i class="fa-solid fa-shield-halved"></i> Secure order</span>
-                                        <span class="sp-trust-badge"><i class="fa-solid fa-truck-fast"></i> Fast delivery</span>
-                                        <span class="sp-trust-badge"><i
-                                                class="fa-solid fa-headset"></i> 24/7 support</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="pd-price-box">
+                        {% if product.price %}
+                            <span class="cur">₹{{ product.price }}</span>
+                            <span class="per">per box · starting price</span>
+                        {% else %}
+                            <span class="cur">Price on request</span>
+                        {% endif %}
                     </div>
+                    <p class="pd-price-note"><i class="fa-solid fa-circle-info"></i>
+                        Final price depends on quantity, size &amp; customisation.</p>
 
-                </div><!-- /.row -->
+                    {% if product.description %}
+                        <p class="pd-desc">{{ product.description }}</p>
+                    {% endif %}
 
-                <!-- USP strip -->
-                <div class="sp-usp-section">
-                    <div class="sp-usp-grid">
-                        <div class="sp-usp-item">
-                            <div class="sp-usp-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                            <div class="sp-usp-title">Timely Delivery</div>
-                            <div class="sp-usp-sub">On-time, every time &mdash; across Punjab &amp; beyond</div>
+                    {% if product.catalogue %}
+                        <p class="pd-specs-label"><i class="fa-solid fa-table-list"></i> Available Sizes &amp; Specs
+                        </p>
+                        <div class="pd-specs">
+                            {% for box in product.catalogue %}
+                                <div class="spec-card">
+                                    <div class="lbl"><i class="fa-solid fa-box-open"></i>{{ box.label }}</div>
+                                    {% if box.weight_kg %}
+                                        <div class="row"><i class="fa-solid fa-circle"></i>{{ box.weight_kg }} KG
+                                            capacity
+                                        </div>
+                                    {% endif %}
+                                    {% if box.dimensions %}
+                                        <div class="dims">{{ box.dimensions.length }} × {{ box.dimensions.breadth }}
+                                            × {{ box.dimensions.height }} <small>{{ box.unit }}</small></div>
+                                    {% endif %}
+                                    {% if box.quality.ply %}
+                                        <div class="row"><i class="fa-solid fa-circle"></i>{{ box.quality.ply }} Ply
+                                            Corrugated
+                                        </div>
+                                    {% endif %}
+                                    {% if box.quality.inside %}
+                                        <div class="row"><i class="fa-solid fa-circle"></i>Inside:
+                                            {{ box.quality.inside|title }}
+                                        </div>
+                                    {% endif %}
+                                    {% if box.quality.outside %}
+                                        <div class="row"><i class="fa-solid fa-circle"></i>Outside:
+                                            {{ box.quality.outside|title }}
+                                        </div>
+                                    {% endif %}
+                                    {% if not box.quality.ply and not box.quality.inside and box.quality %}
+                                        <div class="row"><i class="fa-solid fa-circle"></i>{{ box.quality }}</div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </div>
-                        <div class="sp-usp-item">
-                            <div class="sp-usp-icon"><i class="fa-solid fa-medal"></i></div>
-                            <div class="sp-usp-title">Premium Material</div>
-                            <div class="sp-usp-sub">High-grade corrugated &amp; custom-finish options</div>
+                    {% endif %}
+
+                    {% if product.description_html %}
+                        <div class="pd-desc-html">{{ product.description_html|safe }}</div>
+                    {% endif %}
+
+                    <!-- Buy box -->
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                    <div class="pd-buy">
+                        <p class="pd-qty-label">Quantity <span>(minimum order: 100 pcs)</span></p>
+                        <div class="pd-qty-row">
+                            <button id="qty-minus" type="button" class="pd-qbtn minus" aria-label="Decrease">
+                                <i class="fa-solid fa-minus"></i></button>
+                            <div class="pd-qnum" id="qty-display">100</div>
+                            <button id="qty-plus" type="button" class="pd-qbtn plus" aria-label="Increase">
+                                <i class="fa-solid fa-plus"></i></button>
+                            <input type="hidden" id="product-qty" value="100"/>
                         </div>
-                        <div class="sp-usp-item">
-                            <div class="sp-usp-icon"><i class="fa-solid fa-headset"></i></div>
-                            <div class="sp-usp-title">Online Support 24/7</div>
-                            <div class="sp-usp-sub">WhatsApp &amp; call support always available</div>
+                        <button id="add-to-cart-btn" type="button" class="pd-atc"
+                                data-product-id="{{ product.id }}">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                        </button>
+                        <div class="pd-trust">
+                            <span><i class="fa-solid fa-shield-halved"></i> Secure order</span>
+                            <span><i class="fa-solid fa-truck-fast"></i> Fast delivery</span>
+                            <span><i class="fa-solid fa-headset"></i> 24/7 support</span>
                         </div>
                     </div>
                 </div>
-
             </div>
+
+            <!-- ============ RELATED ============ -->
+            {% if products|length > 1 %}
+                <div class="pd-related">
+                    <div class="sec-head">
+                        <div>
+                            <span class="chip sec-kicker"><span class="dot"></span> Keep exploring</span>
+                            <h2 class="sec-title rv">You may also <span class="accent">like</span></h2>
+                        </div>
+                    </div>
+                    <div class="prod-grid">
+                        {% for p in products %}
+                            {% if p.id != product.id and forloop.counter0 < 5 %}
+                                <article class="pcard rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
+                                    <div class="ph">
+                                        {% with pimgs=p.image_set.all %}
+                                            <a href="{% url 'single-product' p.slug %}" aria-label="{{ p.name }}">
+                                                {% if pimgs %}
+                                                    <img class="first" src="{{ pimgs.0.image }}" alt="{{ p.name }}"
+                                                         loading="lazy"/>
+                                                    {% if pimgs.1 %}
+                                                        <img class="second" src="{{ pimgs.1.image }}" alt=""
+                                                             loading="lazy"/>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <img class="first"
+                                                         src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
+                                                         alt="{{ p.name }}" loading="lazy"/>
+                                                {% endif %}
+                                            </a>
+                                        {% endwith %}
+                                        <div class="quick">
+                                            <a href="{% url 'single-product' p.slug %}" class="q-view">
+                                                View Details <i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="pbody">
+                                        {% with p.category.all as pcats %}
+                                            <span class="pcat">{% if pcats %}{{ pcats.0.name }}{% else %}
+                                                Packaging{% endif %}</span>
+                                        {% endwith %}
+                                        <h3 class="pname"><a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
+                                        </h3>
+                                        <div class="pprice">
+                                            {% if p.price %}
+                                                <b>₹{{ p.price }}</b><small>/ box · starting</small>
+                                            {% else %}
+                                                <b>Price on request</b>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 
-    <!-- ATC Modal -->
-    <div id="atc-modal-overlay">
-        <div id="atc-modal-box">
-            <div class="atc-check-circle">
-                <i class="fa-solid fa-circle-check" style="font-size:2rem;color:#22c55e;"></i>
+    <!-- ATC success modal -->
+    <div class="atc-overlay" id="atc-overlay">
+        <div class="atc-box">
+            <div class="ok"><i class="fa-solid fa-check"></i></div>
+            <h4>Added to Cart!</h4>
+            <p id="atc-msg"></p>
+            <div class="row">
+                <button class="btn btn-ghost btn-sm" id="atc-continue">Keep Browsing</button>
+                <a href="/cart/" class="btn btn-ink btn-sm">View Cart <i class="fa-solid fa-arrow-right bi"></i></a>
             </div>
-            <div id="atc-modal-title">Added to Cart!</div>
-            <div id="atc-modal-msg"></div>
-            <a href="/cart/" class="atc-view-cart-btn">
-                <i class="fa-solid fa-cart-shopping"></i> View Cart
-            </a>
         </div>
     </div>
-
 {% endblock %}
 
 {% block scripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
-            /* Qty controls */
+            /* ---------- gallery ---------- */
+            var mainImg = document.getElementById('pd-main-img');
+            var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+            var sources = thumbs.length
+                ? thumbs.map(function (t) { return t.dataset.src; })
+                : [mainImg.src];
+            var currentIdx = 0;
+
+            thumbs.forEach(function (t) {
+                t.addEventListener('click', function () {
+                    thumbs.forEach(function (x) { x.classList.remove('active'); });
+                    t.classList.add('active');
+                    currentIdx = parseInt(t.dataset.idx, 10) || 0;
+                    mainImg.style.opacity = '0';
+                    setTimeout(function () {
+                        mainImg.src = t.dataset.src;
+                        mainImg.style.opacity = '1';
+                    }, 160);
+                });
+            });
+
+            var expandBtn = document.getElementById('pd-expand');
+            if (expandBtn) {
+                expandBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    window.rpOpenLightbox(sources, currentIdx);
+                });
+            }
+            document.getElementById('pd-main').addEventListener('click', function (e) {
+                if (e.target.closest('.expand')) return;
+                window.rpOpenLightbox(sources, currentIdx);
+            });
+
+            /* ---------- qty ---------- */
             var MIN_QTY = 100, STEP = 10;
             var qtyInput = document.getElementById('product-qty');
             var qtyDisplay = document.getElementById('qty-display');
 
-            function getQty() {
-                return parseInt(qtyInput.value) || MIN_QTY;
-            }
+            function getQty() { return parseInt(qtyInput.value) || MIN_QTY; }
 
             function setQty(v) {
                 v = Math.max(MIN_QTY, v);
@@ -911,75 +291,39 @@
             }
 
             setQty(MIN_QTY);
-            document.getElementById('qty-minus').addEventListener('click', function () {
-                setQty(getQty() - STEP);
-            });
-            document.getElementById('qty-plus').addEventListener('click', function () {
-                setQty(getQty() + STEP);
-            });
+            document.getElementById('qty-minus').addEventListener('click', function () { setQty(getQty() - STEP); });
+            document.getElementById('qty-plus').addEventListener('click', function () { setQty(getQty() + STEP); });
 
-            /* Add to Cart */
+            /* ---------- add to cart ---------- */
             var btn = document.getElementById('add-to-cart-btn');
-            var overlay = document.getElementById('atc-modal-overlay');
+            var overlay = document.getElementById('atc-overlay');
+            var atcIdle = '<i class="fa-solid fa-cart-shopping"></i> Add to Cart';
 
-            function handleAddToCart(e) {
-                e.preventDefault();
+            btn.addEventListener('click', function () {
                 if (btn.disabled) return;
-                var productId = btn.dataset.productId;
-                var qty = getQty();
-                var csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin fa-lg"></i> Adding\u2026';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding…';
 
-                fetch('/cart/add/', {
-                    method: 'POST', credentials: 'same-origin',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-CSRFToken': csrf},
-                    body: 'product_id=' + productId + '&qty=' + qty
-                })
-                    .then(function (r) {
-                        return r.json();
-                    })
-                    .then(function (data) {
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fa-solid fa-cart-shopping fa-lg"></i> Add to Cart';
-                        if (data.success) {
-                            var badge = document.getElementById('cart-count-badge');
-                            if (badge) {
-                                badge.textContent = data.cart_count;
-                                badge.style.display = 'inline-block';
-                            }
-                            document.getElementById('atc-modal-msg').textContent = data.message;
-                            overlay.classList.add('visible');
-                            setTimeout(function () {
-                                overlay.classList.remove('visible');
-                            }, 3000);
-                        }
-                    })
-                    .catch(function () {
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fa-solid fa-cart-shopping fa-lg"></i> Add to Cart';
-                    });
-            }
-
-            btn.addEventListener('click', handleAddToCart);
-            btn.addEventListener('touchstart', handleAddToCart, {passive: false});
-            overlay.addEventListener('click', function (e) {
-                if (e.target === this) overlay.classList.remove('visible');
+                window.rpAddToCart(btn.dataset.productId, getQty(), function (data) {
+                    btn.disabled = false;
+                    btn.innerHTML = atcIdle;
+                    if (data.success) {
+                        document.getElementById('atc-msg').textContent = data.message;
+                        overlay.classList.add('show');
+                    }
+                }).catch(function () {
+                    btn.disabled = false;
+                    btn.innerHTML = atcIdle;
+                    window.rpToast('Something went wrong. Please try again.', 'fa-solid fa-triangle-exclamation');
+                });
             });
 
-            /* Thumbnail active-state sync with owl carousel */
-            if (typeof jQuery !== 'undefined') {
-                var $car = jQuery('.product-single-carousel');
-                if ($car.length) {
-                    $car.on('translate.owl.carousel', function (e) {
-                        var idx = (e.item.index - jQuery(e.currentTarget).find('.cloned').length / 2 + e.item.count) % e.item.count;
-                        jQuery('.sp-thumbs .owl-dot').removeClass('active').eq(idx).addClass('active');
-                    });
-                    jQuery('.sp-thumbs').on('click', '.owl-dot', function () {
-                        $car.trigger('to.owl.carousel', [jQuery(this).index(), 300]);
-                    });
-                }
-            }
+            document.getElementById('atc-continue').addEventListener('click', function () {
+                overlay.classList.remove('show');
+            });
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) overlay.classList.remove('show');
+            });
         });
     </script>
 {% endblock %}
