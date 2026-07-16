@@ -1,0 +1,63 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <a href="{% url 'dashboard:products_list' %}"
+       class="bg-white rounded-lg border border-slate-200 p-5 hover:border-slate-400 transition">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-500 text-sm">Products</span>
+            <i class="fa-solid fa-box-open text-slate-400"></i>
+        </div>
+        <div class="text-3xl font-semibold text-slate-900 mt-2">{{ counts.products }}</div>
+    </a>
+    <a href="{% url 'dashboard:categories_list' %}"
+       class="bg-white rounded-lg border border-slate-200 p-5 hover:border-slate-400 transition">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-500 text-sm">Categories</span>
+            <i class="fa-solid fa-tags text-slate-400"></i>
+        </div>
+        <div class="text-3xl font-semibold text-slate-900 mt-2">{{ counts.categories }}</div>
+    </a>
+    <div class="bg-white rounded-lg border border-slate-200 p-5">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-500 text-sm">Product images</span>
+            <i class="fa-solid fa-image text-slate-400"></i>
+        </div>
+        <div class="text-3xl font-semibold text-slate-900 mt-2">{{ counts.images }}</div>
+    </div>
+    <a href="{% url 'dashboard:contacts_list' %}"
+       class="bg-white rounded-lg border border-slate-200 p-5 hover:border-slate-400 transition">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-500 text-sm">Customer queries</span>
+            <i class="fa-solid fa-envelope text-slate-400"></i>
+        </div>
+        <div class="text-3xl font-semibold text-slate-900 mt-2">{{ counts.contacts }}</div>
+    </a>
+</div>
+
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <a href="{% url 'dashboard:product_new' %}"
+       class="bg-white rounded-lg border border-dashed border-slate-300 p-6 flex items-center gap-4 hover:border-slate-500 transition">
+        <span class="bg-slate-900 text-white h-10 w-10 rounded-full grid place-items-center">
+            <i class="fa-solid fa-plus"></i>
+        </span>
+        <div>
+            <div class="font-semibold text-slate-900">Add a product</div>
+            <div class="text-slate-500 text-sm">Name, price, category, and images.</div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard:category_new' %}"
+       class="bg-white rounded-lg border border-dashed border-slate-300 p-6 flex items-center gap-4 hover:border-slate-500 transition">
+        <span class="bg-slate-900 text-white h-10 w-10 rounded-full grid place-items-center">
+            <i class="fa-solid fa-plus"></i>
+        </span>
+        <div>
+            <div class="font-semibold text-slate-900">Add a category</div>
+            <div class="text-slate-500 text-sm">Group your products.</div>
+        </div>
+    </a>
+</div>
+{% endblock %}

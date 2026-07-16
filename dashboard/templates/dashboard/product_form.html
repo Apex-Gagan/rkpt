@@ -1,0 +1,285 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}{% if mode == 'edit' %}Edit product{% else %}Add product{% endif %}{% endblock %}
+{% block page_title %}{% if mode == 'edit' %}Edit product{% else %}Add product{% endif %}{% endblock %}
+
+{% block content %}
+<a href="{% url 'dashboard:products_list' %}" class="text-sm text-slate-500 hover:text-slate-800">
+    <i class="fa-solid fa-arrow-left"></i> Back to products
+</a>
+
+<div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Left: product fields -->
+    <form method="post" class="lg:col-span-2 bg-white rounded-lg border border-slate-200 p-6 space-y-5">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="block md:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Product name <span class="text-rose-500">*</span></span>
+                <input name="name" type="text" required
+                       value="{{ product.name|default:'' }}"
+                       class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+            </label>
+
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Category</span>
+                <select name="category_id"
+                        class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 bg-white focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none">
+                    <option value="">— none —</option>
+                    {% for c in categories %}
+                    <option value="{{ c.id }}"
+                            {% if product.category_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+                <span class="text-xs text-slate-400 mt-1 block">
+                    Not seeing a category? <a href="{% url 'dashboard:category_new' %}" class="underline">Add one</a>.
+                </span>
+            </label>
+
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Price (₹)</span>
+                <input name="price" type="number" step="0.01" min="0"
+                       value="{{ product.price|default:'' }}"
+                       class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+            </label>
+
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Size</span>
+                <input name="size" type="text"
+                       value="{{ product.size|default:'' }}"
+                       placeholder="e.g. 12 oz, 500ml"
+                       class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+            </label>
+
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Slug</span>
+                <input name="slug" type="text"
+                       value="{{ product.slug|default:'' }}"
+                       placeholder="auto-generated from name"
+                       class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+                <span class="text-xs text-slate-400 mt-1 block">Used in the URL. Leave blank to auto-generate.</span>
+            </label>
+        </div>
+
+        <label class="block">
+            <span class="text-sm font-medium text-slate-700">Short description</span>
+            <textarea name="description" rows="3"
+                      class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none">{{ product.description|default:'' }}</textarea>
+        </label>
+
+        <label class="block">
+            <span class="text-sm font-medium text-slate-700">Detailed description</span>
+            <textarea id="description-html" name="description_html" rows="10"
+                      class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none">{{ product.description_html|default:'' }}</textarea>
+        </label>
+
+        <label class="block">
+            <span class="text-sm font-medium text-slate-700">Catalogue links</span>
+            <textarea name="catalogue" rows="3"
+                      placeholder="Paste PDF/catalogue URLs, one per line."
+                      class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none font-mono text-xs">{{ catalogue_text }}</textarea>
+            <span class="text-xs text-slate-400 mt-1 block">One URL per line. Or paste raw JSON.</span>
+        </label>
+
+        <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
+            <a href="{% url 'dashboard:products_list' %}"
+               class="px-4 py-2 rounded text-slate-700 hover:bg-slate-100">Cancel</a>
+            <button type="submit"
+                    class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded font-medium">
+                {% if mode == 'edit' %}Save changes{% else %}Create product{% endif %}
+            </button>
+        </div>
+    </form>
+
+    <!-- Right: image manager -->
+    <div class="bg-white rounded-lg border border-slate-200 p-6">
+        <h3 class="font-semibold text-slate-900">Product images</h3>
+        <p class="text-sm text-slate-500 mb-4">Drag & drop or click to upload. Multiple files ok.</p>
+
+        {% if mode == 'new' %}
+        <div class="rounded border border-dashed border-slate-300 p-6 text-center text-slate-500 text-sm">
+            <i class="fa-solid fa-image text-2xl text-slate-300"></i>
+            <p class="mt-2">Save the product first, then add images here.</p>
+        </div>
+        {% else %}
+        <div id="drop-zone"
+             class="rounded border-2 border-dashed border-slate-300 p-6 text-center cursor-pointer hover:border-slate-500 hover:bg-slate-50 transition"
+             data-upload-url="{% url 'dashboard:product_image_upload' product.id %}"
+             data-csrf="{{ csrf_token }}">
+            <input id="file-input" type="file" multiple accept="image/*" class="hidden"/>
+            <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400"></i>
+            <p class="mt-2 text-sm text-slate-600">
+                <span class="font-medium text-slate-900">Click to choose files</span> or drop them here
+            </p>
+            <p class="text-xs text-slate-400 mt-1">PNG, JPG, WEBP. Uploaded to Supabase Storage.</p>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+            <input id="url-input" type="url" placeholder="…or paste an image URL"
+                   class="flex-1 rounded border-slate-300 border px-3 py-2 text-sm focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+            <button id="url-add"
+                    class="px-3 py-2 bg-slate-900 text-white rounded text-sm hover:bg-slate-800">Add</button>
+        </div>
+
+        <div id="upload-status" class="mt-3 text-xs"></div>
+
+        <div id="image-grid" class="mt-4 grid grid-cols-3 gap-2">
+            {% for img in images %}
+            <div class="relative group aspect-square rounded overflow-hidden border border-slate-200 bg-slate-50"
+                 data-image-id="{{ img.id }}">
+                <img src="{{ img.image }}" alt="" class="w-full h-full object-cover"/>
+                <button type="button"
+                        class="delete-image absolute top-1 right-1 bg-black/60 text-white h-6 w-6 rounded-full text-xs opacity-0 group-hover:opacity-100 transition"
+                        title="Remove"
+                        data-delete-url="{% url 'dashboard:product_image_delete' img.id %}">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            {% empty %}
+            <div id="empty-msg" class="col-span-3 text-center text-xs text-slate-400 py-4">
+                No images yet.
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script>
+    if (window.tinymce) {
+        tinymce.init({
+            selector: '#description-html',
+            height: 320,
+            menubar: false,
+            plugins: 'lists link code preview',
+            toolbar: 'undo redo | formatselect | bold italic underline | bullist numlist | link | removeformat | code preview',
+            branding: false,
+            promotion: false,
+            license_key: 'gpl'
+        });
+    }
+
+    {% if mode == 'edit' %}
+    (function () {
+        const csrf = "{{ csrf_token }}";
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const urlInput = document.getElementById('url-input');
+        const urlAddBtn = document.getElementById('url-add');
+        const status = document.getElementById('upload-status');
+        const grid = document.getElementById('image-grid');
+        const uploadUrl = dropZone.dataset.uploadUrl;
+
+        function setStatus(msg, tone) {
+            status.textContent = msg || '';
+            status.className = 'mt-3 text-xs ' + (
+                tone === 'error' ? 'text-rose-600' :
+                tone === 'ok'    ? 'text-emerald-600' :
+                                   'text-slate-500'
+            );
+        }
+
+        function renderGrid(images) {
+            const empty = document.getElementById('empty-msg');
+            if (empty) empty.remove();
+            grid.innerHTML = '';
+            if (!images.length) {
+                grid.innerHTML = '<div id="empty-msg" class="col-span-3 text-center text-xs text-slate-400 py-4">No images yet.</div>';
+                return;
+            }
+            images.forEach(img => {
+                const del = "{% url 'dashboard:product_image_delete' 0 %}".replace('/0/', '/' + img.id + '/');
+                const cell = document.createElement('div');
+                cell.className = 'relative group aspect-square rounded overflow-hidden border border-slate-200 bg-slate-50';
+                cell.dataset.imageId = img.id;
+                cell.innerHTML = `
+                    <img src="${img.image}" alt="" class="w-full h-full object-cover"/>
+                    <button type="button" class="delete-image absolute top-1 right-1 bg-black/60 text-white h-6 w-6 rounded-full text-xs opacity-0 group-hover:opacity-100 transition" title="Remove" data-delete-url="${del}">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>`;
+                grid.appendChild(cell);
+            });
+        }
+
+        function upload(files, pastedUrl) {
+            const fd = new FormData();
+            if (files) {
+                for (const f of files) fd.append('files', f);
+            }
+            if (pastedUrl) fd.append('url', pastedUrl);
+            setStatus('Uploading…');
+            fetch(uploadUrl, {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrf },
+                body: fd,
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.errors && data.errors.length) {
+                    setStatus('Some uploads failed: ' + data.errors.join('; '), 'error');
+                } else {
+                    setStatus('Uploaded ' + (data.saved ? data.saved.length : 0) + ' image(s).', 'ok');
+                }
+                if (data.images) renderGrid(data.images);
+            })
+            .catch(err => setStatus('Upload failed: ' + err, 'error'));
+        }
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) upload(fileInput.files, null);
+            fileInput.value = '';
+        });
+
+        ['dragenter', 'dragover'].forEach(ev => {
+            dropZone.addEventListener(ev, e => {
+                e.preventDefault();
+                dropZone.classList.add('bg-slate-50', 'border-slate-500');
+            });
+        });
+        ['dragleave', 'drop'].forEach(ev => {
+            dropZone.addEventListener(ev, e => {
+                e.preventDefault();
+                dropZone.classList.remove('bg-slate-50', 'border-slate-500');
+            });
+        });
+        dropZone.addEventListener('drop', e => {
+            if (e.dataTransfer.files.length) upload(e.dataTransfer.files, null);
+        });
+
+        urlAddBtn.addEventListener('click', () => {
+            const v = urlInput.value.trim();
+            if (!v) return;
+            upload(null, v);
+            urlInput.value = '';
+        });
+
+        grid.addEventListener('click', e => {
+            const btn = e.target.closest('.delete-image');
+            if (!btn) return;
+            if (!confirm('Remove this image?')) return;
+            const cell = btn.closest('[data-image-id]');
+            fetch(btn.dataset.deleteUrl, {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrf },
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    cell.remove();
+                    if (!grid.querySelector('[data-image-id]')) {
+                        grid.innerHTML = '<div id="empty-msg" class="col-span-3 text-center text-xs text-slate-400 py-4">No images yet.</div>';
+                    }
+                    setStatus('Image removed.', 'ok');
+                } else {
+                    setStatus('Delete failed: ' + (data.error || 'unknown'), 'error');
+                }
+            });
+        });
+    })();
+    {% endif %}
+</script>
+{% endblock %}

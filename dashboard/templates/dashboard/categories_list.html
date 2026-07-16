@@ -1,0 +1,49 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Categories{% endblock %}
+{% block page_title %}Categories{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+    <p class="text-slate-500 text-sm">{{ categories|length }} total</p>
+    <a href="{% url 'dashboard:category_new' %}"
+       class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2">
+        <i class="fa-solid fa-plus"></i> Add category
+    </a>
+</div>
+
+<div class="bg-white rounded-lg border border-slate-200 overflow-x-auto">
+    <table class="min-w-full text-sm">
+        <thead class="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+        <tr>
+            <th class="text-left px-4 py-3">Name</th>
+            <th class="text-left px-4 py-3">Description</th>
+            <th class="text-right px-4 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+        {% for c in categories %}
+        <tr>
+            <td class="px-4 py-3 font-medium text-slate-900">{{ c.name }}</td>
+            <td class="px-4 py-3 text-slate-500 max-w-md truncate">{{ c.description|default:"—" }}</td>
+            <td class="px-4 py-3 text-right">
+                <a href="{% url 'dashboard:category_edit' c.id %}"
+                   class="text-slate-600 hover:text-slate-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</a>
+                <form method="post" action="{% url 'dashboard:category_delete' c.id %}" class="inline"
+                      onsubmit="return confirm('Delete this category?');">
+                    {% csrf_token %}
+                    <button class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i> Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="px-4 py-8 text-center text-slate-400">
+                No categories yet. <a class="text-slate-700 underline" href="{% url 'dashboard:category_new' %}">Add one</a>.
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

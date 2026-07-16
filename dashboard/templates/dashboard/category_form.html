@@ -1,0 +1,36 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}{% if mode == 'edit' %}Edit category{% else %}Add category{% endif %}{% endblock %}
+{% block page_title %}{% if mode == 'edit' %}Edit category{% else %}Add category{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-xl">
+    <a href="{% url 'dashboard:categories_list' %}" class="text-sm text-slate-500 hover:text-slate-800">
+        <i class="fa-solid fa-arrow-left"></i> Back to categories
+    </a>
+
+    <form method="post" class="mt-4 bg-white rounded-lg border border-slate-200 p-6 space-y-4">
+        {% csrf_token %}
+        <label class="block">
+            <span class="text-sm font-medium text-slate-700">Name <span class="text-rose-500">*</span></span>
+            <input name="name" type="text" required
+                   value="{{ category.name|default:'' }}"
+                   class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none"/>
+        </label>
+        <label class="block">
+            <span class="text-sm font-medium text-slate-700">Description</span>
+            <textarea name="description" rows="4"
+                      class="mt-1 block w-full rounded border-slate-300 border px-3 py-2 focus:ring-2 focus:ring-slate-900 focus:border-slate-900 outline-none">{{ category.description|default:'' }}</textarea>
+        </label>
+
+        <div class="flex justify-end gap-2 pt-2">
+            <a href="{% url 'dashboard:categories_list' %}"
+               class="px-4 py-2 rounded text-slate-700 hover:bg-slate-100">Cancel</a>
+            <button type="submit"
+                    class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded font-medium">
+                {% if mode == 'edit' %}Save changes{% else %}Create category{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
