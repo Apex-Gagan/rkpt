@@ -168,57 +168,33 @@
             </div>
 
             <!-- ============ RELATED ============ -->
-            {% if products|length > 1 %}
+            {% if related_products %}
                 <div class="pd-related">
                     <div class="sec-head">
                         <div>
                             <span class="chip sec-kicker"><span class="dot"></span> Keep exploring</span>
                             <h2 class="sec-title rv">You may also <span class="accent">like</span></h2>
+                            {% with product.category.all as cats %}
+                                <p class="sec-sub rv rv-d1">
+                                    {% if cats %}
+                                        More from <b>{{ cats.0.name }}</b> and other boxes close to
+                                        {{ product.name }}.
+                                    {% else %}
+                                        Other boxes close to {{ product.name }}.
+                                    {% endif %}
+                                </p>
+                            {% endwith %}
                         </div>
+                        {% with product.category.all as cats %}
+                            {% if cats %}
+                                <a href="/#cat-{{ cats.0.slug }}" class="btn btn-ghost rv rv-d2">
+                                    All {{ cats.0.name }} <i class="fa-solid fa-arrow-right bi"></i></a>
+                            {% endif %}
+                        {% endwith %}
                     </div>
                     <div class="prod-grid">
-                        {% for p in products %}
-                            {% if p.id != product.id and forloop.counter0 < 5 %}
-                                <article class="pcard rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
-                                    <div class="ph">
-                                        {% with pimgs=p.image_set.all %}
-                                            <a href="{% url 'single-product' p.slug %}" aria-label="{{ p.name }}">
-                                                {% if pimgs %}
-                                                    <img class="first" src="{{ pimgs.0.image }}" alt="{{ p.name }}"
-                                                         loading="lazy"/>
-                                                    {% if pimgs.1 %}
-                                                        <img class="second" src="{{ pimgs.1.image }}" alt=""
-                                                             loading="lazy"/>
-                                                    {% endif %}
-                                                {% else %}
-                                                    <img class="first"
-                                                         src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
-                                                         alt="{{ p.name }}" loading="lazy"/>
-                                                {% endif %}
-                                            </a>
-                                        {% endwith %}
-                                        <div class="quick">
-                                            <a href="{% url 'single-product' p.slug %}" class="q-view">
-                                                View Details <i class="fa-solid fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="pbody">
-                                        {% with p.category.all as pcats %}
-                                            <span class="pcat">{% if pcats %}{{ pcats.0.name }}{% else %}
-                                                Packaging{% endif %}</span>
-                                        {% endwith %}
-                                        <h3 class="pname"><a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
-                                        </h3>
-                                        <div class="pprice">
-                                            {% if p.price %}
-                                                <b>₹{{ p.price }}</b><small>/ box · starting</small>
-                                            {% else %}
-                                                <b>Price on request</b>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </article>
-                            {% endif %}
+                        {% for p in related_products %}
+                            {% include "partials/product_card.html" with product=p %}
                         {% endfor %}
                     </div>
                 </div>

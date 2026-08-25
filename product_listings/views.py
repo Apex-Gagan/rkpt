@@ -1,6 +1,6 @@
 import re
 
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -10,46 +10,46 @@ from .supabase_data import (
     fetch_product_by_id,
     fetch_product_by_slug,
     fetch_products,
+    fetch_related_products,
+    group_products_by_category,
     save_contact,
 )
 
 
+def storefront_context(**extra):
+    """Categories, products and their grouping — needed by every page that
+    renders the shared header, mega menu and footer."""
+    categories = fetch_categories()
+    products = fetch_products()
+    context = {
+        "categories": categories,
+        "products": products,
+        "category_groups": group_products_by_category(categories, products),
+    }
+    context.update(extra)
+    return context
+
+
 class HomePageView(View):
     def get(self, request):
-        return render(
-            request,
-            "home.html",
-            {
-                "categories": fetch_categories(),
-                "products": fetch_products(),
-            },
-        )
+        return render(request, "home.html", storefront_context())
 
 
 class Single_Product(View):
     def get(self, request, slug):
         product = fetch_product_by_slug(slug)
-        return render(
-            request,
-            "single_product.html",
-            {
-                "categories": fetch_categories(),
-                "product": product,
-                "products": fetch_products(),
-            },
+        if product is None:
+            raise Http404("Product not found")
+        context = storefront_context(product=product)
+        context["related_products"] = fetch_related_products(
+            product, limit=8, products=context["products"]
         )
+        return render(request, "single_product.html", context)
 
 
 class ContactView(View):
     def get(self, request):
-        return render(
-            request,
-            "contact.html",
-            {
-                "categories": fetch_categories(),
-                "products": fetch_products(),
-            },
-        )
+        return render(request, "contact.html", storefront_context())
 
     def post(self, request):
         name = request.POST.get("name", "").strip()
@@ -107,12 +107,7 @@ class CartView(View):
         return render(
             request,
             "cart.html",
-            {
-                "categories": fetch_categories(),
-                "products": fetch_products(),
-                "cart_items": cart_items,
-                "cart_total": cart_total,
-            },
+            storefront_context(cart_items=cart_items, cart_total=cart_total),
         )
 
 

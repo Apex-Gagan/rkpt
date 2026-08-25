@@ -177,11 +177,20 @@
             </div>
 
             <div class="cat-scroll">
-                {% for category in categories %}
-                    <a href="#products" class="cat-card rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
+                {% for group in category_groups %}
+                    <a href="#{{ group.anchor }}" class="cat-card rv" data-cat-link="{{ group.anchor }}">
                         <span class="num">{{ forloop.counter|stringformat:"02d" }}</span>
-                        <h4>{{ category.name }}</h4>
-                        <p>{{ category.description|default:"Premium quality, fully customisable." }}</p>
+                        <div class="cat-thumbs">
+                            {% for p in group.products|slice:":3" %}
+                                {% with pimg=p.image_set.first %}
+                                    {% if pimg %}
+                                        <img src="{{ pimg.image }}" alt="" loading="lazy"/>{% endif %}
+                                {% endwith %}
+                            {% endfor %}
+                        </div>
+                        <h4>{{ group.name }}</h4>
+                        <p>{{ group.category.description|default:"Premium quality, fully customisable." }}</p>
+                        <span class="cat-count">{{ group.count }} product{{ group.count|pluralize }}</span>
                         <span class="go">Explore <i class="fa-solid fa-arrow-right"></i></span>
                     </a>
                 {% endfor %}
@@ -189,59 +198,78 @@
         </div>
     </section>
 
-    <!-- ================= PRODUCTS ================= -->
+    <!-- ================= PRODUCTS, BY CATEGORY ================= -->
     <section class="rp-section" id="products">
         <div class="rp-container">
             <div class="sec-head">
                 <div>
                     <span class="chip sec-kicker"><span class="dot"></span> Crowd favourites</span>
                     <h2 class="sec-title rv">Our <span class="accent">products</span></h2>
-                    <p class="sec-sub rv rv-d1">Tap any product for sizes, specs and instant WhatsApp ordering.</p>
+                    <p class="sec-sub rv rv-d1">Shop category by category — tap any product for sizes, specs and
+                        instant WhatsApp ordering.</p>
                 </div>
             </div>
 
-            <div class="prod-grid">
-                {% for product in products %}
-                    <article class="pcard rv {% cycle '' 'rv-d1' 'rv-d2' 'rv-d3' %}">
-                        <div class="ph">
-                            {% with imgs=product.image_set.all %}
-                                <a href="{% url 'single-product' product.slug %}" aria-label="{{ product.name }}">
-                                    {% if imgs %}
-                                        <img class="first" src="{{ imgs.0.image }}" alt="{{ product.name }}"
-                                             loading="lazy"/>
-                                        {% if imgs.1 %}
-                                            <img class="second" src="{{ imgs.1.image }}" alt="" loading="lazy"/>
-                                        {% endif %}
-                                    {% else %}
-                                        <img class="first"
-                                             src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
-                                             alt="{{ product.name }}" loading="lazy"/>
+            {% if category_groups %}
+                <div class="cat-bar" id="cat-bar">
+                    <button type="button" class="cat-tab cat-tab-all active" data-cat="all">
+                        <span class="lbl">All<span class="lbl-wide"> Products</span></span><span class="n">{{ products|length }}</span>
+                    </button>
+                    <button type="button" class="cat-arrow" id="cat-prev"
+                            aria-label="Scroll to previous categories" aria-controls="cat-tabs">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="cat-tabs" id="cat-tabs" role="tablist"
+                         aria-label="Filter products by category">
+                        {% for group in category_groups %}
+                            <button type="button" class="cat-tab" data-cat="{{ group.anchor }}">
+                                <span class="lbl">{{ group.name }}</span><span
+                                    class="n">{{ group.count }}</span>
+                            </button>
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="cat-arrow" id="cat-next"
+                            aria-label="Scroll to next categories" aria-controls="cat-tabs">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <p class="cat-summary" id="cat-summary" role="status"></p>
+
+                <div class="cat-blocks">
+                {% for group in category_groups %}
+                    <section class="cat-block" id="{{ group.anchor }}" data-cat="{{ group.anchor }}">
+                        <header class="cb-head rv">
+                            <div class="cb-lead">
+                                <span class="cb-num">{{ forloop.counter|stringformat:"02d" }}</span>
+                                <div>
+                                    <h3 class="cb-title">{{ group.name }}</h3>
+                                    {% if group.category.description %}
+                                        <p class="cb-sub">{{ group.category.description }}</p>
                                     {% endif %}
-                                </a>
-                            {% endwith %}
-                            {% if forloop.counter <= 2 %}<span class="flag">Best Seller</span>{% endif %}
-                            <div class="quick">
-                                <a href="{% url 'single-product' product.slug %}" class="q-view">
-                                    View Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="pbody">
-                            {% with product.category.all as cats %}
-                                <span class="pcat">{% if cats %}{{ cats.0.name }}{% else %}Packaging{% endif %}</span>
-                            {% endwith %}
-                            <h3 class="pname"><a
-                                    href="{% url 'single-product' product.slug %}">{{ product.name }}</a></h3>
-                            <div class="pprice">
-                                {% if product.price %}
-                                    <b>₹{{ product.price }}</b><small>/ box · starting</small>
+                            <span class="cb-count">{{ group.count }} product{{ group.count|pluralize }}</span>
+                        </header>
+
+                        <div class="prod-grid">
+                            {% for product in group.products %}
+                                {% if forloop.first %}
+                                    {% include "partials/product_card.html" with product=product flag="Popular" %}
                                 {% else %}
-                                    <b>Price on request</b>
+                                    {% include "partials/product_card.html" with product=product %}
                                 {% endif %}
-                            </div>
+                            {% endfor %}
                         </div>
-                    </article>
+                    </section>
                 {% endfor %}
-            </div>
+                </div>
+            {% else %}
+                <div class="prod-grid">
+                    {% for product in products %}
+                        {% include "partials/product_card.html" with product=product %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
 

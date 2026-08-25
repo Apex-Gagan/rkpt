@@ -80,17 +80,38 @@
                 <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
                 <div class="rp-drop">
                     {% for category in categories %}
-                        <a href="/#categories"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
+                        <a href="/#{{ category.anchor }}"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
                     {% endfor %}
                 </div>
             </div>
-            <div class="nav-item has-drop">
+            <div class="nav-item has-drop nav-mega">
                 <a href="/#products" class="nav-link">Products <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="rp-drop">
-                    {% for product in products %}
-                        <a href="{% url 'single-product' product.slug %}"><i
-                                class="fa-solid fa-box-open"></i>{{ product.name }}</a>
-                    {% endfor %}
+                <div class="rp-drop rp-mega">
+                    <div class="mega-grid">
+                        {% for group in category_groups %}
+                            <div class="mega-col">
+                                <a class="mega-cat" href="/#{{ group.anchor }}">
+                                    <i class="fa-solid fa-tag"></i>{{ group.name }}
+                                    <span class="n">{{ group.count }}</span>
+                                </a>
+                                <ul>
+                                    {% for p in group.products|slice:":5" %}
+                                        <li><a href="{% url 'single-product' p.slug %}">{{ p.name }}</a></li>
+                                    {% endfor %}
+                                    {% if group.count > 5 %}
+                                        <li><a class="mega-more" href="/#{{ group.anchor }}">
+                                            +{{ group.count|add:"-5" }} more <i
+                                                class="fa-solid fa-arrow-right"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="mega-foot">
+                        <span><i class="fa-solid fa-box-open"></i> {{ products|length }} products across
+                            {{ category_groups|length }} categories</span>
+                        <a href="/#products">View all products <i class="fa-solid fa-arrow-right bi"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="nav-item">
@@ -133,14 +154,22 @@
         <a href="#" class="dr-link has-sub">Categories <i class="fa-solid fa-chevron-down"></i></a>
         <div class="dr-sub">
             {% for category in categories %}
-                <a href="/#categories">{{ category.name }}</a>
+                <a href="/#{{ category.anchor }}">{{ category.name }}</a>
             {% endfor %}
         </div>
         <a href="#" class="dr-link has-sub">Products <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="dr-sub">
-            {% for product in products %}
-                <a href="{% url 'single-product' product.slug %}">{{ product.name }}</a>
+        <div class="dr-sub dr-sub-products">
+            {% for group in category_groups %}
+                <a class="dr-grp" href="/#{{ group.anchor }}">{{ group.name }}
+                    <span class="n">{{ group.count }}</span></a>
+                <div class="dr-grid">
+                    {% for p in group.products %}
+                        <a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
+                    {% endfor %}
+                </div>
             {% endfor %}
+            <a class="dr-all" href="/#products">View all {{ products|length }} products
+                <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <a href="{% url 'contact' %}" class="dr-link">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
         <a href="/cart/" class="dr-link">Cart{% if cart_count %} ({{ cart_count }}){% endif %} <i
@@ -188,7 +217,8 @@
                 <h5>Categories</h5>
                 <ul>
                     {% for category in categories|slice:":6" %}
-                        <li><a href="/#categories"><i class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
+                        <li><a href="/#{{ category.anchor }}"><i
+                                class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

@@ -1,4 +1,8 @@
+import difflib
 import json
+import re
+
+from django.utils.text import slugify
 
 from .supabase_client import get_client
 
@@ -32,6 +36,12 @@ class CategoryObj:
         self.name = data.get("name")
         self.description = data.get("description")
         self.created_at = data.get("created_at")
+        # anchors like `#cat-cake-boxes` — used by the nav, footer and homepage
+        self.slug = slugify(self.name or "") or f"category-{self.id}"
+
+    @property
+    def anchor(self):
+        return f"cat-{self.slug}"
 
     def __str__(self):
         return self.name or ""
@@ -179,3 +189,118 @@ def save_contact(name, email, phone, message):
         "message": message,
     }
     client.table("Contact").insert(payload).execute()
+
+
+# --------------------------------------------------------------------------
+# Category grouping / related products
+# --------------------------------------------------------------------------
+
+# Words shared by nearly every product on a packaging catalogue — matching on
+# them would make every product "related" to every other one.
+_COMMON_WORDS = {
+    "box",
+    "boxes",
+    "packaging",
+    "packing",
+    "packer",
+    "packers",
+    "custom",
+    "customised",
+    "customized",
+    "printed",
+    "printing",
+    "pack",
+    "the",
+    "and",
+    "with",
+    "for",
+}
+
+
+def _name_tokens(name):
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", (name or "").lower())
+        if len(token) > 2 and token not in _COMMON_WORDS
+    }
+
+
+def _name_similarity(a, b):
+    """0-ish for unrelated names, higher the more two product names overlap.
+    Shared distinctive words dominate; character ratio breaks ties."""
+    shared = len(_name_tokens(a) & _name_tokens(b))
+    ratio = difflib.SequenceMatcher(None, (a or "").lower(), (b or "").lower()).ratio()
+    return shared * 3 + ratio
+
+
+def group_products_by_category(categories=None, products=None):
+    """Bucket products under their category, in category order.
+
+    Returns a list of ``{"category", "products", "count", "anchor", "name"}``
+    dicts. Empty categories are skipped and products without a category land in
+    a trailing "More Packaging" group, so every group on the page has stock.
+    """
+    categories = fetch_categories() if categories is None else categories
+    products = fetch_products() if products is None else products
+
+    buckets = {category.id: [] for category in categories}
+    uncategorised = []
+    for product in products:
+        category = product.category.first()
+        if category is not None and category.id in buckets:
+            buckets[category.id].append(product)
+        else:
+            uncategorised.append(product)
+
+    groups = [
+        {
+            "category": category,
+            "name": category.name,
+            "anchor": category.anchor,
+            "products": buckets[category.id],
+            "count": len(buckets[category.id]),
+        }
+        for category in categories
+        if buckets[category.id]
+    ]
+
+    if uncategorised:
+        groups.append(
+            {
+                "category": None,
+                "name": "More Packaging",
+                "anchor": "cat-more",
+                "products": uncategorised,
+                "count": len(uncategorised),
+            }
+        )
+
+    return groups
+
+
+def fetch_related_products(product, limit=8, products=None):
+    """Products worth showing under `product` — same category first, then the
+    ones whose names look alike ("Cake Box" ↔ "Cake Box 10 Inch")."""
+    if product is None:
+        return []
+
+    catalogue = fetch_products() if products is None else products
+    own_category = product.category.first()
+    own_category_id = own_category.id if own_category else None
+
+    scored = []
+    for candidate in catalogue:
+        if candidate.id == product.id:
+            continue
+        candidate_category = candidate.category.first()
+        score = _name_similarity(product.name, candidate.name)
+        if (
+            own_category_id is not None
+            and candidate_category is not None
+            and candidate_category.id == own_category_id
+        ):
+            score += 10
+        scored.append((score, candidate))
+
+    scored.sort(key=lambda item: (-item[0], item[1].name or ""))
+    return [candidate for _, candidate in scored[:limit]]

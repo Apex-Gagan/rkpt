@@ -284,6 +284,126 @@
         });
     }
 
+    /* ---------- category filter (homepage products) ---------- */
+    var catBar = $('#cat-bar');
+    var catStrip = $('#cat-tabs');
+    var catBlocks = $$('.cat-block');
+
+    if (catBar && catStrip && catBlocks.length) {
+        var catTabs = $$('.cat-tab', catBar);
+        var reduceMotion = window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var scrollMode = reduceMotion ? 'auto' : 'smooth';
+        var catSummary = $('#cat-summary');
+        var catPrev = $('#cat-prev'), catNext = $('#cat-next');
+        var totalProducts = catBlocks.reduce(function (n, b) {
+            return n + b.querySelectorAll('.pcard').length;
+        }, 0);
+
+        /* --- arrows --- */
+        function syncArrows() {
+            var max = catStrip.scrollWidth - catStrip.clientWidth;
+            var x = catStrip.scrollLeft;
+            var atStart = x <= 1, atEnd = x >= max - 1;
+            catStrip.classList.toggle('at-start', atStart);
+            catStrip.classList.toggle('at-end', atEnd);
+            if (catPrev) catPrev.disabled = atStart;
+            if (catNext) catNext.disabled = atEnd;
+        }
+
+        function nudge(dir) {
+            catStrip.scrollBy({left: dir * Math.max(catStrip.clientWidth * 0.8, 160), behavior: scrollMode});
+        }
+
+        if (catPrev) catPrev.addEventListener('click', function () { nudge(-1); });
+        if (catNext) catNext.addEventListener('click', function () { nudge(1); });
+        catStrip.addEventListener('scroll', syncArrows, {passive: true});
+        window.addEventListener('resize', syncArrows);
+        syncArrows();
+
+        /* --- filtering --- */
+        function scrollToEl(el) {
+            if (!el) return;
+            var hdr = $('#rp-header');
+            var offset = (hdr ? hdr.offsetHeight : 74) + 110;
+            var top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({top: Math.max(top, 0), behavior: scrollMode});
+        }
+
+        function setCategory(key, scroll) {
+            var known = key === 'all' || catBlocks.some(function (b) { return b.dataset.cat === key; });
+            if (!known) key = 'all';
+
+            catTabs.forEach(function (t) { t.classList.toggle('active', t.dataset.cat === key); });
+
+            var shown = 0;
+            catBlocks.forEach(function (b) {
+                var wasHidden = b.hidden;
+                var show = key === 'all' || b.dataset.cat === key;
+                b.hidden = !show;
+                if (!show) return;
+                shown += b.querySelectorAll('.pcard').length;
+                // un-fade only blocks coming back from display:none — on first
+                // paint nothing is hidden, so the reveal animation still plays
+                if (wasHidden) $$('.rv', b).forEach(function (el) { el.classList.add('in'); });
+            });
+
+            if (catSummary) {
+                catSummary.innerHTML = key === 'all'
+                    ? 'Showing <b>all ' + totalProducts + ' products</b> across ' + catBlocks.length + ' categories'
+                    : 'Showing <b>' + shown + ' product' + (shown === 1 ? '' : 's') + '</b> in this category · '
+                      + '<a href="#products" data-cat-link="all">see all ' + totalProducts + '</a>';
+            }
+
+            var active = catTabs.filter(function (t) { return t.dataset.cat === key; })[0];
+            // only pills inside the scrolling strip need bringing into view
+            if (active && active.parentNode === catStrip && catStrip.scrollTo) {
+                catStrip.scrollTo({
+                    left: Math.max(active.offsetLeft - (catStrip.clientWidth - active.offsetWidth) / 2, 0),
+                    behavior: scrollMode
+                });
+            }
+
+            if (scroll) scrollToEl(key === 'all' ? $('#products') : document.getElementById(key));
+        }
+
+        catTabs.forEach(function (t) {
+            t.addEventListener('click', function () {
+                // keep the URL shareable without stacking history entries
+                if (history.replaceState) {
+                    history.replaceState(null, '', t.dataset.cat === 'all'
+                        ? location.pathname + location.search
+                        : '#' + t.dataset.cat);
+                }
+                setCategory(t.dataset.cat, true);
+            });
+        });
+
+        // category cards (and the summary's "see all") deep-link into a category
+        document.addEventListener('click', function (e) {
+            var link = e.target.closest ? e.target.closest('[data-cat-link]') : null;
+            if (!link) return;
+            e.preventDefault();
+            var key = link.dataset.catLink;
+            if (history.replaceState) {
+                history.replaceState(null, '', key === 'all'
+                    ? location.pathname + location.search
+                    : '#' + key);
+            }
+            setCategory(key, true);
+        });
+
+        function categoryFromHash() {
+            var hash = (location.hash || '').replace('#', '');
+            if (hash.indexOf('cat-') === 0) setCategory(hash, true);
+        }
+
+        window.addEventListener('hashchange', categoryFromHash);
+
+        setCategory('all', false);
+        categoryFromHash();
+    }
+
     /* ---------- hover zoom on product main image ---------- */
     var zoomBox = $('.pd-main');
     if (zoomBox && window.matchMedia('(hover: hover)').matches) {
