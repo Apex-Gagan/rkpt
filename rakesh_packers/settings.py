@@ -65,6 +65,9 @@ TINYMCE_DEFAULT_CONFIG = {
     "promotion": False,
 }
 MIDDLEWARE = [
+    # First in the list => its response phase runs last, so it can defer to
+    # any Cache-Control a view already set.
+    "rakesh_packers.middleware.CacheControlMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -148,6 +151,18 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Static URLs carry a `?v=` stamp taken from the file's mtime+size, so CSS, JS
+# and images can be cached for a year (see CacheControlMiddleware and
+# vercel.json) and still update the instant a file changes.
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "rakesh_packers.static_storage.VersionedStaticFilesStorage",
+    },
+}
 
 # The pre-existing config puts STATIC_ROOT and STATICFILES_DIRS at the same
 # path, which Django flags. We keep the paths as they are (production

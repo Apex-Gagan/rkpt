@@ -1,6 +1,19 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
+
+    <head>
+        <meta name="google-site-verification" content="ZW4kqf6HBp5WYugPy5zYX0uOLgI-o-gZbmqhlYjcT7Y" />
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PC6FTKSJ');</script>
+<!-- End Google Tag Manager -->
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 <head>
     <meta name="google-site-verification" content="ZW4kqf6HBp5WYugPy5zYX0uOLgI-o-gZbmqhlYjcT7Y" />
     <!-- Google Tag Manager -->
@@ -15,250 +28,258 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <meta name="google-site-verification" content="DWkf8IdUeL8XKCGXtZgJcc-Sf-66LQQzKePGjuY_4iU"/>
 
-    <title>{% block title %}Rakesh Packers{% endblock %}</title>
-    {% block meta %}{% endblock %}
 
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/logo/favicon.svg' %}"/>
+        <meta name="google-site-verification" content="DWkf8IdUeL8XKCGXtZgJcc-Sf-66LQQzKePGjuY_4iU"/>
+
+        <title>{% block title %}Rakesh Packers{% endblock %}</title>
+        {% block meta %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/images/logo/favicon.svg' %}"/>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+              rel="stylesheet"/>
 
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <!-- Theme -->
-    <link rel="stylesheet" href="{% static 'assets/css/rp-theme.css' %}"/>
-    <noscript>
-        <style>.rv { opacity: 1 !important; transform: none !important; }</style>
-    </noscript>
-    {% block styles %}{% endblock %}
-</head>
+        <link rel="stylesheet" href="{% static 'assets/css/rp-theme.css' %}"/>
+        <noscript>
+            <style>.rv { opacity: 1 !important; transform: none !important; }</style>
+        </noscript>
+        {% block styles %}{% endblock %}
+    </head>
 
-<body>
+    <body>
 <!-- Google Tag Manager (noscript) -->
+
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PC6FTKSJ"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PC6FTKSJ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- Announcement marquee -->
-<div class="rp-announce" aria-hidden="true">
-    <div class="track">
-        {% for i in "12" %}
-            <span><i class="fa-solid fa-star"></i> Premium Material, Best Packaging</span>
-            <span><i class="fa-solid fa-truck-fast"></i> Pan-India Delivery</span>
-            <span><i class="fa-solid fa-phone"></i> Call +91 99887-75163</span>
-            <span><i class="fa-solid fa-box-open"></i> Custom Boxes · Cake · Pizza · Sweets · Burger</span>
-            <span><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</span>
-        {% endfor %}
-    </div>
-</div>
+        <div class="rp-announce" aria-hidden="true">
+            <div class="track">
+                {% for i in "12" %}
+                    <span><i class="fa-solid fa-star"></i> Premium Material, Best Packaging</span>
+                    <span><i class="fa-solid fa-truck-fast"></i> Pan-India Delivery</span>
+                    <span><i class="fa-solid fa-phone"></i> Call +91 99887-75163</span>
+                    <span><i class="fa-solid fa-box-open"></i> Custom Boxes · Cake · Pizza · Sweets · Burger</span>
+                    <span><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</span>
+                {% endfor %}
+            </div>
+        </div>
 
 <!-- Header -->
-<header class="rp-header" id="rp-header">
-    <div class="rp-container inner">
-        <a href="/" class="rp-logo" aria-label="Rakesh Packers home">
-            <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers" width="111"
-                 height="44"/>
-        </a>
+        <header class="rp-header" id="rp-header">
+            <div class="rp-container inner">
+                <a href="/" class="rp-logo" aria-label="Rakesh Packers home">
+                    <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers" width="111"
+                         height="44"/>
+                </a>
 
-        <nav class="rp-nav" aria-label="Main">
-            <div class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-            </div>
-            <div class="nav-item has-drop">
-                <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="rp-drop">
-                    {% for category in categories %}
-                        <a href="/#{{ category.anchor }}"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="nav-item has-drop nav-mega">
-                <a href="/#products" class="nav-link">Products <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="rp-drop rp-mega">
-                    <div class="mega-grid">
-                        {% for group in category_groups %}
-                            <div class="mega-col">
-                                <a class="mega-cat" href="/#{{ group.anchor }}">
-                                    <i class="fa-solid fa-tag"></i>{{ group.name }}
-                                    <span class="n">{{ group.count }}</span>
-                                </a>
-                                <ul>
-                                    {% for p in group.products|slice:":5" %}
-                                        <li><a href="{% url 'single-product' p.slug %}">{{ p.name }}</a></li>
-                                    {% endfor %}
-                                    {% if group.count > 5 %}
-                                        <li><a class="mega-more" href="/#{{ group.anchor }}">
-                                            +{{ group.count|add:"-5" }} more <i
-                                                class="fa-solid fa-arrow-right"></i></a></li>
-                                    {% endif %}
-                                </ul>
+                <nav class="rp-nav" aria-label="Main">
+                    <div class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </div>
+                    <div class="nav-item has-drop">
+                        <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="rp-drop">
+                            {% for category in categories %}
+                                <a href="/#{{ category.anchor }}"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="nav-item has-drop nav-mega">
+                        <a href="/#products" class="nav-link">Products <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="rp-drop rp-mega">
+                            <div class="mega-grid">
+                                {% for group in category_groups %}
+                                    <div class="mega-col">
+                                        <a class="mega-cat" href="/#{{ group.anchor }}">
+                                            <i class="fa-solid fa-tag"></i>{{ group.name }}
+                                            <span class="n">{{ group.count }}</span>
+                                        </a>
+                                        <ul>
+                                            {% for p in group.products|slice:":5" %}
+                                                <li><a href="{% url 'single-product' p.slug %}">{{ p.name }}</a></li>
+                                            {% endfor %}
+                                            {% if group.count > 5 %}
+                                                <li><a class="mega-more" href="/#{{ group.anchor }}">
+                                                    +{{ group.count|add:"-5" }} more <i
+                                                        class="fa-solid fa-arrow-right"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                            <div class="mega-foot">
+                                <span><i class="fa-solid fa-box-open"></i> {{ products|length }} products across
+                                    {{ category_groups|length }} categories</span>
+                                <a href="/#products">View all products <i class="fa-solid fa-arrow-right bi"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mega-foot">
-                        <span><i class="fa-solid fa-box-open"></i> {{ products|length }} products across
-                            {{ category_groups|length }} categories</span>
-                        <a href="/#products">View all products <i class="fa-solid fa-arrow-right bi"></i></a>
+                    <div class="nav-item">
+                        <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
                     </div>
+                </nav>
+
+                <div class="right">
+                    <div class="hdr-call">
+                        <div class="ic"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <small>Call us now</small>
+                            <a href="tel:+919988775163">+91 99887-75163</a>
+                        </div>
+                    </div>
+
+                    <a href="/cart/" class="hdr-cart" title="View cart" aria-label="View cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="badge js-cart-count" id="cart-count-badge"
+                              {% if not cart_count %}style="display:none"{% endif %}>{{ cart_count }}</span>
+                    </a>
+
+                    <button class="hdr-burger" id="rp-burger" aria-label="Open menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
-            </div>
-        </nav>
-
-        <div class="right">
-            <div class="hdr-call">
-                <div class="ic"><i class="fa-solid fa-phone"></i></div>
-                <div>
-                    <small>Call us now</small>
-                    <a href="tel:+919988775163">+91 99887-75163</a>
-                </div>
-            </div>
-
-            <a href="/cart/" class="hdr-cart" title="View cart" aria-label="View cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="badge js-cart-count" id="cart-count-badge"
-                      {% if not cart_count %}style="display:none"{% endif %}>{{ cart_count }}</span>
-            </a>
-
-            <button class="hdr-burger" id="rp-burger" aria-label="Open menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </div>
-</header>
+        </header>
 
 <!-- Mobile drawer -->
-<div class="rp-drawer-overlay" id="rp-drawer-overlay"></div>
-<aside class="rp-drawer" aria-label="Mobile menu">
-    <div class="dr-head">
-        <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers"/>
-        <button class="dr-close" id="rp-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>
-    <nav>
-        <a href="/" class="dr-link">Home <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#" class="dr-link has-sub">Categories <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="dr-sub">
-            {% for category in categories %}
-                <a href="/#{{ category.anchor }}">{{ category.name }}</a>
-            {% endfor %}
-        </div>
-        <a href="#" class="dr-link has-sub">Products <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="dr-sub dr-sub-products">
-            {% for group in category_groups %}
-                <a class="dr-grp" href="/#{{ group.anchor }}">{{ group.name }}
-                    <span class="n">{{ group.count }}</span></a>
-                <div class="dr-grid">
-                    {% for p in group.products %}
-                        <a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
+        <div class="rp-drawer-overlay" id="rp-drawer-overlay"></div>
+        <aside class="rp-drawer" aria-label="Mobile menu">
+            <div class="dr-head">
+                <img src="{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}" alt="Rakesh Packers"/>
+                <button class="dr-close" id="rp-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <nav>
+                <a href="/" class="dr-link">Home <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="dr-link has-sub">Categories <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dr-sub">
+                    {% for category in categories %}
+                        <a href="/#{{ category.anchor }}">{{ category.name }}</a>
                     {% endfor %}
                 </div>
-            {% endfor %}
-            <a class="dr-all" href="/#products">View all {{ products|length }} products
-                <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <a href="{% url 'contact' %}" class="dr-link">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="/cart/" class="dr-link">Cart{% if cart_count %} ({{ cart_count }}){% endif %} <i
-                class="fa-solid fa-cart-shopping"></i></a>
-    </nav>
-    <div class="dr-cta">
-        <a href="tel:+919988775163" class="btn btn-ghost"><i class="fa-solid fa-phone"></i> +91 99887-75163</a>
-        <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa">
-            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
-    </div>
-</aside>
+                <a href="#" class="dr-link has-sub">Products <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dr-sub dr-sub-products">
+                    {% for group in category_groups %}
+                        <a class="dr-grp" href="/#{{ group.anchor }}">{{ group.name }}
+                            <span class="n">{{ group.count }}</span></a>
+                        <div class="dr-grid">
+                            {% for p in group.products %}
+                                <a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <a class="dr-all" href="/#products">View all {{ products|length }} products
+                        <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <a href="{% url 'contact' %}" class="dr-link">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/cart/" class="dr-link">Cart{% if cart_count %} ({{ cart_count }}){% endif %} <i
+                    class="fa-solid fa-cart-shopping"></i></a>
+            </nav>
+            <div class="dr-cta">
+                <a href="tel:+919988775163" class="btn btn-ghost"><i class="fa-solid fa-phone"></i> +91 99887-75163</a>
+                <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
+        </aside>
 
-<main>{% block content %}{% endblock %}</main>
+        <main>{% block content %}{% endblock %}</main>
 
 <!-- Footer -->
-<footer class="rp-footer">
-    <div class="wordmark" aria-hidden="true">RAKESH&nbsp;PACKERS</div>
-    <div class="rp-container">
-        <div class="cols">
-            <div class="about">
-                <img src="{% static 'assets/images/logo/Rakesh_Packers_logo_White.svg' %}" alt="Rakesh Packers"/>
-                <p>Premium packaging crafted in Jalandhar — custom boxes for cakes, sweets, pizza, burgers and
-                    everything your brand ships.</p>
-                <div class="socials">
-                    <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
-                       aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
-                       aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://wa.me/919988775163" target="_blank" rel="noopener" aria-label="WhatsApp"><i
-                            class="fa-brands fa-whatsapp"></i></a>
+        <footer class="rp-footer">
+            <div class="wordmark" aria-hidden="true">RAKESH&nbsp;PACKERS</div>
+            <div class="rp-container">
+                <div class="cols">
+                    <div class="about">
+                        <img src="{% static 'assets/images/logo/Rakesh_Packers_logo_White.svg' %}" alt="Rakesh Packers"/>
+                        <p>Premium packaging crafted in Jalandhar — custom boxes for cakes, sweets, pizza, burgers and
+                            everything your brand ships.</p>
+                        <div class="socials">
+                            <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
+                               aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/rake.shpackers/" target="_blank" rel="noopener"
+                               aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://wa.me/919988775163" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="/"><i class="fa-solid fa-angle-right"></i>Home</a></li>
+                            <li><a href="/#products"><i class="fa-solid fa-angle-right"></i>Products</a></li>
+                            <li><a href="/cart/"><i class="fa-solid fa-angle-right"></i>My Cart</a></li>
+                            <li><a href="{% url 'contact' %}"><i class="fa-solid fa-angle-right"></i>Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5>Categories</h5>
+                        <ul>
+                            {% for category in categories|slice:":6" %}
+                                <li><a href="/#{{ category.anchor }}"><i
+                                    class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5>Get in Touch</h5>
+                        <div class="contact-item"><i class="fa-solid fa-location-dot"></i>
+                            <span>Basement of Manapuram Gold Bank, near Bijli Ghar Patel Chowk, Jalandhar (PB), 144001</span>
+                        </div>
+                        <div class="contact-item"><i class="fa-solid fa-phone"></i>
+                            <a href="tel:+919988775163">(+91) 99887-75163</a></div>
+                        <div class="contact-item"><i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:rakeshpackers5@gmail.com">rakeshpackers5@gmail.com</a></div>
+                        <div class="contact-item"><i class="fa-solid fa-clock"></i>
+                            <span>Mon – Sun · 10:00 AM – 7:00 PM</span></div>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <span>© Rakesh Packers {{ current_year }}. All rights reserved.</span>
+                    <span>Made with <i class="fa-solid fa-heart" style="color:var(--red)"></i> in Jalandhar, Punjab</span>
                 </div>
             </div>
-
-            <div>
-                <h5>Quick Links</h5>
-                <ul>
-                    <li><a href="/"><i class="fa-solid fa-angle-right"></i>Home</a></li>
-                    <li><a href="/#products"><i class="fa-solid fa-angle-right"></i>Products</a></li>
-                    <li><a href="/cart/"><i class="fa-solid fa-angle-right"></i>My Cart</a></li>
-                    <li><a href="{% url 'contact' %}"><i class="fa-solid fa-angle-right"></i>Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h5>Categories</h5>
-                <ul>
-                    {% for category in categories|slice:":6" %}
-                        <li><a href="/#{{ category.anchor }}"><i
-                                class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div>
-                <h5>Get in Touch</h5>
-                <div class="contact-item"><i class="fa-solid fa-location-dot"></i>
-                    <span>Basement of Manapuram Gold Bank, near Bijli Ghar Patel Chowk, Jalandhar (PB), 144001</span>
-                </div>
-                <div class="contact-item"><i class="fa-solid fa-phone"></i>
-                    <a href="tel:+919988775163">(+91) 99887-75163</a></div>
-                <div class="contact-item"><i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:rakeshpackers5@gmail.com">rakeshpackers5@gmail.com</a></div>
-                <div class="contact-item"><i class="fa-solid fa-clock"></i>
-                    <span>Mon – Sun · 10:00 AM – 7:00 PM</span></div>
-            </div>
-        </div>
-
-        <div class="bottom">
-            <span>© Rakesh Packers {{ current_year }}. All rights reserved.</span>
-            <span>Made with <i class="fa-solid fa-heart" style="color:var(--red)"></i> in Jalandhar, Punjab</span>
-        </div>
-    </div>
-</footer>
+        </footer>
 
 <!-- WhatsApp floating widget -->
-<div class="wa-pop" id="wa-pop" role="dialog" aria-label="Send WhatsApp message">
-    <div class="head">
-        <span><i class="fa-brands fa-whatsapp"></i> Chat with us</span>
-        <button id="wa-pop-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <textarea id="wa-pop-msg" placeholder="Type your message… e.g. I need 500 cake boxes"></textarea>
-    <button class="send" id="wa-pop-send">Send on WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
-</div>
-<button class="wa-fab" id="wa-fab" aria-label="Open WhatsApp chat"><i class="fa-brands fa-whatsapp"></i></button>
+        <div class="wa-pop" id="wa-pop" role="dialog" aria-label="Send WhatsApp message">
+            <div class="head">
+                <span><i class="fa-brands fa-whatsapp"></i> Chat with us</span>
+                <button id="wa-pop-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <textarea id="wa-pop-msg" placeholder="Type your message… e.g. I need 500 cake boxes"></textarea>
+            <button class="send" id="wa-pop-send">Send on WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
+        </div>
+        <button class="wa-fab" id="wa-fab" aria-label="Open WhatsApp chat"><i class="fa-brands fa-whatsapp"></i></button>
 
 <!-- Toast -->
-<div class="rp-toast" id="rp-toast" role="status"></div>
+        <div class="rp-toast" id="rp-toast" role="status"></div>
 
 <!-- Lightbox -->
-<div class="rp-lightbox" id="rp-lightbox" aria-hidden="true">
-    <button class="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    <button class="lb-nav lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-    <img src="" alt="Product image"/>
-    <button class="lb-nav lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
-</div>
+        <div class="rp-lightbox" id="rp-lightbox" aria-hidden="true">
+            <button class="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="lb-nav lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+            <img src="" alt="Product image"/>
+            <button class="lb-nav lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
 
-<script src="{% static 'assets/js/rp-theme.js' %}"></script>
-{% block scripts %}{% endblock %}
-</body>
+        <script src="{% static 'assets/js/rp-theme.js' %}"></script>
+        {% block scripts %}{% endblock %}
+    </body>
 </html>
