@@ -33,7 +33,12 @@ class CacheControlMiddleware:
         if response.has_header("Cache-Control"):
             return response
 
-        if request.path.startswith(self.static_prefix):
+        if request.path.startswith(self.static_prefix) and response.status_code < 400:
+            # Only a response that actually carries the asset may be marked
+            # immutable. A 404 or 500 on a static URL is transient — a deploy
+            # race, a missing collectstatic — and caching *that* for a year
+            # would keep serving an error page from the browser and the CDN
+            # long after the file is back.
             response.headers["Cache-Control"] = (
                 f"public, max-age={STATIC_MAX_AGE}, immutable"
             )
