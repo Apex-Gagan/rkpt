@@ -1,32 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-    Rakesh Packers -
-    Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and
-    More
-{% endblock %}
-{% block meta %}
-    <meta name="title"
-          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
-    <meta name="description"
-          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
-    <meta name="keywords"
-          content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"/>
-    <meta name="author" content="Rakesh Packers"/>
-    <meta name="robots" content="index, follow"/>
-    <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://www.rakeshpacker.com/"/>
-    <meta property="og:title"
-          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
-    <meta property="og:description"
-          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
-    <meta property="og:image"
-          content="https://i.postimg.cc/c17X2tXc/Banner_2.webp"/>
-    <meta property="og:image:width" content="1533"/>
-    <meta property="og:image:height" content="499"/>
-    <meta property="og:site_name" content="Rakesh Packers"/>
-{% endblock %}
+
+{% block title %}Custom Packaging Boxes in Jalandhar — Cake, Pizza &amp; Sweet Boxes | Rakesh Packers{% endblock %}
+
+{% block description %}Rakesh Packers manufactures premium custom printed boxes in Jalandhar — cake, pizza, sweet, burger, bakery and gift packaging. Bulk orders from ₹4 a box, delivered pan-India.{% endblock %}
+
+{% block og_title %}Custom Packaging Boxes in Jalandhar — Rakesh Packers{% endblock %}
+
+{% block og_description %}Premium custom printed packaging for bakeries, cloud kitchens, sweet shops and gift stores. Designed, printed and delivered from Jalandhar.{% endblock %}
 
 {% block content %}
 
@@ -51,7 +32,7 @@
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">BEST SELLER</span>
-                        <img src="{% static 'assets/images/products/Cake-Mockup.webp' %}" alt="Custom cake boxes"/>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Cake-Mockup.webp' %}" alt="Custom printed cake boxes by Rakesh Packers" fetchpriority="high" decoding="async"/></div>
                         <span class="price-pill">Cake Boxes <span>·</span> from ₹4</span>
                     </div>
                 </div>
@@ -60,7 +41,7 @@
             <div class="hero-slide">
                 <div class="hero-copy">
                     <span class="chip hero-kicker"><span class="dot"></span> Hot &amp; fresh, box included</span>
-                    <h1 class="hero-title">Pizza boxes built for the <span class="accent">perfect</span> delivery</h1>
+                    <p class="hero-title">Pizza boxes built for the <span class="accent">perfect</span> delivery</p>
                     <p class="hero-sub">Grease-resistant, sturdy corrugated pizza boxes with your branding — any size,
                         any quantity.</p>
                     <div class="hero-ctas">
@@ -73,7 +54,7 @@
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">CRISPY FRESH</span>
-                        <img src="{% static 'assets/images/products/Pizza-Mockup.webp' %}" alt="Custom pizza boxes"/>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Pizza-Mockup.webp' %}" alt="Custom printed pizza boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
                         <span class="price-pill">Pizza Boxes <span>·</span> custom print</span>
                     </div>
                 </div>
@@ -82,7 +63,7 @@
             <div class="hero-slide">
                 <div class="hero-copy">
                     <span class="chip hero-kicker"><span class="dot"></span> Sweeten every celebration</span>
-                    <h1 class="hero-title">Sweet &amp; gift boxes with a <span class="accent">premium</span> touch</h1>
+                    <p class="hero-title">Sweet &amp; gift boxes with a <span class="accent">premium</span> touch</p>
                     <p class="hero-sub">Elegant mithai and gifting boxes that make festivals, weddings and
                         celebrations feel extra special.</p>
                     <div class="hero-ctas">
@@ -96,7 +77,7 @@
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">FESTIVE PICK</span>
-                        <img src="{% static 'assets/images/products/Sweet-Mockup.webp' %}" alt="Sweet boxes"/>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Sweet-Mockup.webp' %}" alt="Premium sweet and mithai boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
                         <span class="price-pill">Sweet Boxes <span>·</span> bulk ready</span>
                     </div>
                 </div>
@@ -117,22 +98,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
-
-    <!-- ================= MARQUEE ================= -->
-    <div class="rp-marquee" aria-hidden="true">
-        <div class="track">
-            {% for i in "12" %}
-                <span>Cake Boxes <i class="fa-solid fa-star"></i></span>
-                <span>Pizza Boxes <i class="fa-solid fa-star"></i></span>
-                <span>Sweet Boxes <i class="fa-solid fa-star"></i></span>
-                <span>Burger Boxes <i class="fa-solid fa-star"></i></span>
-                <span>Custom Printing <i class="fa-solid fa-star"></i></span>
-                <span>Bulk Orders <i class="fa-solid fa-star"></i></span>
-            {% endfor %}
-        </div>
-    </div>
 
     <!-- ================= USP ================= -->
     <section class="rp-section" style="padding-top:70px;">

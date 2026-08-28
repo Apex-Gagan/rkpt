@@ -1,27 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ product.name|title }} | Rakesh Packers{% endblock %}
+{% block title %}{{ product.name|title }} — Custom Packaging | Rakesh Packers{% endblock %}
 
-{% block meta %}
-    <meta name="title" content="{{ product.name|title }} | Rakesh Packers"/>
-    <meta name="description"
-          content="{{ product.description }}| Contact Rakesh Packers for top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Get affordable and reliable packaging services."/>
-    <meta name="keywords" content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"/>
-    <meta name="author" content="Rakesh Packers"/>
-    <meta name="robots" content="index, follow"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://www.rakeshpacker.com/product/{{ product.slug }}/"/>
-    <meta property="og:title" content="{{ product.name|title }} | Rakesh Packers"/>
-    <meta property="og:description"
-          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
-    {% with product.image_set.first as img %}
-        {% if img %}
-            <meta property="og:image" content="{{ img.image }}"/>{% endif %}
-    {% endwith %}
-    <meta property="og:image:width" content="280"/>
-    <meta property="og:image:height" content="280"/>
-    <meta property="og:site_name" content="Rakesh Packers"/>
+{% block description %}{% if product.description %}{{ product.description|striptags|truncatewords:24 }} {% endif %}Order {{ product.name|lower }} from Rakesh Packers, Jalandhar — custom sizes, your branding printed on, bulk pricing and pan-India delivery.{% endblock %}
+
+{% block keywords %}{{ product.name|lower }}, {% with cats=product.category.all %}{% if cats %}{{ cats.0.name|lower }}, {% endif %}{% endwith %}custom packaging Jalandhar, printed boxes, bulk packaging supplier{% endblock %}
+
+{% block og_type %}product{% endblock %}
+
+{% block og_title %}{{ product.name|title }} | Rakesh Packers{% endblock %}
+
+{% block og_description %}{% if product.description %}{{ product.description|striptags|truncatewords:24 }}{% else %}Custom-printed {{ product.name|lower }} from Rakesh Packers — any size, any quantity, delivered across India.{% endif %}{% endblock %}
+
+{% block og_image %}{% with img=product.image_set.first %}{% if img %}{{ img.image }}{% else %}{{ default_og_image }}{% endif %}{% endwith %}{% endblock %}
+
+{% block og_image_alt %}{{ product.name }}{% endblock %}
+
+{% block jsonld %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site_url }}/"},
+            {"@type": "ListItem", "position": 2, "name": "Products", "item": "{{ site_url }}/#products"},
+            {"@type": "ListItem", "position": 3, "name": "{{ product.name|escapejs }}", "item": "{{ canonical_url|escapejs }}"}
+          ]
+        },
+        {
+          "@type": "Product",
+          "@id": "{{ canonical_url|escapejs }}#product",
+          "name": "{{ product.name|escapejs }}",
+          "url": "{{ canonical_url|escapejs }}",
+          "sku": "{{ product.id|escapejs }}",
+          "description": "{% if product.description %}{{ product.description|striptags|escapejs }}{% else %}Custom-printed {{ product.name|lower|escapejs }} manufactured by Rakesh Packers, Jalandhar. Available in custom sizes and quantities.{% endif %}",
+          {% with imgs=product.image_set.all %}{% if imgs %}"image": [{% for img in imgs %}"{{ img.image|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+          {% endif %}{% endwith %}{% with cats=product.category.all %}{% if cats %}"category": "{{ cats.0.name|escapejs }}",
+          {% endif %}{% endwith %}"brand": {"@type": "Brand", "name": "Rakesh Packers"},
+          "manufacturer": {"@id": "{{ site_url }}/#organization"}{% if product.price %},
+          "offers": {
+            "@type": "Offer",
+            "url": "{{ canonical_url|escapejs }}",
+            "priceCurrency": "INR",
+            "price": "{{ product.price|escapejs }}",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": {"@id": "{{ site_url }}/#organization"}
+          }{% endif %}
+        }
+      ]
+    }
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -29,7 +61,7 @@
         <div class="rp-container">
 
             <!-- Breadcrumb -->
-            <nav class="pd-crumb rv in">
+            <nav class="pd-crumb rv in" aria-label="Breadcrumb">
                 <a href="/">Home</a> <i class="fa-solid fa-angle-right" style="font-size:.6rem;"></i>
                 <a href="/#products">Products</a> <i class="fa-solid fa-angle-right" style="font-size:.6rem;"></i>
                 <b>{{ product.name }}</b>
@@ -46,11 +78,12 @@
                                 <i class="fa-solid fa-expand"></i>
                             </button>
                             {% if imgs %}
-                                <img id="pd-main-img" src="{{ imgs.0.image }}" alt="{{ product.name }}"/>
+                                <img id="pd-main-img" src="{{ imgs.0.image }}" alt="{{ product.name }}"
+                                     fetchpriority="high" decoding="async"/>
                             {% else %}
                                 <img id="pd-main-img"
                                      src="{% static 'assets/images/products/Cake-Mockup.webp' %}"
-                                     alt="{{ product.name }}"/>
+                                     alt="{{ product.name }}" fetchpriority="high" decoding="async"/>
                             {% endif %}
                             <span class="zoom-note"><i class="fa-solid fa-magnifying-glass-plus"></i> Hover to zoom</span>
                         </div>
@@ -60,8 +93,9 @@
                                 {% for img in imgs %}
                                     <button class="pd-thumb {% if forloop.first %}active{% endif %}"
                                             data-src="{{ img.image }}" data-idx="{{ forloop.counter0 }}"
-                                            aria-label="Image {{ forloop.counter }}">
-                                        <img src="{{ img.image }}" alt="thumb {{ forloop.counter }}" loading="lazy"/>
+                                            aria-label="Show image {{ forloop.counter }} of {{ imgs|length }}">
+                                        <img src="{{ img.image }}"
+                                             alt="{{ product.name }} — view {{ forloop.counter }}" loading="lazy"/>
                                     </button>
                                 {% endfor %}
                             </div>
@@ -104,7 +138,7 @@
                         </p>
                         <div class="pd-specs">
                             {% for box in product.catalogue %}
-                                <div class="spec-card">
+                                <div class="spec-card rv">
                                     <div class="lbl"><i class="fa-solid fa-box-open"></i>{{ box.label }}</div>
                                     {% if box.weight_kg %}
                                         <div class="row"><i class="fa-solid fa-circle"></i>{{ box.weight_kg }} KG
@@ -156,7 +190,7 @@
                         </div>
                         <button id="add-to-cart-btn" type="button" class="pd-atc"
                                 data-product-id="{{ product.id }}">
-                            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                            <span><i class="fa-solid fa-cart-shopping"></i> Add to Cart</span>
                         </button>
                         <div class="pd-trust">
                             <span><i class="fa-solid fa-shield-halved"></i> Secure order</span>
@@ -202,6 +236,17 @@
         </div>
     </div>
 
+    <!-- Sticky order bar (mobile) -->
+    <div class="pd-sticky" id="pd-sticky">
+        <div class="meta">
+            <div class="nm">{{ product.name }}</div>
+            <div class="pr">{% if product.price %}₹{{ product.price }} per box{% else %}Price on request{% endif %}</div>
+        </div>
+        <button type="button" class="btn btn-ink" id="pd-sticky-add">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+        </button>
+    </div>
+
     <!-- ATC success modal -->
     <div class="atc-overlay" id="atc-overlay">
         <div class="atc-box">
@@ -234,10 +279,12 @@
                     t.classList.add('active');
                     currentIdx = parseInt(t.dataset.idx, 10) || 0;
                     mainImg.style.opacity = '0';
+                    mainImg.style.transform = 'scale(1.04)';
                     setTimeout(function () {
                         mainImg.src = t.dataset.src;
                         mainImg.style.opacity = '1';
-                    }, 160);
+                        mainImg.style.transform = '';
+                    }, 180);
                 });
             });
 
@@ -273,12 +320,12 @@
             /* ---------- add to cart ---------- */
             var btn = document.getElementById('add-to-cart-btn');
             var overlay = document.getElementById('atc-overlay');
-            var atcIdle = '<i class="fa-solid fa-cart-shopping"></i> Add to Cart';
+            var atcIdle = '<span><i class="fa-solid fa-cart-shopping"></i> Add to Cart</span>';
 
             btn.addEventListener('click', function () {
                 if (btn.disabled) return;
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding…';
+                btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Adding…</span>';
 
                 window.rpAddToCart(btn.dataset.productId, getQty(), function (data) {
                     btn.disabled = false;

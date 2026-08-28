@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /cart/
 
-
-Sitemap: https://www.rakeshpacker.com/sitemap.xml
+Sitemap: {{ site_url }}/sitemap.xml

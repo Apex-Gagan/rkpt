@@ -29,6 +29,15 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+# Public origin used to build canonical links, Open Graph URLs, JSON-LD and the
+# Sitemap line in robots.txt. Overridable so a staging deploy can point at
+# itself instead of advertising production URLs.
+SITE_URL = os.getenv("SITE_URL", "https://www.rakeshpacker.com").rstrip("/")
+SITE_NAME = "Rakesh Packers"
+DEFAULT_OG_IMAGE = os.getenv(
+    "DEFAULT_OG_IMAGE", "https://i.postimg.cc/c17X2tXc/Banner_2.webp"
+)
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -99,6 +108,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "product_listings.context_processors.current_year",
                 "product_listings.context_processors.cart_count",
+                "product_listings.context_processors.site_meta",
             ],
         },
     },
