@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Contact Us | Rakesh Packers{% endblock %}
+{% block title %}Contact Rakesh Packers — Custom Packaging in Jalandhar{% endblock %}
 
-{% block meta %}
-    <meta name="title"
-          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
-    <meta name="description"
-          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
-    <meta name="keywords"
-          content="packaging solutions Jalandhar, custom boxes, gift boxes, packaging company"/>
-    <meta name="author" content="Rakesh Packers"/>
-    <meta name="robots" content="index, follow"/>
-    <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://www.rakeshpacker.com/"/>
-    <meta property="og:title"
-          content="Rakesh Packers - Best Packaging Solutions in Jalandhar | Custom Boxes, Gift Boxes, and More"/>
-    <meta property="og:description"
-          content="Rakesh Packers offers top-quality packaging solutions in Jalandhar. We specialize in custom boxes, gift boxes, and more. Contact us for affordable and reliable packaging services."/>
-    <meta property="og:image" content="https://i.postimg.cc/c17X2tXc/Banner_2.webp"/>
-    <meta property="og:image:width" content="1533"/>
-    <meta property="og:image:height" content="499"/>
-    <meta property="og:site_name" content="Rakesh Packers"/>
+{% block description %}Talk to Rakesh Packers about custom boxes, bulk orders and print-ready designs. Call +91 99887-75163, WhatsApp us, or send the form — we reply the same day, 10 AM to 7 PM.{% endblock %}
+
+{% block keywords %}contact packaging supplier Jalandhar, bulk box order, custom packaging quote, Rakesh Packers phone number{% endblock %}
+
+{% block og_title %}Contact Rakesh Packers — Custom Packaging in Jalandhar{% endblock %}
+
+{% block og_description %}Questions, bulk orders, custom designs — our team is available every day from 10 AM to 7 PM.{% endblock %}
+
+{% block jsonld %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "url": "{{ canonical_url }}",
+      "name": "Contact Rakesh Packers",
+      "about": {"@id": "{{ site_url }}/#organization"},
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site_url }}/"},
+          {"@type": "ListItem", "position": 2, "name": "Contact Us", "item": "{{ canonical_url }}"}
+        ]
+      }
+    }
+    </script>
 {% endblock %}
 
 {% block content %}

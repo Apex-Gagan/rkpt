@@ -2,6 +2,12 @@
 {% load static %}
 {% block title %}My Cart | Rakesh Packers{% endblock %}
 
+{% block description %}Review the packaging you have selected and place your order with Rakesh Packers over WhatsApp.{% endblock %}
+
+{# The cart renders whatever is in this visitor's session — nothing a crawler
+   should index, and nothing worth passing link equity through. #}
+{% block robots %}noindex, nofollow{% endblock %}
+
 {% block content %}
     <div class="cart-page-v2">
         <div class="rp-container">
