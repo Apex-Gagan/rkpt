@@ -143,8 +143,7 @@
                         <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
                         <div class="rp-drop rp-mega rp-mega-cats">
                             <div class="cat-mega-grid">
-                                {# Groups, not raw categories: a category with no stock has no
-                                   anchor on the homepage, so linking to it lands nowhere. #}
+
                                 {% for group in category_groups %}
                                     <a class="cat-tile" href="/#{{ group.anchor }}">
                                         <span class="ct-top">
