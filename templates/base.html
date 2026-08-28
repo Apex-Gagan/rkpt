@@ -1,45 +1,53 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
-
+<html lang="en-IN">
     <head>
-        <meta name="google-site-verification" content="ZW4kqf6HBp5WYugPy5zYX0uOLgI-o-gZbmqhlYjcT7Y" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="theme-color" content="#17120c"/>
+
     <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                                                       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-PC6FTKSJ');</script>
-<!-- End Google Tag Manager -->
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- End Google Tag Manager -->
 
-<head>
-    <meta name="google-site-verification" content="ZW4kqf6HBp5WYugPy5zYX0uOLgI-o-gZbmqhlYjcT7Y" />
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PC6FTKSJ');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <meta name="google-site-verification" content="DWkf8IdUeL8XKCGXtZgJcc-Sf-66LQQzKePGjuY_4iU"/>
-
-
+        <meta name="google-site-verification" content="ZW4kqf6HBp5WYugPy5zYX0uOLgI-o-gZbmqhlYjcT7Y"/>
         <meta name="google-site-verification" content="DWkf8IdUeL8XKCGXtZgJcc-Sf-66LQQzKePGjuY_4iU"/>
 
-        <title>{% block title %}Rakesh Packers{% endblock %}</title>
-        {% block meta %}{% endblock %}
+    <!-- ============================== SEO ============================== -->
+        <title>{% block title %}Rakesh Packers — Custom Packaging &amp; Printed Boxes in Jalandhar{% endblock %}</title>
+        <meta name="description"
+              content="{% block description %}Rakesh Packers designs, prints and delivers premium custom packaging from Jalandhar — cake, pizza, sweet, burger and gift boxes, shipped pan-India from just ₹4 a box.{% endblock %}"/>
+        <meta name="keywords"
+              content="{% block keywords %}packaging solutions Jalandhar, custom boxes, cake boxes, pizza boxes, sweet boxes, burger boxes, gift boxes, printed packaging, packaging company Punjab{% endblock %}"/>
+        <meta name="author" content="Rakesh Packers"/>
+        <meta name="robots"
+              content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}"/>
+        <link rel="canonical" href="{% block canonical %}{{ canonical_url }}{% endblock %}"/>
 
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/images/logo/favicon.svg' %}"/>
+    <!-- Open Graph — Twitter/X reads these too, so no duplicate twitter:* tags. -->
+        <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
+        <meta property="og:site_name" content="{{ site_name }}"/>
+        <meta property="og:locale" content="en_IN"/>
+        <meta property="og:url" content="{% block og_url %}{{ canonical_url }}{% endblock %}"/>
+        <meta property="og:title"
+              content="{% block og_title %}Rakesh Packers — Custom Packaging &amp; Printed Boxes in Jalandhar{% endblock %}"/>
+        <meta property="og:description"
+              content="{% block og_description %}Premium custom packaging crafted in Jalandhar — cake, pizza, sweet, burger and gift boxes, delivered pan-India.{% endblock %}"/>
+        <meta property="og:image" content="{% block og_image %}{{ default_og_image }}{% endblock %}"/>
+        <meta property="og:image:alt"
+              content="{% block og_image_alt %}Rakesh Packers custom printed packaging boxes{% endblock %}"/>
+        <meta name="twitter:card" content="summary_large_image"/>
 
-    <!-- Fonts -->
+        <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/logo/favicon.svg' %}"/>
+
+    <!-- Fonts — Playfair Display (headings) + Manrope (body & UI) -->
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700&display=swap"
               rel="stylesheet"/>
 
     <!-- Icons -->
@@ -48,20 +56,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Theme -->
         <link rel="stylesheet" href="{% static 'assets/css/rp-theme.css' %}"/>
         <noscript>
-            <style>.rv { opacity: 1 !important; transform: none !important; }</style>
+            <style>.rv, .sp-line > span { opacity: 1 !important; transform: none !important; }</style>
         </noscript>
         {% block styles %}{% endblock %}
+        {% block meta %}{% endblock %}
+
+    <!-- Sitewide structured data -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": ["Organization", "LocalBusiness"],
+              "@id": "{{ site_url }}/#organization",
+              "name": "Rakesh Packers",
+              "url": "{{ site_url }}/",
+              "logo": "{{ site_url }}{% static 'assets/images/logo/Rakesh_Packers_logo.svg' %}",
+              "image": "{{ default_og_image }}",
+              "description": "Manufacturer and supplier of premium custom packaging — cake, pizza, sweet, burger and gift boxes — based in Jalandhar, Punjab, delivering across India.",
+              "telephone": "+91-99887-75163",
+              "email": "rakeshpackers5@gmail.com",
+              "priceRange": "₹₹",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Basement of Manapuram Gold Bank, near Bijli Ghar, Patel Chowk",
+                "addressLocality": "Jalandhar",
+                "addressRegion": "Punjab",
+                "postalCode": "144001",
+                "addressCountry": "IN"
+              },
+              "areaServed": {"@type": "Country", "name": "India"},
+              "openingHoursSpecification": [{
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                "opens": "10:00",
+                "closes": "19:00"
+              }],
+              "sameAs": ["https://www.instagram.com/rake.shpackers/"]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "{{ site_url }}/#website",
+              "url": "{{ site_url }}/",
+              "name": "Rakesh Packers",
+              "inLanguage": "en-IN",
+              "publisher": {"@id": "{{ site_url }}/#organization"}
+            }
+          ]
+        }
+        </script>
+        {% block jsonld %}{% endblock %}
     </head>
 
     <body>
 <!-- Google Tag Manager (noscript) -->
-
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PC6FTKSJ"
                           height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PC6FTKSJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- Announcement marquee -->
@@ -89,12 +139,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="nav-item">
                         <a href="/" class="nav-link">Home</a>
                     </div>
-                    <div class="nav-item has-drop">
+                    <div class="nav-item has-drop nav-mega">
                         <a href="/#categories" class="nav-link">Categories <i class="fa-solid fa-chevron-down"></i></a>
-                        <div class="rp-drop">
-                            {% for category in categories %}
-                                <a href="/#{{ category.anchor }}"><i class="fa-solid fa-tag"></i>{{ category.name }}</a>
-                            {% endfor %}
+                        <div class="rp-drop rp-mega rp-mega-cats">
+                            <div class="cat-mega-grid">
+                                {# Groups, not raw categories: a category with no stock has no
+                                   anchor on the homepage, so linking to it lands nowhere. #}
+                                {% for group in category_groups %}
+                                    <a class="cat-tile" href="/#{{ group.anchor }}">
+                                        <span class="ct-top">
+                                            <span class="ct-num">{{ forloop.counter|stringformat:"02d" }}</span>
+                                            <span class="ct-thumbs">
+                                                {% for p in group.products|slice:":3" %}
+                                                    {% with pimg=p.image_set.first %}
+                                                        {% if pimg %}
+                                                            <img src="{{ pimg.image }}" alt="" loading="lazy"/>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </span>
+                                        </span>
+                                        <span class="ct-name">{{ group.name }}</span>
+                                        <span class="ct-foot">
+                                            <b>{{ group.count }}</b> product{{ group.count|pluralize }}
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="mega-foot">
+                                <span><i class="fa-solid fa-layer-group"></i>
+                                    {{ category_groups|length }} categories · {{ products|length }} products</span>
+                                <a href="/#categories">Browse all categories <i class="fa-solid fa-arrow-right bi"></i></a>
+                            </div>
                         </div>
                     </div>
                     <div class="nav-item has-drop nav-mega">
@@ -152,6 +229,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </button>
                 </div>
             </div>
+            <div class="rp-progress" id="rp-progress" aria-hidden="true"><span></span></div>
         </header>
 
 <!-- Mobile drawer -->
@@ -165,9 +243,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <nav>
                 <a href="/" class="dr-link">Home <i class="fa-solid fa-arrow-right"></i></a>
                 <a href="#" class="dr-link has-sub">Categories <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="dr-sub">
-                    {% for category in categories %}
-                        <a href="/#{{ category.anchor }}">{{ category.name }}</a>
+                <div class="dr-sub dr-sub-cats">
+                    {% for group in category_groups %}
+                        <a href="/#{{ group.anchor }}">{{ group.name }}
+                            <span class="n">{{ group.count }}</span></a>
                     {% endfor %}
                 </div>
                 <a href="#" class="dr-link has-sub">Products <i class="fa-solid fa-chevron-down"></i></a>
@@ -229,9 +308,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div>
                         <h5>Categories</h5>
                         <ul>
-                            {% for category in categories|slice:":6" %}
-                                <li><a href="/#{{ category.anchor }}"><i
-                                    class="fa-solid fa-angle-right"></i>{{ category.name }}</a></li>
+                            {% for group in category_groups|slice:":6" %}
+                                <li><a href="/#{{ group.anchor }}"><i
+                                    class="fa-solid fa-angle-right"></i>{{ group.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -277,9 +356,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="lb-nav lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
             <img src="" alt="Product image"/>
             <button class="lb-nav lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+            <span class="lb-count" id="lb-count"></span>
         </div>
 
         <script src="{% static 'assets/js/rp-theme.js' %}"></script>
+        <script src="{% static 'assets/js/rp-motion.js' %}"></script>
         {% block scripts %}{% endblock %}
     </body>
 </html>
