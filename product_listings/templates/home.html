@@ -23,16 +23,16 @@
                         custom packaging across India.</p>
                     <div class="hero-ctas">
                         <a href="#products" class="btn btn-ink btn-lg">Explore Products <i
-                                class="fa-solid fa-arrow-right bi"></i></a>
+                                class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                         <a href="https://wa.me/919988775163" target="_blank" rel="noopener"
-                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp"></i> Get a Quote</a>
+                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Get a Quote</a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">BEST SELLER</span>
-                        <div class="inner-frame"><img src="{% static 'assets/images/products/Cake-Mockup.webp' %}" alt="Custom printed cake boxes by Rakesh Packers" fetchpriority="high" decoding="async"/></div>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Cake-Mockup.webp' %}" width="860" height="680" alt="Custom printed cake boxes by Rakesh Packers" fetchpriority="high" decoding="async"/></div>
                         <span class="price-pill">Cake Boxes <span>·</span> from ₹4</span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         any quantity.</p>
                     <div class="hero-ctas">
                         <a href="#products" class="btn btn-red btn-lg">See Pizza Boxes <i
-                                class="fa-solid fa-arrow-right bi"></i></a>
+                                class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                         <a href="{% url 'contact' %}" class="btn btn-ghost btn-lg">Talk to Us</a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">CRISPY FRESH</span>
-                        <div class="inner-frame"><img src="{% static 'assets/images/products/Pizza-Mockup.webp' %}" alt="Custom printed pizza boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Pizza-Mockup.webp' %}" width="860" height="680" alt="Custom printed pizza boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
                         <span class="price-pill">Pizza Boxes <span>·</span> custom print</span>
                     </div>
                 </div>
@@ -68,16 +68,16 @@
                         celebrations feel extra special.</p>
                     <div class="hero-ctas">
                         <a href="#products" class="btn btn-ink btn-lg">Browse Sweet Boxes <i
-                                class="fa-solid fa-arrow-right bi"></i></a>
+                                class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                         <a href="https://wa.me/919988775163" target="_blank" rel="noopener"
-                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp"></i> Bulk Order</a>
+                           class="btn btn-ghost btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Bulk Order</a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="hero-blob"></div>
                     <div class="hero-card">
                         <span class="tag">FESTIVE PICK</span>
-                        <div class="inner-frame"><img src="{% static 'assets/images/products/Sweet-Mockup.webp' %}" alt="Premium sweet and mithai boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
+                        <div class="inner-frame"><img src="{% static 'assets/images/products/Sweet-Mockup.webp' %}" width="860" height="680" alt="Premium sweet and mithai boxes by Rakesh Packers" loading="lazy" decoding="async"/></div>
                         <span class="price-pill">Sweet Boxes <span>·</span> bulk ready</span>
                     </div>
                 </div>
@@ -92,9 +92,9 @@
                     </div>
                     <div class="hero-arrows">
                         <button class="hero-arrow" id="hero-prev" aria-label="Previous slide"><i
-                                class="fa-solid fa-arrow-left"></i></button>
+                                class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
                         <button class="hero-arrow" id="hero-next" aria-label="Next slide"><i
-                                class="fa-solid fa-arrow-right"></i></button>
+                                class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -107,21 +107,21 @@
         <div class="rp-container">
             <div class="usp-grid">
                 <div class="usp-card rv">
-                    <div class="usp-ic"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <div class="usp-ic"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i></div>
                     <div>
                         <h4>Best Design &amp; Packaging</h4>
                         <p>In-house design team crafts packaging that stands out on any shelf.</p>
                     </div>
                 </div>
                 <div class="usp-card rv rv-d1">
-                    <div class="usp-ic"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="usp-ic"><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i></div>
                     <div>
                         <h4>Affordable Prices</h4>
                         <p>Factory-direct pricing with zero hidden fees — starting at just ₹4 a box.</p>
                     </div>
                 </div>
                 <div class="usp-card rv rv-d2">
-                    <div class="usp-ic"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="usp-ic"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
                     <div>
                         <h4>On-Time Delivery</h4>
                         <p>Reliable dispatch across Punjab and pan-India, every single time.</p>
@@ -140,102 +140,62 @@
                     <h2 class="sec-title rv">Browse our <span class="accent">categories</span></h2>
                     <p class="sec-sub rv rv-d1">Every box we craft, grouped by what your business needs.</p>
                 </div>
-                <a href="#products" class="btn btn-ghost rv rv-d2">All Products <i
-                        class="fa-solid fa-arrow-right bi"></i></a>
+                <a href="{% url 'products' %}" class="btn btn-ghost rv rv-d2">All Products <i
+                        class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
             </div>
 
             <div class="cat-scroll">
                 {% for group in category_groups %}
-                    <a href="#{{ group.anchor }}" class="cat-card rv" data-cat-link="{{ group.anchor }}">
+                    <a href="{% url 'products' %}?category={{ group.slug }}" class="cat-card rv">
                         <span class="num">{{ forloop.counter|stringformat:"02d" }}</span>
                         <div class="cat-thumbs">
                             {% for p in group.products|slice:":3" %}
                                 {% with pimg=p.image_set.first %}
                                     {% if pimg %}
-                                        <img src="{{ pimg.image }}" alt="" loading="lazy"/>{% endif %}
+                                        <img src="{{ pimg.image }}" alt="" width="46" height="46" loading="lazy" decoding="async"/>{% endif %}
                                 {% endwith %}
                             {% endfor %}
                         </div>
                         <h4>{{ group.name }}</h4>
                         <p>{{ group.category.description|default:"Premium quality, fully customisable." }}</p>
                         <span class="cat-count">{{ group.count }} product{{ group.count|pluralize }}</span>
-                        <span class="go">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                        <span class="go">Explore <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
                     </a>
                 {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- ================= PRODUCTS, BY CATEGORY ================= -->
+    <!-- ================= PRODUCTS ================= -->
     <section class="rp-section" id="products">
         <div class="rp-container">
             <div class="sec-head">
                 <div>
                     <span class="chip sec-kicker"><span class="dot"></span> Crowd favourites</span>
                     <h2 class="sec-title rv">Our <span class="accent">products</span></h2>
-                    <p class="sec-sub rv rv-d1">Shop category by category — tap any product for sizes, specs and
-                        instant WhatsApp ordering.</p>
+                    <p class="sec-sub rv rv-d1">A cross-section of the catalogue — tap any product for sizes,
+                        specs and instant WhatsApp ordering.</p>
                 </div>
+                <a href="{% url 'products' %}" class="btn btn-ghost rv rv-d2">
+                    Browse by category <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
             </div>
 
-            {% if category_groups %}
-                <div class="cat-bar" id="cat-bar">
-                    <button type="button" class="cat-tab cat-tab-all active" data-cat="all">
-                        <span class="lbl">All<span class="lbl-wide"> Products</span></span><span class="n">{{ products|length }}</span>
-                    </button>
-                    <button type="button" class="cat-arrow" id="cat-prev"
-                            aria-label="Scroll to previous categories" aria-controls="cat-tabs">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <div class="cat-tabs" id="cat-tabs" role="tablist"
-                         aria-label="Filter products by category">
-                        {% for group in category_groups %}
-                            <button type="button" class="cat-tab" data-cat="{{ group.anchor }}">
-                                <span class="lbl">{{ group.name }}</span><span
-                                    class="n">{{ group.count }}</span>
-                            </button>
-                        {% endfor %}
-                    </div>
-                    <button type="button" class="cat-arrow" id="cat-next"
-                            aria-label="Scroll to next categories" aria-controls="cat-tabs">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-                <p class="cat-summary" id="cat-summary" role="status"></p>
-
-                <div class="cat-blocks">
-                {% for group in category_groups %}
-                    <section class="cat-block" id="{{ group.anchor }}" data-cat="{{ group.anchor }}">
-                        <header class="cb-head rv">
-                            <div class="cb-lead">
-                                <span class="cb-num">{{ forloop.counter|stringformat:"02d" }}</span>
-                                <div>
-                                    <h3 class="cb-title">{{ group.name }}</h3>
-                                    {% if group.category.description %}
-                                        <p class="cb-sub">{{ group.category.description }}</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <span class="cb-count">{{ group.count }} product{{ group.count|pluralize }}</span>
-                        </header>
-
-                        <div class="prod-grid">
-                            {% for product in group.products %}
-                                {% if forloop.first %}
-                                    {% include "partials/product_card.html" with product=product flag="Popular" %}
-                                {% else %}
-                                    {% include "partials/product_card.html" with product=product %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </section>
-                {% endfor %}
-                </div>
-            {% else %}
-                <div class="prod-grid">
-                    {% for product in products %}
+            <div class="prod-grid">
+                {% for product in featured %}
+                    {% if forloop.first %}
+                        {% include "partials/product_card.html" with product=product flag="Popular" %}
+                    {% else %}
                         {% include "partials/product_card.html" with product=product %}
-                    {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            {% if products|length > featured|length %}
+                <div class="pl-more rv">
+                    <p class="pl-more-note">Showing {{ featured|length }} of {{ products|length }} products
+                        across {{ category_groups|length }} categories.</p>
+                    <a href="{% url 'products' %}" class="btn btn-ink btn-lg">
+                        Explore all products <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                 </div>
             {% endif %}
         </div>
@@ -254,7 +214,7 @@
                         <p class="band-sub">Bakeries, cloud kitchens, sweet shops and gift stores across India rely on
                             us for boxes that protect their product and elevate their brand.</p>
                         <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa btn-lg">
-                            <i class="fa-brands fa-whatsapp"></i> Start Your Order</a>
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Start Your Order</a>
                     </div>
                     <div class="stats-grid">
                         <div class="stat-cell">
@@ -291,19 +251,19 @@
             <div class="steps-grid">
                 <div class="step-card rv">
                     <span class="snum">01</span>
-                    <div class="sic"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="sic"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
                     <h4>Share Your Requirement</h4>
                     <p>Message us on WhatsApp with your box type, size and quantity — or just describe your product.</p>
                 </div>
                 <div class="step-card rv rv-d1">
                     <span class="snum">02</span>
-                    <div class="sic"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <div class="sic"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i></div>
                     <h4>We Design &amp; Print</h4>
                     <p>Our team designs your packaging, shares a proof, and prints on premium material once approved.</p>
                 </div>
                 <div class="step-card rv rv-d2">
                     <span class="snum">03</span>
-                    <div class="sic"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="sic"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
                     <h4>Delivered On Time</h4>
                     <p>Your boxes arrive at your door — carefully packed, exactly when promised.</p>
                 </div>
@@ -324,7 +284,7 @@
             <div class="testi-wrap">
                 <div class="testi-slide active">
                     <div class="testi-card">
-                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></div>
                         <div class="stars">★★★★★</div>
                         <blockquote>“The cake boxes completely changed how our bakery looks on Instagram. Print
                             quality is superb and delivery was right on schedule.”
@@ -340,7 +300,7 @@
                 </div>
                 <div class="testi-slide">
                     <div class="testi-card">
-                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></div>
                         <div class="stars">★★★★★</div>
                         <blockquote>“We order 5,000+ pizza boxes every month. Sturdy, grease-resistant and always
                             delivered on time. Best rates we've found anywhere.”
@@ -356,7 +316,7 @@
                 </div>
                 <div class="testi-slide">
                     <div class="testi-card">
-                        <div class="quote-ic"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="quote-ic"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></div>
                         <div class="stars">★★★★★</div>
                         <blockquote>“Festival season sorted! The sweet boxes looked so premium that customers kept
                             asking where we got them. Ordering again for Diwali.”
@@ -392,9 +352,9 @@
                         commitment, no design fees.</p>
                     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
                         <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa btn-lg">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp Us</a>
                         <a href="{% url 'contact' %}" class="btn btn-ghost-light btn-lg">Contact Form <i
-                                class="fa-solid fa-arrow-right bi"></i></a>
+                                class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

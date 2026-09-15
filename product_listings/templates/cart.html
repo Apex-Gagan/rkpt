@@ -27,9 +27,9 @@
                             <div class="ci-card" id="cart-row-{{ item.product_id }}">
                                 <div class="ci-img">
                                     {% if item.image %}
-                                        <img src="{{ item.image }}" alt="{{ item.name }}"/>
+                                        <img src="{{ item.image }}" alt="{{ item.name }}" width="96" height="96" loading="lazy"/>
                                     {% else %}
-                                        <i class="fa-solid fa-box"></i>
+                                        <i class="fa-solid fa-box" aria-hidden="true"></i>
                                     {% endif %}
                                 </div>
                                 <div class="ci-mid">
@@ -39,25 +39,25 @@
                                     <div class="ci-qty">
                                         <button onclick="updateCart('{{ item.product_id }}', 'decrement')"
                                                 title="Decrease" aria-label="Decrease quantity">
-                                            <i class="fa-solid fa-minus"></i></button>
+                                            <i class="fa-solid fa-minus" aria-hidden="true"></i></button>
                                         <span class="n" id="qty-{{ item.product_id }}">{{ item.qty }}</span>
                                         <button onclick="updateCart('{{ item.product_id }}', 'increment')"
                                                 title="Increase" aria-label="Increase quantity">
-                                            <i class="fa-solid fa-plus"></i></button>
+                                            <i class="fa-solid fa-plus" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                                 <div class="ci-right">
                                     <span class="ci-sub" id="subtotal-{{ item.product_id }}">₹{{ item.subtotal }}</span>
                                     <button class="ci-rm" onclick="updateCart('{{ item.product_id }}', 'remove')"
                                             title="Remove item" aria-label="Remove item">
-                                        <i class="fa-solid fa-trash"></i></button>
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         {% endfor %}
 
                         <div>
-                            <a href="/#products" class="btn btn-ghost btn-sm" style="margin-top:10px;">
-                                <i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+                            <a href="{% url 'products' %}" class="btn btn-ghost btn-sm" style="margin-top:10px;">
+                                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Continue Shopping</a>
                         </div>
                     </div>
 
@@ -72,21 +72,21 @@
                             <span>Estimated Total</span>
                             <span id="cart-total">₹{{ cart_total|floatformat:2 }}</span>
                         </div>
-                        <p class="note"><i class="fa-solid fa-circle-info"></i> Final price confirmed by our team based
+                        <p class="note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Final price confirmed by our team based
                             on your order specs.</p>
                         <button class="btn btn-wa btn-lg" style="width:100%;" onclick="openCheckoutModal()">
-                            <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Checkout via WhatsApp
                         </button>
                     </div>
                 </div>
 
             {% else %}
                 <div class="cart-empty">
-                    <div class="big-ic"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="big-ic"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
                     <h3>Your cart is empty</h3>
                     <p>Looks like you haven't added any products yet.</p>
-                    <a href="/#products" class="btn btn-ink btn-lg">
-                        <i class="fa-solid fa-store"></i> Browse Products</a>
+                    <a href="{% url 'products' %}" class="btn btn-ink btn-lg">
+                        <i class="fa-solid fa-store" aria-hidden="true"></i> Browse Products</a>
                 </div>
             {% endif %}
         </div>
@@ -96,36 +96,40 @@
     <div class="co-overlay" id="checkoutModal">
         <div class="co-modal">
             <div class="co-head">
-                <i class="fa-brands fa-whatsapp"></i>
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 <h4>Complete Your Order</h4>
             </div>
             <p class="co-sub">Your cart details will be sent to Rakesh Packers via WhatsApp.</p>
 
             <div class="co-field">
-                <label>Your Name <em>*</em></label>
-                <input type="text" id="co-name" placeholder="e.g. Rajesh Kumar"/>
-                <div id="name-error" class="err"><i class="fa-solid fa-circle-exclamation"></i> Name is required.</div>
+                <label for="co-name">Your Name <em>*</em></label>
+                <input type="text" id="co-name" name="name" autocomplete="name"
+                       placeholder="e.g. Rajesh Kumar"/>
+                <div id="name-error" class="err"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Name is required.</div>
             </div>
             <div class="co-2col">
                 <div class="co-field">
-                    <label>State <small>(optional)</small></label>
-                    <input type="text" id="co-state" placeholder="e.g. Punjab"/>
+                    <label for="co-state">State <small>(optional)</small></label>
+                    <input type="text" id="co-state" name="state" autocomplete="address-level1"
+                           placeholder="e.g. Punjab"/>
                 </div>
                 <div class="co-field">
-                    <label>City <small>(optional)</small></label>
-                    <input type="text" id="co-city" placeholder="e.g. Jalandhar"/>
+                    <label for="co-city">City <small>(optional)</small></label>
+                    <input type="text" id="co-city" name="city" autocomplete="address-level2"
+                           placeholder="e.g. Jalandhar"/>
                 </div>
             </div>
             <div class="co-field">
-                <label>Address <small>(optional)</small></label>
-                <textarea id="co-address" rows="2" placeholder="Street, locality, landmark…"></textarea>
+                <label for="co-address">Address <small>(optional)</small></label>
+                <textarea id="co-address" name="address" rows="2" autocomplete="street-address"
+                          placeholder="Street, locality, landmark…"></textarea>
             </div>
 
             <button class="btn btn-wa btn-lg" style="width:100%;margin-bottom:10px;" onclick="sendToWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Send Order on WhatsApp
             </button>
             <button class="btn btn-ghost" style="width:100%;" onclick="closeCheckoutModal()">
-                <i class="fa-solid fa-xmark"></i> Cancel
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i> Cancel
             </button>
         </div>
     </div>
@@ -175,15 +179,38 @@
                     window.rpSetCartCount(data.cart_count);
 
                     if (action === 'remove') {
+                        // Snapshot before the row goes, so Undo can put it back.
+                        const removed = liveCart[productId];
                         if (row) {
                             row.classList.add('removing');
                             setTimeout(function () { row.remove(); }, 280);
                         }
                         delete liveCart[productId];
                         recalcSummary();
-                        window.rpToast('Item removed from cart', 'fa-solid fa-trash');
-                        if (Object.keys(liveCart).length === 0) {
-                            setTimeout(function () { location.reload(); }, 450);
+
+                        const emptied = Object.keys(liveCart).length === 0;
+                        let reloadTimer = null;
+                        const UNDO_MS = 7000;
+
+                        window.rpToast(
+                            'Removed ' + (removed ? removed.name : 'item') + ' from cart',
+                            'fa-solid fa-trash',
+                            {
+                                label: 'Undo',
+                                onClick: function () {
+                                    if (reloadTimer) clearTimeout(reloadTimer);
+                                    window.rpAddToCart(productId, removed ? removed.qty : 1, function () {
+                                        location.reload();
+                                    });
+                                }
+                            },
+                            UNDO_MS
+                        );
+
+                        // Emptying the cart swaps in the empty state, but not
+                        // until the undo window has actually closed.
+                        if (emptied) {
+                            reloadTimer = setTimeout(function () { location.reload(); }, UNDO_MS);
                         }
                     } else {
                         if (liveCart[productId]) {

@@ -256,6 +256,7 @@ def group_products_by_category(categories=None, products=None):
         {
             "category": category,
             "name": category.name,
+            "slug": category.slug,
             "anchor": category.anchor,
             "products": buckets[category.id],
             "count": len(buckets[category.id]),
@@ -269,6 +270,7 @@ def group_products_by_category(categories=None, products=None):
             {
                 "category": None,
                 "name": "More Packaging",
+                "slug": "more",
                 "anchor": "cat-more",
                 "products": uncategorised,
                 "count": len(uncategorised),
@@ -276,6 +278,27 @@ def group_products_by_category(categories=None, products=None):
         )
 
     return groups
+
+
+def featured_products(groups, limit=24):
+    """A cross-section of the catalogue for the homepage.
+
+    Takes one product from each category in turn rather than the first N of a
+    flat list — otherwise a single large category (Plastic Containers alone is
+    20 of the 74) would fill the whole grid and the homepage would misrepresent
+    what the business sells.
+    """
+    queues = [list(group["products"]) for group in groups]
+    picked = []
+    while queues and len(picked) < limit:
+        for queue in queues:
+            if not queue:
+                continue
+            picked.append(queue.pop(0))
+            if len(picked) >= limit:
+                break
+        queues = [q for q in queues if q]
+    return picked
 
 
 def fetch_related_products(product, limit=8, products=None):
