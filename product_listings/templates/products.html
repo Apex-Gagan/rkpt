@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if active_group %}{{ active_group.name }} — {{ active_group.count }} Custom Box{{ active_group.count|pluralize:"es" }} | Rakesh Packers{% else %}All Products — {{ total_count }} Custom Packaging Boxes | Rakesh Packers{% endif %}{% endblock %}
+
+{% block description %}{% if active_group %}{% if active_group.category.description %}{{ active_group.category.description|striptags|truncatewords:22 }}{% else %}Browse {{ active_group.count }} {{ active_group.name|lower }} from Rakesh Packers, Jalandhar — custom sizes, your branding printed on, bulk pricing.{% endif %}{% else %}Browse the full Rakesh Packers catalogue — {{ total_count }} custom packaging boxes across {{ category_groups|length }} categories, made in Jalandhar and delivered pan-India.{% endif %}{% endblock %}
+
+{% comment %}
+    A filtered view is its own canonical URL, so the ?category= param has to
+    survive into the tag — otherwise every category would declare itself a
+    duplicate of /products/ and none of them would rank.
+{% endcomment %}
+{% block canonical %}{{ site_url }}{% url 'products' %}{% if active_group %}?category={{ active_group.slug }}{% endif %}{% endblock %}
+
+{% block og_url %}{{ site_url }}{% url 'products' %}{% if active_group %}?category={{ active_group.slug }}{% endif %}{% endblock %}
+
+{% block og_title %}{% if active_group %}{{ active_group.name }} | Rakesh Packers{% else %}All Products | Rakesh Packers{% endif %}{% endblock %}
+
+{% block jsonld %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site_url }}/"},
+                        {"@type": "ListItem", "position": 2, "name": "Products", "item": "{{ site_url }}{% url 'products' %}"}{% if active_group %},
+                            {"@type": "ListItem", "position": 3, "name": "{{ active_group.name|escapejs }}", "item": "{{ site_url }}{% url 'products' %}?category={{ active_group.slug|escapejs }}"}{% endif %}
+                    ]
+                },
+                {
+                    "@type": "CollectionPage",
+                    "name": "{% if active_group %}{{ active_group.name|escapejs }}{% else %}All Products{% endif %}",
+                    "url": "{{ site_url }}{% url 'products' %}{% if active_group %}?category={{ active_group.slug|escapejs }}{% endif %}",
+                    "isPartOf": {"@id": "{{ site_url }}/#website"},
+                    "about": {"@id": "{{ site_url }}/#organization"}
+                }
+            ]
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="pl-page">
+        <div class="rp-container">
+
+            <nav class="pd-crumb rv in" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <i class="fa-solid fa-angle-right" style="font-size:.6rem;" aria-hidden="true"></i>
+                {% if active_group %}
+                    <a href="{% url 'products' %}">Products</a>
+                    <i class="fa-solid fa-angle-right" style="font-size:.6rem;" aria-hidden="true"></i>
+                    <b>{{ active_group.name }}</b>
+                {% else %}
+                    <b>Products</b>
+                {% endif %}
+            </nav>
+
+            <header class="pl-head">
+                <span class="chip sec-kicker"><span class="dot"></span>
+                    {% if active_group %}Category{% else %}Full catalogue{% endif %}</span>
+                <h1 class="sec-title">
+                    {% if active_group %}{{ active_group.name }}{% else %}Every <span class="accent">box</span> we make{% endif %}
+                </h1>
+                <p class="sec-sub">
+                    {% if active_group %}
+                        {% if active_group.category.description %}{{ active_group.category.description }}
+                        {% else %}{{ active_group.count }} product{{ active_group.count|pluralize }} in this
+                            category — tap any one for sizes, specs and instant WhatsApp ordering.{% endif %}
+                    {% else %}
+                        {{ total_count }} products across {{ category_groups|length }} categories. Every box is
+                        made to order — your size, your print, your quantity.
+                    {% endif %}
+                </p>
+            </header>
+
+            {% if category_groups %}
+                <nav class="cat-bar" id="cat-bar" aria-label="Filter products by category">
+                    <a href="{% url 'products' %}"
+                       class="cat-tab cat-tab-all{% if not active_group %} active{% endif %}"
+                       {% if not active_group %}aria-current="page"{% endif %}>
+                        <span class="lbl">All<span class="lbl-wide"> Products</span></span>
+                        <span class="n">{{ total_count }}</span>
+                    </a>
+                    <button type="button" class="cat-arrow" id="cat-prev"
+                            aria-label="Scroll to previous categories" aria-controls="cat-tabs">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <div class="cat-tabs" id="cat-tabs">
+                        {% for group in category_groups %}
+                            <a href="{% url 'products' %}?category={{ group.slug }}"
+                               class="cat-tab{% if active_group and active_group.slug == group.slug %} active{% endif %}"
+                               {% if active_group and active_group.slug == group.slug %}aria-current="page"{% endif %}>
+                                <span class="lbl">{{ group.name }}</span><span class="n">{{ group.count }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="cat-arrow" id="cat-next"
+                            aria-label="Scroll to next categories" aria-controls="cat-tabs">
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </nav>
+
+                <p class="cat-summary">
+                    {% if active_group %}
+                        Showing <b>{{ active_group.count }} product{{ active_group.count|pluralize }}</b>
+                        in {{ active_group.name }} ·
+                        <a href="{% url 'products' %}">see all {{ total_count }}</a>
+                    {% else %}
+                        Browsing <b>{{ category_groups|length }} categories</b>
+                        · {{ total_count }} products in total
+                    {% endif %}
+                </p>
+            {% endif %}
+
+            <div class="cat-blocks">
+                {% for group in visible_groups %}
+                    <section class="cat-block" id="{{ group.anchor }}" aria-labelledby="h-{{ group.anchor }}">
+                        <header class="cb-head rv">
+                            <div class="cb-lead">
+                                <span class="cb-num">{{ forloop.counter|stringformat:"02d" }}</span>
+                                <div>
+                                    <h2 class="cb-title" id="h-{{ group.anchor }}">{{ group.name }}</h2>
+                                    {% if group.category.description %}
+                                        <p class="cb-sub">{{ group.category.description }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <span class="cb-count">{{ group.count }} product{{ group.count|pluralize }}</span>
+                        </header>
+
+                        <div class="prod-grid">
+                            {% if preview_limit %}
+                                {% for product in group.products|slice:preview_slice %}
+                                    {% include "partials/product_card.html" with product=product %}
+                                {% endfor %}
+                            {% else %}
+                                {% for product in group.products %}
+                                    {% include "partials/product_card.html" with product=product %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        {% if preview_limit and group.count > preview_limit %}
+                            <p class="cb-more">
+                                <a href="{% url 'products' %}?category={{ group.slug }}">
+                                    See all {{ group.count }} {{ group.name|lower }}
+                                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            </p>
+                        {% endif %}
+                    </section>
+                {% empty %}
+                    <div class="pl-empty">
+                        <div class="big-ic"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
+                        <h2>Nothing here yet</h2>
+                        <p>We're adding products to this part of the catalogue. Tell us what you need and
+                            we'll quote it anyway.</p>
+                        <a href="https://wa.me/919988775163" target="_blank" rel="noopener" class="btn btn-wa btn-lg">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Ask on WhatsApp</a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if active_group %}
+                <div class="pl-more">
+                    <a href="{% url 'products' %}" class="btn btn-ghost btn-lg">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to all products</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

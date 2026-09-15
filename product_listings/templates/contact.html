@@ -46,22 +46,22 @@
             <!-- Info cards -->
             <div class="ct-cards">
                 <div class="ct-card rv">
-                    <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="ic"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
                     <h4>Visit Us</h4>
                     <p>Basement of Manapuram Gold Bank, near Bijli Ghar Patel Chowk, Jalandhar (PB), 144001</p>
                 </div>
                 <div class="ct-card rv rv-d1">
-                    <div class="ic"><i class="fa-solid fa-phone"></i></div>
+                    <div class="ic"><i class="fa-solid fa-phone" aria-hidden="true"></i></div>
                     <h4>Call Us</h4>
                     <a href="tel:+919988775163">(+91) 99887-75163</a>
                 </div>
                 <div class="ct-card rv rv-d2">
-                    <div class="ic"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="ic"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
                     <h4>Email Us</h4>
                     <a href="mailto:rakeshpackers5@gmail.com">rakeshpackers5@gmail.com</a>
                 </div>
                 <div class="ct-card rv rv-d3">
-                    <div class="ic"><i class="fa-solid fa-clock"></i></div>
+                    <div class="ic"><i class="fa-solid fa-clock" aria-hidden="true"></i></div>
                     <h4>Working Hours</h4>
                     <p>Mon – Sun<br/>10:00 AM – 7:00 PM IST</p>
                 </div>
@@ -77,17 +77,20 @@
                         {% csrf_token %}
                         <div class="ct-field">
                             <label for="contact-name">Your Name <em>*</em></label>
-                            <input type="text" id="contact-name" name="name" placeholder="e.g. Rajesh Kumar"/>
+                            <input type="text" id="contact-name" name="name" autocomplete="name"
+                                   placeholder="e.g. Rajesh Kumar"/>
                             <p id="name_error_message" class="ct-err"></p>
                         </div>
                         <div class="ct-field">
                             <label for="contact-email">Your E-mail <em>*</em></label>
-                            <input type="email" id="contact-email" name="email" placeholder="you@example.com"/>
+                            <input type="email" id="contact-email" name="email" autocomplete="email"
+                                   spellcheck="false" placeholder="you@example.com"/>
                             <p id="email_error_message" class="ct-err"></p>
                         </div>
                         <div class="ct-field">
                             <label for="contact-mobile">Your Mobile <em>*</em></label>
-                            <input type="tel" id="contact-mobile" name="phone" placeholder="+91 XXXXX XXXXX"/>
+                            <input type="tel" id="contact-mobile" name="phone" autocomplete="tel"
+                                   inputmode="tel" placeholder="+91 XXXXX XXXXX"/>
                             <p id="phone_error_message" class="ct-err"></p>
                         </div>
                         <div class="ct-field">
@@ -101,7 +104,7 @@
                         <p id="success_message" class="ct-ok"></p>
 
                         <button type="button" class="btn btn-ink btn-lg" style="width:100%;" id="submitbtn">
-                            Send Message <i class="fa-solid fa-paper-plane bi"></i>
+                            Send Message <i class="fa-solid fa-paper-plane bi" aria-hidden="true"></i>
                         </button>
                     </form>
                 </div>
@@ -149,7 +152,7 @@
             btn.addEventListener('click', function () {
                 resetMessages();
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Sending…';
 
                 var body = new URLSearchParams({
                     name: document.getElementById('contact-name').value.trim(),

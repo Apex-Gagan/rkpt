@@ -17,11 +17,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from product_listings.sitemaps import StaticViewSitemap, ProductSitemap
+from product_listings.sitemaps import (
+    CategorySitemap,
+    ProductSitemap,
+    StaticViewSitemap,
+)
 from django.contrib.sitemaps.views import sitemap
 
 sitemaps = {
     "static": StaticViewSitemap,
+    "categories": CategorySitemap,
     "products": ProductSitemap,
 }
 urlpatterns = [

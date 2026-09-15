@@ -6,6 +6,7 @@ from .views import *
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
+    path("products/", ProductsView.as_view(), name="products"),
     path("product/<slug>", Single_Product.as_view(), name="single-product"),
     # Product pages have always been served without a trailing slash, but the
     # old og:url tags advertised one — so shared links land on a 404. Redirect

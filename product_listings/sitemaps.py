@@ -5,7 +5,7 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 
-from .supabase_data import fetch_products
+from .supabase_data import fetch_categories, fetch_products, group_products_by_category
 
 _SPLIT = urlsplit(settings.SITE_URL)
 
@@ -36,13 +36,30 @@ class StaticViewSitemap(CanonicalSitemap):
     changefreq = "weekly"
 
     def items(self):
-        return ["home", "contact"]
+        return ["home", "products", "contact"]
 
     def location(self, item):
         return reverse(item)
 
     def priority(self, item):
-        return 1.0 if item == "home" else 0.6
+        return {"home": 1.0, "products": 0.9}.get(item, 0.6)
+
+
+class CategorySitemap(CanonicalSitemap):
+    """Each category listing is its own indexable page.
+
+    They are query-string URLs rather than paths, which crawlers handle fine so
+    long as each one is canonical to itself — see the products template.
+    """
+
+    changefreq = "weekly"
+    priority = 0.7
+
+    def items(self):
+        return group_products_by_category(fetch_categories(), fetch_products())
+
+    def location(self, group):
+        return f"{reverse('products')}?category={group['slug']}"
 
 
 class ProductSitemap(CanonicalSitemap):
