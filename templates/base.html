@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="theme-color" content="#faf6ef"/>
+        <meta name="theme-color" content="#f5f8fd"/>
 
     <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -261,8 +261,8 @@
                     {% for group in category_groups %}
                         <a class="dr-grp" href="{% url 'products' %}?category={{ group.slug }}">{{ group.name }}
                             <span class="n">{{ group.count }}</span></a>
-                        {# Capped like the desktop mega. Uncapped this rendered a
-                           link for every product in the catalogue — on every page. #}
+                        {% comment %}Capped like the desktop mega. Uncapped this rendered a
+                           link for every product in the catalogue — on every page.{% endcomment %}
                         <div class="dr-grid">
                             {% for p in group.products|slice:":6" %}
                                 <a href="{% url 'single-product' p.slug %}">{{ p.name }}</a>
@@ -346,7 +346,7 @@
 
                 <div class="bottom">
                     <span>© Rakesh Packers {{ current_year }}. All rights reserved.</span>
-                    <span>Made with <i class="fa-solid fa-heart" style="color:var(--red)" aria-hidden="true"></i> in Jalandhar, Punjab</span>
+                    <span>Made with <i class="fa-solid fa-heart" style="color:var(--gold)" aria-hidden="true"></i> in Jalandhar, Punjab</span>
                 </div>
             </div>
         </footer>
